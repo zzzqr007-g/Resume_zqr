@@ -352,17 +352,38 @@
     }
   })();
 
-  /* ==================== 编辑模式 ==================== */
+  /* ==================== 编辑模式（点击✏️时验证密码） ==================== */
   let editing=false;
+
+  async function sha256(t){const d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return Array.from(new Uint8Array(d)).map(b=>b.toString(16).padStart(2,'0')).join('');}
+  async function checkPwd(p){const h=localStorage.getItem('_ph');return h?(await sha256(p))===h:true;}
+  async function setPwd(p){localStorage.setItem('_ph',await sha256(p));}
+  function authed(){return sessionStorage.getItem('_ea')==='1';}
+  function setAuthed(v){v?sessionStorage.setItem('_ea','1'):sessionStorage.removeItem('_ea');}
+
+  async function enterEdit(){
+    if(authed()){applyEdit(true);return;}
+    const has=localStorage.getItem('_ph');
+    const p=prompt(has?'🔐 请输入编辑密码':'🔐 首次使用，请设置编辑密码','');
+    if(p===null)return;
+    if(!has){await setPwd(p);setAuthed(true);applyEdit(true);}
+    else if(await checkPwd(p)){setAuthed(true);applyEdit(true);}
+    else{alert('❌ 密码错误');}
+  }
+
   function toggleEdit(){
-    editing=!editing;
-    document.body.classList.toggle('editing',editing);
-    document.getElementById('ebar').style.display=editing?'flex':'none';
-    document.querySelector('.edit-btn').textContent=editing?'✖️':'✏️';
-    // 强制展开所有卡片详情方便编辑
-    document.querySelectorAll('.card').forEach(c=>c.classList.toggle('force-open',editing));
-    document.querySelectorAll('.toggle-card').forEach(c=>c.classList.toggle('open',editing));
-    if(!editing)save();
+    if(editing){applyEdit(false);}
+    else{enterEdit();}
+  }
+
+  function applyEdit(on){
+    editing=on;
+    document.body.classList.toggle('editing',on);
+    document.getElementById('ebar').style.display=on?'flex':'none';
+    document.querySelector('.edit-btn').textContent=on?'✖️':'✏️';
+    document.querySelectorAll('.card').forEach(c=>c.classList.toggle('force-open',on));
+    document.querySelectorAll('.toggle-card').forEach(c=>c.classList.toggle('open',on));
+    if(!on){save();setAuthed(false);}
   }
 
   /* ==================== 持久化 ==================== */
