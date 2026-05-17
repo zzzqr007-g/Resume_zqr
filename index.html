@@ -6,435 +6,445 @@
   <meta name="description" content="章权瑞 — 北京邮电大学 电信工程及管理 个人简历" />
   <meta name="robots" content="noindex" />
   <link rel="stylesheet" href="styles.css" />
-  <title>章权瑞 · 个人简历</title>
+  <title>章权瑞 · Resume</title>
 </head>
 <body>
 
-  <div class="theme-toggle" onclick="toggleTheme()" title="切换亮暗模式">
-    <span class="icon">🌙</span>
+  <!-- ================ 工具栏：主题 + 语言 + 编辑 ================ -->
+  <div class="top-tools">
+    <div class="lang-switch" onclick="toggleLang()">
+      <span class="lang-label active" data-lang="cn">中</span>
+      <span class="lang-label" data-lang="en">EN</span>
+    </div>
+    <div class="theme-toggle" onclick="toggleTheme()" title="亮/暗">
+      <span class="icon">🌙</span>
+    </div>
+    <div class="edit-btn" onclick="toggleEdit()" title="编辑模式">✏️</div>
+  </div>
+
+  <!-- ================ 编辑工具栏 ================ -->
+  <div id="ebar" class="edit-bar">
+    <span>✏️ 编辑模式</span>
+    <button onclick="exportHTML()">📥 导出</button>
+    <button onclick="toggleEdit()">🔒 退出</button>
   </div>
 
   <div class="container">
 
-    <!-- ==================== 头部 ==================== -->
-    <header class="section header fade-in">
-      <img class="profile-photo" src="photo.jpg" alt="章权瑞"
-           onerror="this.style.display='none';document.getElementById('pf').style.display='flex';" />
-      <div id="pf" class="profile-photo-fb">👤</div>
-      <h1 class="name" data-field="name">章权瑞</h1>
-      <p class="title" data-field="title">北京邮电大学 · 电信工程及管理 · 2025级本科</p>
-      <p class="location" data-field="location">📍 北京</p>
-      <div class="contact-links">
-        <a href="mailto:zzzqr007@gmail.com" class="contact-link">📧 zzzqr007@gmail.com</a>
-        <a href="https://github.com/zzzqr007-g" target="_blank" class="contact-link">🐙 GitHub</a>
-        <a href="tel:13875847793" class="contact-link">📱 13875847793</a>
+    <!-- ========== HEADER ========== -->
+    <header class="header fade-in">
+      <img class="profile-photo" src="photo.jpg" alt="Photo"
+           onerror="this.style.display='none';ge('pf').style.display='flex';" />
+      <div id="pf" class="photo-fb">👤</div>
+      <div class="header-info">
+        <h1 class="name"><span data-cn="章权瑞" data-en="Zhang Quanrui">章权瑞</span></h1>
+        <p class="title"><span data-cn="北京邮电大学 · 电信工程及管理 · 2025级本科" data-en="BUPT · E-commerce Engineering with Law · Class of 2029">北京邮电大学 · 电信工程及管理 · 2025级本科</span></p>
+        <p class="location"><span data-cn="📍 北京" data-en="📍 Beijing, China">📍 北京</span></p>
+        <div class="contact-links">
+          <a href="mailto:zzzqr007@gmail.com" class="clink">📧 zzzqr007@gmail.com</a>
+          <a href="https://github.com/zzzqr007-g" target="_blank" class="clink">🐙 GitHub</a>
+        </div>
       </div>
     </header>
 
-    <!-- ==================== 关于我 ==================== -->
-    <section class="section fade-in s1" data-section="about">
-      <h2 class="sec-title">关于我</h2>
-      <div class="card about-card" data-editable="about">
-        <p class="about-text">
-          北京邮电大学电信工程及管理专业2025级本科生。对<strong>具身智能、大语言模型、Transformer架构</strong>等人工智能前沿方向有浓厚兴趣。目前正在系统学习数据分析、机器学习与深度学习，具备扎实的编程基础与科研素养，积极投身实验室工作与学术项目，未来期望在人工智能相关领域深造与发展。
-        </p>
+    <!-- ========== 关于我 ========== -->
+    <section class="sec fade-in s1" data-sec="about">
+      <h2 class="sec-h">
+        <span class="sec-dot"></span>
+        <span data-cn="关于我" data-en="About Me">关于我</span>
+      </h2>
+      <div class="card about-card" data-card="about" data-editable>
+        <p class="about-text" data-cn="北京邮电大学电信工程及管理专业2025级本科生。对具身智能、大语言模型、Transformer架构等人工智能前沿方向有浓厚兴趣。目前正在系统学习数据分析、机器学习与深度学习，具备扎实的编程基础与科研素养，积极投身实验室工作与学术项目，未来期望在人工智能相关领域深造与发展。" data-en="A first-year undergraduate at Beijing University of Posts and Telecommunications (BUPT), majoring in E-commerce Engineering with Law. Passionate about cutting-edge AI including embodied intelligence, large language models, and Transformer architectures. Currently engaged in systematic study of data analysis, machine learning, and deep learning. With solid programming foundations and research literacy, I am actively involved in laboratory research and academic projects, aspiring to pursue advanced studies and a career in artificial intelligence.">北京邮电大学电信工程及管理专业2025级本科生。对具身智能、大语言模型、Transformer架构等人工智能前沿方向有浓厚兴趣。目前正在系统学习数据分析、机器学习与深度学习，具备扎实的编程基础与科研素养，积极投身实验室工作与学术项目，未来期望在人工智能相关领域深造与发展。</p>
       </div>
     </section>
 
-    <!-- ==================== 教育背景 ==================== -->
-    <section class="section fade-in s2" data-section="education">
-      <h2 class="sec-title">教育背景 <button class="add-btn" onclick="addCard('education')">+</button></h2>
-      <div class="card" data-editable="edu">
-        <div class="c-top">
-          <h3 class="c-title">北京邮电大学 · 电信工程及管理</h3>
-          <p class="c-sub">本科在读 · 2025.09 — 2029.06（预期）</p>
-        </div>
-        <div class="c-divider"></div>
-        <div class="c-detail">
-          <p class="c-desc">
-            大一上学期保研均分 <strong>90.83</strong>/100，专业排名 <strong>前 6%</strong>。<br />
-            核心课程：高等数学上（88）、线性代数（90）、计算机导论与程序设计（91）。
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== 科研经历 ==================== -->
-    <section class="section fade-in s3" data-section="research">
-      <h2 class="sec-title">科研经历 <button class="add-btn" onclick="addCard('research')">+</button></h2>
-
-      <div class="card" data-editable="research-0">
-        <div class="c-top">
-          <h3 class="c-title">模式识别与智能系统实验室（PRIS Lab）</h3>
-          <p class="c-sub">本科生研究员</p>
-          <p class="c-meta">在读期间</p>
-        </div>
-        <div class="c-divider"></div>
-        <div class="c-detail">
-          <p class="c-desc">作为本科生进入北京邮电大学模式识别与智能系统实验室，参与课题组学术研讨与科研实践，在导师指导下开展模式识别与智能系统相关方向的研究工作，积累科研方法论与学术训练。</p>
-        </div>
-      </div>
-
-      <div class="card" data-editable="research-1">
-        <div class="c-top">
-          <h3 class="c-title">基于 LSTM 模型的共享单车短期需求预测</h3>
-          <p class="c-sub">独立研究</p>
-          <p class="c-meta">论文已产出（投稿中）</p>
-        </div>
-        <div class="c-divider"></div>
-        <div class="c-detail">
-          <p class="c-desc">使用长短期记忆网络（LSTM）对共享单车系统进行短期需求预测建模，完成从数据预处理、特征工程到模型训练与评估的完整研究流程，独立撰写学术论文，目前处于投稿阶段。</p>
-        </div>
-      </div>
-
-      <div class="card" data-editable="research-2">
-        <div class="c-top">
-          <h3 class="c-title">北邮-清华具身智能知识库构建</h3>
-          <p class="c-sub">核心参与者 · 高校具身智能联盟框架下</p>
-          <p class="c-meta">在读期间</p>
-        </div>
-        <div class="c-divider"></div>
-        <div class="c-detail">
-          <p class="c-desc">参与北京邮电大学与清华大学合作的具身智能知识库构建项目，独立负责<strong>核心学者</strong>与<strong>核心实验室</strong>板块的信息采集、整理与结构化建库工作，服务于高校具身智能联盟的学术资源体系建设。</p>
+    <!-- ========== 教育背景 ========== -->
+    <section class="sec fade-in s2" data-sec="education">
+      <h2 class="sec-h">
+        <span class="sec-dot"></span>
+        <span data-cn="教育背景" data-en="Education">教育背景</span>
+        <span class="sec-add" onclick="addCard(this,'education')">+</span>
+      </h2>
+      <div class="cards-col" data-col="education">
+        <div class="card" data-card="edu" data-editable>
+          <div class="c-top">
+            <h3 class="c-title" data-cn="北京邮电大学 · 电信工程及管理" data-en="BUPT · E-commerce Engineering with Law">北京邮电大学 · 电信工程及管理</h3>
+            <p class="c-sub"><span data-cn="本科在读 · 2025.09 — 2029.06（预期）" data-en="B.E. Candidate · Sep 2025 – Jun 2029 (Expected)">本科在读 · 2025.09 — 2029.06（预期）</span></p>
+          </div>
+          <div class="c-divider"></div>
+          <div class="c-detail">
+            <p class="c-desc" data-cn="大一上学期保研均分 <b>90.83</b>/100，专业排名 <b>前 6%</b>。<br>核心课程：高等数学上（88）、线性代数（90）、计算机导论与程序设计（91）。" data-en="First-semester GPA: <b>90.83</b>/100, ranked <b>top 6%</b> in major.<br>Key courses: Advanced Mathematics I (88), Linear Algebra (90), Introduction to Computing & Programming (91).">大一上学期保研均分 <b>90.83</b>/100，专业排名 <b>前 6%</b>。<br>核心课程：高等数学上（88）、线性代数（90）、计算机导论与程序设计（91）。</p>
+          </div>
+          <span class="card-ctrl" onclick="delCard(this)" title="删除">×</span>
         </div>
       </div>
     </section>
 
-    <!-- ==================== 项目经历 ==================== -->
-    <section class="section fade-in s4" data-section="projects">
-      <h2 class="sec-title">项目经历 <button class="add-btn" onclick="addCard('projects')">+</button></h2>
-
-      <div class="card" data-editable="project-0">
-        <div class="c-top">
-          <h3 class="c-title">雏雁计划 ·「领航雁」— 基于 LiDAR 和定向体感震动的视障碍传感系统</h3>
-          <p class="c-meta">LiDAR · 嵌入式 · 传感器 · 无障碍设计</p>
+    <!-- ========== 科研经历 ========== -->
+    <section class="sec fade-in s3" data-sec="research">
+      <h2 class="sec-h">
+        <span class="sec-dot"></span>
+        <span data-cn="科研经历" data-en="Research">科研经历</span>
+        <span class="sec-add" onclick="addCard(this,'research')">+</span>
+      </h2>
+      <div class="cards-col" data-col="research">
+        <div class="card" data-card="r0" data-editable>
+          <div class="c-top">
+            <h3 class="c-title"><span data-cn="模式识别与智能系统实验室（PRIS Lab）" data-en="Pattern Recognition & Intelligent Systems Lab (PRIS Lab)">模式识别与智能系统实验室（PRIS Lab）</span></h3>
+            <p class="c-sub"><span data-cn="本科生研究员" data-en="Undergraduate Researcher">本科生研究员</span></p>
+            <p class="c-meta"><span data-cn="在读期间" data-en="Currently">在读期间</span></p>
+          </div>
+          <div class="c-divider"></div>
+          <div class="c-detail">
+            <p class="c-desc" data-cn="作为本科生进入北京邮电大学模式识别与智能系统实验室，参与课题组学术研讨与科研实践，在导师指导下开展模式识别与智能系统相关方向的研究工作，积累科研方法论与学术训练。" data-en="Joined BUPT's PRIS Lab as an undergraduate researcher, participating in academic seminars and research practice. Conducting research in pattern recognition and intelligent systems under faculty supervision, building research methodology and academic training.">作为本科生进入北京邮电大学模式识别与智能系统实验室，参与课题组学术研讨与科研实践，在导师指导下开展模式识别与智能系统相关方向的研究工作，积累科研方法论与学术训练。</p>
+          </div>
+          <span class="card-ctrl" onclick="delCard(this)" title="删除">×</span>
         </div>
-        <div class="c-divider"></div>
-        <div class="c-detail">
-          <p class="c-desc">面向视障人群出行痛点，设计融合 LiDAR 环境感知与定向体感震动反馈的辅助传感系统方案，已申请立项。</p>
+        <div class="card" data-card="r1" data-editable>
+          <div class="c-top">
+            <h3 class="c-title"><span data-cn="基于 LSTM 模型的共享单车短期需求预测" data-en="Short-term Bike-Sharing Demand Forecasting Based on LSTM">基于 LSTM 模型的共享单车短期需求预测</span></h3>
+            <p class="c-sub"><span data-cn="独立研究" data-en="Independent Research">独立研究</span></p>
+            <p class="c-meta"><span data-cn="论文已产出（投稿中）" data-en="Paper under review">论文已产出（投稿中）</span></p>
+          </div>
+          <div class="c-divider"></div>
+          <div class="c-detail">
+            <p class="c-desc" data-cn="使用长短期记忆网络（LSTM）对共享单车系统进行短期需求预测建模，完成从数据预处理、特征工程到模型训练与评估的完整研究流程，独立撰写学术论文，目前处于投稿阶段。" data-en="Built an LSTM model for short-term bike-sharing demand forecasting, completing the full pipeline from data preprocessing and feature engineering to model training and evaluation. Independently authored the academic paper, currently under review.">使用长短期记忆网络（LSTM）对共享单车系统进行短期需求预测建模，完成从数据预处理、特征工程到模型训练与评估的完整研究流程，独立撰写学术论文，目前处于投稿阶段。</p>
+          </div>
+          <span class="card-ctrl" onclick="delCard(this)" title="删除">×</span>
         </div>
-      </div>
-
-      <div class="card" data-editable="project-1">
-        <div class="c-top">
-          <h3 class="c-title">鸿蒙嵌入式应用开发 · 计算器 App</h3>
-          <p class="c-meta">鸿蒙 · 嵌入式 · 前端</p>
-        </div>
-        <div class="c-divider"></div>
-        <div class="c-detail">
-          <p class="c-desc">参与国际学院"繁星工程"之嵌入式鸿蒙应用开发实践，基于鸿蒙系统完成计算器应用的设计与开发。</p>
-        </div>
-      </div>
-
-      <div class="card" data-editable="project-2">
-        <div class="c-top">
-          <h3 class="c-title">贪吃蛇 OJ 版 · 计算机导论课程设计</h3>
-          <p class="c-meta">C/C++ · 算法 · OJ平台</p>
-        </div>
-        <div class="c-divider"></div>
-        <div class="c-detail">
-          <p class="c-desc">完成贪吃蛇游戏的 OJ 平台适配版本，处理多组数据输入与复杂边界条件，OJ 评分约 1400 分。</p>
-        </div>
-      </div>
-
-      <div class="card" data-editable="project-3">
-        <div class="c-top">
-          <h3 class="c-title">数据结构底层实现 · 链表核心算法</h3>
-          <p class="c-meta">C/C++ · 数据结构 · 指针 · 内存管理</p>
-        </div>
-        <div class="c-divider"></div>
-        <div class="c-detail">
-          <p class="c-desc">自主实现单向与双向链表基础数据结构，熟练完成链表的增删改查、反转、合并、去重、快慢指针等核心算法操作，具备扎实的底层代码编写与内存逻辑理解能力。</p>
-        </div>
-      </div>
-
-      <div class="card" data-editable="project-4">
-        <div class="c-top">
-          <h3 class="c-title">Lab4AI × 北邮 · AI 赋能论文写作实战训练营</h3>
-          <p class="c-meta">AI 工具链 · 学术写作 · 文献管理</p>
-        </div>
-        <div class="c-divider"></div>
-        <div class="c-detail">
-          <p class="c-desc">参加 Lab4AI 与北京邮电大学联合举办的 AI 赋能论文提效与工作流实战训练营，独立完成从文献检索、综述撰写到论文润色的 AI 辅助全流程，系统掌握 AI 时代的学术生产力工具链。</p>
+        <div class="card" data-card="r2" data-editable>
+          <div class="c-top">
+            <h3 class="c-title"><span data-cn="北邮-清华具身智能知识库构建" data-en="BUPT-Tsinghua Embodied Intelligence Knowledge Base">北邮-清华具身智能知识库构建</span></h3>
+            <p class="c-sub"><span data-cn="核心参与者 · 高校具身智能联盟框架下" data-en="Core Contributor · Under the University Embodied Intelligence Alliance">核心参与者 · 高校具身智能联盟框架下</span></p>
+            <p class="c-meta"><span data-cn="在读期间" data-en="Currently">在读期间</span></p>
+          </div>
+          <div class="c-divider"></div>
+          <div class="c-detail">
+            <p class="c-desc" data-cn="参与北京邮电大学与清华大学合作的具身智能知识库构建项目，独立负责核心学者与核心实验室板块的信息采集、整理与结构化建库工作，服务于高校具身智能联盟的学术资源体系建设。" data-en="Contributed to the joint BUPT-Tsinghua embodied intelligence knowledge base project, independently responsible for information collection, organization, and structured database construction for the Core Scholars and Core Labs modules, supporting the academic resource system of the University Embodied Intelligence Alliance.">参与北京邮电大学与清华大学合作的具身智能知识库构建项目，独立负责核心学者与核心实验室板块的信息采集、整理与结构化建库工作，服务于高校具身智能联盟的学术资源体系建设。</p>
+          </div>
+          <span class="card-ctrl" onclick="delCard(this)" title="删除">×</span>
         </div>
       </div>
     </section>
 
-    <!-- ==================== 技能专长 ==================== -->
-    <section class="section fade-in s5" data-section="skills">
-      <h2 class="sec-title">技能专长</h2>
-      <div class="skills-grid" data-editable="skills">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">C / C++</span>
-        <span class="skill-tag">机器学习</span>
-        <span class="skill-tag">深度学习</span>
-        <span class="skill-tag">数据分析</span>
-        <span class="skill-tag">VS Code</span>
-        <span class="skill-tag">Git / GitHub</span>
-        <span class="skill-tag">Zotero</span>
-        <span class="skill-tag">Notion</span>
-        <span class="skill-tag">Office</span>
-        <span class="skill-tag">AI 大模型</span>
-        <span class="skill-tag">学术写作</span>
+    <!-- ========== 项目经历 ========== -->
+    <section class="sec fade-in s4" data-sec="projects">
+      <h2 class="sec-h">
+        <span class="sec-dot"></span>
+        <span data-cn="项目经历" data-en="Projects">项目经历</span>
+        <span class="sec-add" onclick="addCard(this,'projects')">+</span>
+      </h2>
+      <div class="cards-col" data-col="projects">
+        <div class="card" data-card="p0" data-editable>
+          <div class="c-top">
+            <h3 class="c-title"><span data-cn="雏雁计划 ·「领航雁」— 基于 LiDAR 和定向体感震动的视障碍传感系统" data-en="'Navigator' — LiDAR & Haptic Feedback Assistive System for the Visually Impaired">雏雁计划 ·「领航雁」— 基于 LiDAR 和定向体感震动的视障碍传感系统</span></h3>
+            <p class="c-meta">LiDAR · <span data-cn="嵌入式" data-en="Embedded">嵌入式</span> · <span data-cn="传感器" data-en="Sensors">传感器</span> · <span data-cn="无障碍设计" data-en="Accessibility">无障碍设计</span></p>
+          </div>
+          <div class="c-divider"></div>
+          <div class="c-detail">
+            <p class="c-desc" data-cn="面向视障人群出行痛点，设计融合 LiDAR 环境感知与定向体感震动反馈的辅助传感系统方案，已申请立项。" data-en="Designed an assistive sensing system integrating LiDAR environmental perception with directional haptic vibration feedback to address mobility challenges faced by visually impaired individuals. Project proposal approved.">面向视障人群出行痛点，设计融合 LiDAR 环境感知与定向体感震动反馈的辅助传感系统方案，已申请立项。</p>
+          </div>
+          <span class="card-ctrl" onclick="delCard(this)" title="删除">×</span>
+        </div>
+        <div class="card" data-card="p1" data-editable>
+          <div class="c-top">
+            <h3 class="c-title"><span data-cn="鸿蒙嵌入式应用开发 · 计算器 App" data-en="HarmonyOS Embedded App Development · Calculator">鸿蒙嵌入式应用开发 · 计算器 App</span></h3>
+            <p class="c-meta">HarmonyOS · <span data-cn="嵌入式" data-en="Embedded">嵌入式</span> · <span data-cn="前端" data-en="Frontend">前端</span></p>
+          </div>
+          <div class="c-divider"></div>
+          <div class="c-detail">
+            <p class="c-desc" data-cn="参与国际学院"繁星工程"之嵌入式鸿蒙应用开发实践，基于鸿蒙系统完成计算器应用的设计与开发。" data-en="Participated in the 'Starlight Project' embedded HarmonyOS development program at the International School, designed and developed a calculator application on the HarmonyOS platform.">参与国际学院"繁星工程"之嵌入式鸿蒙应用开发实践，基于鸿蒙系统完成计算器应用的设计与开发。</p>
+          </div>
+          <span class="card-ctrl" onclick="delCard(this)" title="删除">×</span>
+        </div>
+        <div class="card" data-card="p2" data-editable>
+          <div class="c-top">
+            <h3 class="c-title"><span data-cn="贪吃蛇 OJ 版 · 计算机导论课程设计" data-en="Snake Game OJ Edition · CS Course Project">贪吃蛇 OJ 版 · 计算机导论课程设计</span></h3>
+            <p class="c-meta">C/C++ · <span data-cn="算法" data-en="Algorithms">算法</span> · OJ</p>
+          </div>
+          <div class="c-divider"></div>
+          <div class="c-detail">
+            <p class="c-desc" data-cn="完成贪吃蛇游戏的 OJ 平台适配版本，处理多组数据输入与复杂边界条件，OJ 评分约 1400 分。" data-en="Developed an OJ-platform-adapted Snake game, handling multi-group input and complex edge cases, achieving an OJ score of approximately 1400.">完成贪吃蛇游戏的 OJ 平台适配版本，处理多组数据输入与复杂边界条件，OJ 评分约 1400 分。</p>
+          </div>
+          <span class="card-ctrl" onclick="delCard(this)" title="删除">×</span>
+        </div>
+        <div class="card" data-card="p3" data-editable>
+          <div class="c-top">
+            <h3 class="c-title"><span data-cn="数据结构底层实现 · 链表核心算法" data-en="Data Structure Implementation · Linked List Algorithms">数据结构底层实现 · 链表核心算法</span></h3>
+            <p class="c-meta">C/C++ · <span data-cn="数据结构" data-en="Data Structures">数据结构</span> · <span data-cn="指针" data-en="Pointers">指针</span></p>
+          </div>
+          <div class="c-divider"></div>
+          <div class="c-detail">
+            <p class="c-desc" data-cn="自主实现单向与双向链表基础数据结构，熟练完成链表的增删改查、反转、合并、去重、快慢指针等核心算法操作，具备扎实的底层代码编写与内存逻辑理解能力。" data-en="Independently implemented singly and doubly linked list data structures, proficient in core operations including CRUD, reversal, merging, deduplication, and fast/slow pointer techniques, demonstrating solid low-level coding and memory management skills.">自主实现单向与双向链表基础数据结构，熟练完成链表的增删改查、反转、合并、去重、快慢指针等核心算法操作，具备扎实的底层代码编写与内存逻辑理解能力。</p>
+          </div>
+          <span class="card-ctrl" onclick="delCard(this)" title="删除">×</span>
+        </div>
+        <div class="card" data-card="p4" data-editable>
+          <div class="c-top">
+            <h3 class="c-title"><span data-cn="Lab4AI × 北邮 · AI 赋能论文写作实战训练营" data-en="Lab4AI × BUPT · AI-Powered Academic Writing Workshop">Lab4AI × 北邮 · AI 赋能论文写作实战训练营</span></h3>
+            <p class="c-meta">AI · <span data-cn="学术写作" data-en="Academic Writing">学术写作</span> · <span data-cn="文献管理" data-en="Reference Management">文献管理</span></p>
+          </div>
+          <div class="c-divider"></div>
+          <div class="c-detail">
+            <p class="c-desc" data-cn="参加 Lab4AI 与北京邮电大学联合举办的 AI 赋能论文提效与工作流实战训练营，独立完成从文献检索、综述撰写到论文润色的 AI 辅助全流程，系统掌握 AI 时代的学术生产力工具链。" data-en="Attended the Lab4AI × BUPT workshop on AI-accelerated academic writing and research workflows. Independently completed the full AI-assisted pipeline from literature search and review writing to paper polishing, systematically mastering the AI-era academic productivity toolchain.">参加 Lab4AI 与北京邮电大学联合举办的 AI 赋能论文提效与工作流实战训练营，独立完成从文献检索、综述撰写到论文润色的 AI 辅助全流程，系统掌握 AI 时代的学术生产力工具链。</p>
+          </div>
+          <span class="card-ctrl" onclick="delCard(this)" title="删除">×</span>
+        </div>
       </div>
     </section>
 
-    <!-- ==================== 获奖荣誉 ==================== -->
-    <section class="section fade-in s6" data-section="awards">
-      <h2 class="sec-title">获奖荣誉 <button class="add-btn" onclick="addCard('awards')">+</button></h2>
-      <div class="card" data-editable="awards">
-        <ul class="list">
-          <li><strong>CSP-J 信息学奥林匹克竞赛</strong> — 省级二等奖</li>
-          <li><strong>2025 年秋季运动会集体跳绳</strong> — 冠军（代表国际学院二队）</li>
-          <li><strong>2026 年秋季运动会集体跳绳</strong> — 第三名（代表国际学院二队）</li>
-          <li><strong>国际学院第二十一届"博弈杯"新生辩论赛</strong> — 六强（带领班级二队）</li>
-        </ul>
+    <!-- ========== 技能专长 ========== -->
+    <section class="sec fade-in s5" data-sec="skills">
+      <h2 class="sec-h">
+        <span class="sec-dot"></span>
+        <span data-cn="技能专长" data-en="Skills">技能专长</span>
+      </h2>
+      <div class="skills-wrap" data-editable data-card="skills">
+
+        <!-- category 1 -->
+        <div class="sk-cat">
+          <div class="sk-cat-h" onclick="this.parentElement.classList.toggle('folded')">
+            <span class="sk-cat-ico">💻</span>
+            <span data-cn="编程语言" data-en="Programming">编程语言</span>
+            <span class="sk-cat-arr">▾</span>
+          </div>
+          <div class="sk-cat-body">
+            <span class="sk-tag"><i>🐍</i> Python</span>
+            <span class="sk-tag"><i>⚙️</i> C / C++</span>
+          </div>
+        </div>
+
+        <!-- category 2 -->
+        <div class="sk-cat">
+          <div class="sk-cat-h" onclick="this.parentElement.classList.toggle('folded')">
+            <span class="sk-cat-ico">🧠</span>
+            <span data-cn="AI 与数据科学" data-en="AI & Data Science">AI 与数据科学</span>
+            <span class="sk-cat-arr">▾</span>
+          </div>
+          <div class="sk-cat-body">
+            <span class="sk-tag"><i>🤖</i> <span data-cn="机器学习" data-en="Machine Learning">机器学习</span></span>
+            <span class="sk-tag"><i>🔮</i> <span data-cn="深度学习" data-en="Deep Learning">深度学习</span></span>
+            <span class="sk-tag"><i>📊</i> <span data-cn="数据分析" data-en="Data Analysis">数据分析</span></span>
+          </div>
+        </div>
+
+        <!-- category 3 -->
+        <div class="sk-cat">
+          <div class="sk-cat-h" onclick="this.parentElement.classList.toggle('folded')">
+            <span class="sk-cat-ico">🛠️</span>
+            <span data-cn="开发工具" data-en="Dev Tools">开发工具</span>
+            <span class="sk-cat-arr">▾</span>
+          </div>
+          <div class="sk-cat-body">
+            <span class="sk-tag"><i>💻</i> VS Code</span>
+            <span class="sk-tag"><i>🔀</i> Git / GitHub</span>
+          </div>
+        </div>
+
+        <!-- category 4 -->
+        <div class="sk-cat">
+          <div class="sk-cat-h" onclick="this.parentElement.classList.toggle('folded')">
+            <span class="sk-cat-ico">📚</span>
+            <span data-cn="科研工具" data-en="Research Tools">科研工具</span>
+            <span class="sk-cat-arr">▾</span>
+          </div>
+          <div class="sk-cat-body">
+            <span class="sk-tag"><i>📖</i> Zotero</span>
+            <span class="sk-tag"><i>📝</i> Notion</span>
+            <span class="sk-tag"><i>📑</i> Office</span>
+            <span class="sk-tag"><i>🤖</i> <span data-cn="AI 大模型" data-en="LLMs">AI 大模型</span></span>
+            <span class="sk-tag"><i>✍️</i> <span data-cn="学术写作" data-en="Academic Writing">学术写作</span></span>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- ==================== 学生工作与活动 ==================== -->
-    <section class="section fade-in s7" data-section="activities">
-      <h2 class="sec-title">学生工作与活动 <button class="add-btn" onclick="addCard('activities')">+</button></h2>
-      <div class="card" data-editable="activities">
-        <ul class="list">
-          <li><strong>劳动委员兼组织委员</strong>，2025215110 班</li>
-          <li><strong>2025 年篮俱杯篮球赛</strong> — 作为首发队员，随国际学院队伍进入八强</li>
-          <li><strong>2026 年篮球小班赛</strong> — 主力队员</li>
-          <li>北京邮电大学<strong>开学典礼举旗手</strong></li>
-          <li>昌平图书馆志愿者、小班赛篮球裁判</li>
-        </ul>
-      </div>
-    </section>
+    <!-- ========== 获奖荣誉 + 学生工作（双栏） ========== -->
+    <div class="two-col fade-in s6">
+      <section class="sec sec-half" data-sec="awards">
+        <h2 class="sec-h">
+          <span class="sec-dot"></span>
+          <span data-cn="获奖荣誉" data-en="Awards">获奖荣誉</span>
+          <span class="sec-add" onclick="addCard(this,'awards')">+</span>
+        </h2>
+        <div class="cards-col" data-col="awards">
+          <div class="card toggle-card" data-card="awards" data-editable>
+            <div class="c-top" onclick="this.parentElement.classList.toggle('open')">
+              <h3 class="c-title"><span data-cn="获奖荣誉" data-en="Awards & Honors">获奖荣誉</span></h3>
+              <span class="toggle-arr">▾</span>
+            </div>
+            <div class="c-detail">
+              <ul class="list">
+                <li><span data-cn="CSP-J 信息学奥林匹克竞赛 — 省级二等奖" data-en="CSP-J (National Olympiad in Informatics) — Provincial Second Prize">CSP-J 信息学奥林匹克竞赛 — 省级二等奖</span></li>
+                <li><span data-cn="2025 年秋季运动会集体跳绳 — 冠军" data-en="Fall 2025 Sports Meet — Rope Jumping Champion">2025 年秋季运动会集体跳绳 — 冠军</span></li>
+                <li><span data-cn="2026 年秋季运动会集体跳绳 — 第三名" data-en="Fall 2026 Sports Meet — Rope Jumping 3rd Place">2026 年秋季运动会集体跳绳 — 第三名</span></li>
+                <li><span data-cn="国际学院「博弈杯」新生辩论赛 — 六强" data-en="BUPT International School Debate Tournament — Top 6">国际学院「博弈杯」新生辩论赛 — 六强</span></li>
+              </ul>
+            </div>
+            <span class="card-ctrl" onclick="delCard(this);event.stopPropagation();" title="删除">×</span>
+          </div>
+        </div>
+      </section>
 
-  </div><!-- .container -->
-
-  <!-- ============== 编辑系统 ============== -->
-  <div id="lock-btn" class="lock-btn" onclick="promptPwd()" title="解锁编辑">🔒</div>
-
-  <div id="toolbar" class="toolbar">
-    <span class="tb-badge">✏️ 编辑模式</span>
-    <button class="tb-btn" onclick="exportHTML()">📥 导出</button>
-    <button class="tb-btn" onclick="changePwd()">🔑 改密码</button>
-    <button class="tb-btn tb-btn-off" onclick="lock()">🔒 锁定</button>
-  </div>
-
-  <div id="overlay" class="overlay">
-    <div class="pwd-box">
-      <h3 id="pwd-title">🔐 请输入编辑密码</h3>
-      <input id="pwd-inp" type="password" class="pwd-inp" placeholder="输入密码…" />
-      <div class="pwd-btns">
-        <button class="tb-btn" id="pwd-ok">确认</button>
-        <button class="tb-btn tb-btn-off" id="pwd-no">取消</button>
-      </div>
-      <p id="pwd-msg"></p>
+      <section class="sec sec-half" data-sec="activities">
+        <h2 class="sec-h">
+          <span class="sec-dot"></span>
+          <span data-cn="学生工作与活动" data-en="Leadership & Activities">学生工作与活动</span>
+          <span class="sec-add" onclick="addCard(this,'activities')">+</span>
+        </h2>
+        <div class="cards-col" data-col="activities">
+          <div class="card toggle-card" data-card="activities" data-editable>
+            <div class="c-top" onclick="this.parentElement.classList.toggle('open')">
+              <h3 class="c-title"><span data-cn="学生工作与活动" data-en="Leadership & Activities">学生工作与活动</span></h3>
+              <span class="toggle-arr">▾</span>
+            </div>
+            <div class="c-detail">
+              <ul class="list">
+                <li><span data-cn="2025215110 班劳动委员兼组织委员" data-en="Labor & Organization Committee Member, Class 2025215110">2025215110 班劳动委员兼组织委员</span></li>
+                <li><span data-cn="2025 年篮俱杯篮球赛 — 首发队员，随国际学院队伍进入八强" data-en="2025 BUPT Basketball Cup — Starter, advanced to Top 8 with the International School team">2025 年篮俱杯篮球赛 — 首发队员，随国际学院队伍进入八强</span></li>
+                <li><span data-cn="2026 年篮球小班赛 — 主力队员" data-en="2026 Basketball Class League — Key player">2026 年篮球小班赛 — 主力队员</span></li>
+                <li><span data-cn="北京邮电大学开学典礼举旗手" data-en="BUPT Opening Ceremony Flag Bearer">北京邮电大学开学典礼举旗手</span></li>
+                <li><span data-cn="昌平图书馆志愿者、小班赛篮球裁判" data-en="Changping Library Volunteer, Basketball Referee">昌平图书馆志愿者、小班赛篮球裁判</span></li>
+              </ul>
+            </div>
+            <span class="card-ctrl" onclick="delCard(this);event.stopPropagation();" title="删除">×</span>
+          </div>
+        </div>
+      </section>
     </div>
-  </div>
 
-<script>
-/* ================================================================
-   编辑密码系统  ·  SHA-256  ·  默认密码: zzqr2024（首次请修改）
-   ================================================================ */
-(async function() {
-  const $  = id => document.getElementById(id);
-  const $$ = (sel, el) => (el||document).querySelector(sel);
+  </div><!-- /.container -->
 
-  /* ---------- crypto ---------- */
-  async function sha256(t) {
-    const d = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));
-    return Array.from(new Uint8Array(d)).map(b => b.toString(16).padStart(2,'0')).join('');
+  <script>
+  /* ==================== 主题 ==================== */
+  function toggleTheme(){
+    const h=document.documentElement, i=document.querySelector('.theme-toggle .icon');
+    const d=h.getAttribute('data-theme')==='dark';
+    d?(h.removeAttribute('data-theme'),i.textContent='🌙',localStorage.setItem('t','l'))
+      :(h.setAttribute('data-theme','dark'),i.textContent='☀️',localStorage.setItem('t','d'));
   }
-  async function checkPwd(pwd) {
-    const h = localStorage.getItem('_h');
-    return h ? (await sha256(pwd)) === h : true;
-  }
-  async function setPwd(pwd) {
-    localStorage.setItem('_h', await sha256(pwd));
-  }
+  (function(){
+    if(localStorage.getItem('t')==='d'){document.documentElement.setAttribute('data-theme','dark');
+      const i=document.querySelector('.theme-toggle .icon');if(i)i.textContent='☀️';}
+  })();
 
-  /* ---------- auth state ---------- */
-  function authed() { return sessionStorage.getItem('_a') === '1'; }
-  function setAuth(v) { v ? sessionStorage.setItem('_a', '1') : sessionStorage.removeItem('_a'); }
-
-  /* ---------- UI ---------- */
-  function showEdit() {
-    $('lock-btn').style.display = 'none';
-    $('toolbar').style.display = 'flex';
-    editOn();
-  }
-  function hideEdit() {
-    $('lock-btn').style.display = 'flex';
-    $('toolbar').style.display = 'none';
-    editOff();
-    setAuth(false);
-  }
-
-  function editOn() {
-    document.querySelectorAll('[data-editable]').forEach(el => {
-      el.contentEditable = 'true';
-      el.classList.add('ed');
+  /* ==================== 语言切换 ==================== */
+  let lang='cn';
+  function toggleLang(){
+    lang=lang==='cn'?'en':'cn';
+    document.querySelectorAll('.lang-label').forEach(el=>{
+      el.classList.toggle('active',el.dataset.lang===lang);
     });
-    // 显示添加按钮
-    document.querySelectorAll('.add-btn').forEach(b => b.style.display = '');
-    // 照片可换
-    const ph = $$('.profile-photo');
-    if (ph) { ph.title = '点击更换照片（输入新文件名）'; ph.onclick = function() {
-      const n = prompt('输入新的照片文件名（放在同一目录下）：', ph.src.split('/').pop());
-      if (n) { ph.src = n; ph.style.display=''; $('pf').style.display='none'; save(); }
-    };}
-  }
-  function editOff() {
-    document.querySelectorAll('[data-editable]').forEach(el => {
-      el.contentEditable = 'false';
-      el.classList.remove('ed');
+    document.querySelectorAll('[data-cn][data-en]').forEach(el=>{
+      el.classList.add('lang-fade');
+      setTimeout(()=>{el.innerHTML=el.dataset[lang];el.classList.remove('lang-fade');},150);
     });
-    document.querySelectorAll('.add-btn').forEach(b => b.style.display = 'none');
-    const ph = $$('.profile-photo');
-    if (ph) { ph.title = ''; ph.onclick = null; }
+    document.documentElement.lang=lang==='cn'?'zh-CN':'en';
+    localStorage.setItem('lang',lang);
+  }
+  (function(){
+    const s=localStorage.getItem('lang');if(s){lang=s;}
+    document.querySelectorAll('.lang-label').forEach(el=>el.classList.toggle('active',el.dataset.lang===lang));
+    if(lang==='en'){
+      document.querySelectorAll('[data-cn][data-en]').forEach(el=>{el.innerHTML=el.dataset.en;});
+      document.documentElement.lang='en';
+    }
+  })();
+
+  /* ==================== 编辑模式 ==================== */
+  let editing=false;
+  function toggleEdit(){
+    editing=!editing;
+    document.body.classList.toggle('editing',editing);
+    document.getElementById('ebar').style.display=editing?'flex':'none';
+    document.querySelector('.edit-btn').textContent=editing?'✖️':'✏️';
+    // 强制展开所有卡片详情方便编辑
+    document.querySelectorAll('.card').forEach(c=>c.classList.toggle('force-open',editing));
+    document.querySelectorAll('.toggle-card').forEach(c=>c.classList.toggle('open',editing));
+    if(!editing)save();
   }
 
-  /* ---------- 持久化 ---------- */
-  function save() {
-    const data = {};
-    document.querySelectorAll('[data-editable]').forEach(el => data[el.dataset.editable] = el.innerHTML);
-    const n = $$('[data-field="name"]'), t = $$('[data-field="title"]'), l = $$('[data-field="location"]');
-    if (n) data['__name'] = n.innerHTML;
-    if (t) data['__title'] = t.innerHTML;
-    if (l) data['__loc'] = l.innerHTML;
-    data['__photo'] = $$('.profile-photo')?.src || '';
-    localStorage.setItem('_d', JSON.stringify(data));
+  /* ==================== 持久化 ==================== */
+  function save(){
+    const d={};
+    document.querySelectorAll('[data-editable]').forEach(el=>{d[el.dataset.card]=el.innerHTML;});
+    localStorage.setItem('_resume',JSON.stringify(d));
   }
-  function load() {
-    const raw = localStorage.getItem('_d');
-    if (!raw) return;
-    try {
-      const data = JSON.parse(raw);
-      Object.entries(data).forEach(([k, v]) => {
-        if (k === '__name') { const el = $$('[data-field="name"]'); if (el) el.innerHTML = v; }
-        else if (k === '__title') { const el = $$('[data-field="title"]'); if (el) el.innerHTML = v; }
-        else if (k === '__loc') { const el = $$('[data-field="location"]'); if (el) el.innerHTML = v; }
-        else if (k === '__photo' && v) { const ph = $$('.profile-photo'); if (ph) { ph.src = v; ph.style.display=''; $('pf').style.display='none'; } }
-        else { const el = $$(`[data-editable="${k}"]`); if (el) el.innerHTML = v; }
+  function load(){
+    try{
+      const d=JSON.parse(localStorage.getItem('_resume'));
+      if(!d)return;
+      Object.entries(d).forEach(([k,v])=>{
+        const el=document.querySelector(`[data-card="${k}"]`);
+        if(el)el.innerHTML=v;
       });
-    } catch (_) {}
+    }catch(_){}
   }
-
   let tmr;
-  document.addEventListener('input', e => {
-    if (!authed()) return;
-    if (e.target.closest('[data-editable]')) { clearTimeout(tmr); tmr = setTimeout(save, 600); }
+  document.addEventListener('input',e=>{
+    if(!editing)return;
+    if(e.target.closest('[data-editable]')){clearTimeout(tmr);tmr=setTimeout(save,600);}
   });
 
-  /* ---------- 添加卡片 ---------- */
-  window.addCard = function(sectionName) {
-    const sec = $$(`[data-section="${sectionName}"]`);
-    const cards = sec.querySelectorAll('.card');
-    if (!cards.length) return;
-    const tmpl = cards[cards.length - 1];
-    const clone = tmpl.cloneNode(true);
-    const newId = sectionName + '-' + Date.now();
-    clone.setAttribute('data-editable', newId);
-    clone.querySelectorAll('.c-desc').forEach(e => e.innerHTML = '<p class="c-desc">新内容（点击编辑）</p>');
-    clone.querySelectorAll('.c-detail').forEach(e => {
-      e.style.maxHeight = 'none'; e.style.opacity = '1';
-    });
-    clone.querySelectorAll('h3.c-title').forEach(e => e.innerHTML = '新条目标题');
-    clone.querySelectorAll('.c-sub').forEach(e => e.innerHTML = '副标题');
-    clone.querySelectorAll('.c-meta').forEach(e => e.innerHTML = '日期/标签');
+  /* ==================== 添加/删除卡片 ==================== */
+  function addCard(btn,secName){
+    const col=document.querySelector(`[data-col="${secName}"]`);
+    if(!col)return;
+    const cards=col.querySelectorAll('.card');
+    const tmpl=cards.length?cards[cards.length-1]:null;
+    if(!tmpl)return;
+    const clone=tmpl.cloneNode(true);
+    clone.setAttribute('data-card',secName+'-'+Date.now());
+    clone.querySelectorAll('.c-detail').forEach(e=>{e.style.maxHeight='none';e.style.opacity='1';});
+    clone.querySelectorAll('.c-title span[data-cn]').forEach(e=>{e.dataset.cn='新条目';e.dataset.en='New Entry';e.innerHTML='新条目';});
+    clone.querySelectorAll('.c-sub span[data-cn]').forEach(e=>{e.dataset.cn='副标题';e.dataset.en='Subtitle';e.innerHTML='副标题';});
+    clone.querySelectorAll('.c-meta span[data-cn]').forEach(e=>{e.dataset.cn='标签';e.dataset.en='Tags';e.innerHTML='标签';});
+    clone.querySelectorAll('.c-desc').forEach(e=>{e.dataset.cn='描述内容';e.dataset.en='Description';e.innerHTML='描述内容';});
+    clone.classList.add('force-open');
+    if(!clone.querySelector('.card-ctrl')){
+      const ctrl=document.createElement('span');ctrl.className='card-ctrl';
+      ctrl.onclick=function(){delCard(this);};
+      ctrl.title='删除';ctrl.textContent='×';
+      clone.appendChild(ctrl);
+    }
     tmpl.after(clone);
-    if (authed()) {
-      clone.contentEditable = 'true';
-      clone.classList.add('ed');
-    }
     save();
-  };
+  }
+  function delCard(ctrl){
+    if(!editing)return;
+    const card=ctrl.closest('.card');
+    const col=card.closest('.cards-col');
+    if(col&&col.querySelectorAll('.card').length<=1){alert('至少保留一个条目');return;}
+    card.style.opacity='0';card.style.transform='translateX(20px)';
+    setTimeout(()=>{card.remove();save();},250);
+  }
+  window.addCard=addCard;
+  window.delCard=delCard;
 
-  /* ---------- 导出 ---------- */
-  window.exportHTML = function() {
+  /* ==================== 导出 ==================== */
+  function exportHTML(){
     save();
-    const cl = document.documentElement.cloneNode(true);
-    cl.querySelectorAll('#lock-btn, #toolbar, #overlay, .add-btn').forEach(e => e.remove());
-    cl.querySelectorAll('.ed').forEach(e => e.classList.remove('ed'));
-    cl.querySelectorAll('[contenteditable]').forEach(e => e.removeAttribute('contenteditable'));
-    cl.querySelectorAll('.c-detail').forEach(e => { e.style.maxHeight = 'none'; e.style.opacity = '1'; });
-    cl.querySelectorAll('script').forEach(e => e.remove());
-    const html = '<!DOCTYPE html>\n' + cl.outerHTML;
-    const b = new Blob([html], { type: 'text/html;charset=UTF-8' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(b); a.download = 'index.html'; a.click();
+    const cl=document.documentElement.cloneNode(true);
+    cl.querySelectorAll('#ebar,.sec-add,.card-ctrl,.edit-btn,.lang-switch,.theme-toggle').forEach(e=>e.remove());
+    cl.querySelectorAll('.card').forEach(e=>{e.classList.remove('force-open');});
+    cl.querySelectorAll('.toggle-card').forEach(e=>{e.classList.remove('open');});
+    cl.querySelectorAll('.c-detail').forEach(e=>{e.style.maxHeight='';e.style.opacity='';});
+    cl.querySelectorAll('script').forEach(e=>e.remove());
+    cl.querySelector('.top-tools')?.remove();
+    const html='<!DOCTYPE html>\n'+cl.outerHTML;
+    const b=new Blob([html],{type:'text/html;charset=UTF-8'});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(b);a.download='index.html';a.click();
     URL.revokeObjectURL(a.href);
-    alert('✅ 导出成功！');
-  };
-
-  /* ---------- 修改密码 ---------- */
-  window.changePwd = function() {
-    const old = prompt('当前密码：'); if (!old) return;
-    checkPwd(old).then(ok => {
-      if (!ok && localStorage.getItem('_h')) { alert('❌ 密码错误'); return; }
-      const a = prompt('新密码：'), b = prompt('再次输入：');
-      if (a !== b) { alert('❌ 不一致'); return; }
-      setPwd(a).then(() => alert('✅ 已修改'));
-    });
-  };
-
-  /* ---------- 锁定 ---------- */
-  window.lock = function() { save(); hideEdit(); };
-
-  /* ---------- 密码弹窗 ---------- */
-  let resolvePwd;
-  function showOverlay(title) {
-    $('pwd-title').textContent = title; $('pwd-inp').value = ''; $('pwd-msg').textContent = '';
-    $('overlay').style.display = 'flex'; $('pwd-inp').focus();
-    return new Promise(r => { resolvePwd = r; });
   }
-  function hideOverlay(v) { $('overlay').style.display = 'none'; if (resolvePwd) { resolvePwd(v); resolvePwd = null; } }
-  $('pwd-ok').onclick = async function() {
-    const v = $('pwd-inp').value.trim();
-    if (!v) { $('pwd-msg').textContent = '请输入密码'; return; }
-    if (!localStorage.getItem('_h')) { await setPwd(v); setAuth(true); showEdit(); hideOverlay(true); }
-    else if (await checkPwd(v)) { setAuth(true); showEdit(); hideOverlay(true); }
-    else { $('pwd-msg').textContent = '❌ 密码错误'; $('pwd-inp').value = ''; $('pwd-inp').focus(); }
-  };
-  $('pwd-no').onclick = () => hideOverlay(false);
-  $('pwd-inp').onkeydown = e => { if (e.key==='Enter') $('pwd-ok').click(); if (e.key==='Escape') $('pwd-no').click(); };
+  window.exportHTML=exportHTML;
+  window.toggleEdit=toggleEdit;
+  window.toggleLang=toggleLang;
+  window.toggleTheme=toggleTheme;
 
-  window.promptPwd = async function() {
-    if (authed()) { showEdit(); return; }
-    await showOverlay(localStorage.getItem('_h') ? '🔐 请输入编辑密码' : '🔐 首次使用，请设置密码');
-  };
-
-  /* ---------- init ---------- */
+  /* ==================== init ==================== */
   load();
-  if (authed()) showEdit(); else hideEdit();
-
-  // 初始化卡片悬停提示箭头
-  document.querySelectorAll('.card').forEach(card => {
-    if (card.querySelector('.c-detail')) {
-      const hint = document.createElement('span');
-      hint.className = 'card-hint';
-      hint.textContent = '▾';
-      card.appendChild(hint);
-    }
-  });
-})();
-</script>
-
-<script>
-/* ==================== 主题切换 ==================== */
-function toggleTheme() {
-  const h = document.documentElement, ic = document.querySelector('.theme-toggle .icon');
-  if (h.getAttribute('data-theme') === 'dark') {
-    h.removeAttribute('data-theme'); ic.textContent = '🌙'; localStorage.setItem('theme','light');
-  } else {
-    h.setAttribute('data-theme','dark'); ic.textContent = '☀️'; localStorage.setItem('theme','dark');
-  }
-}
-(function(){
-  if (localStorage.getItem('theme')==='dark') {
-    document.documentElement.setAttribute('data-theme','dark');
-    const ic = document.querySelector('.theme-toggle .icon');
-    if (ic) ic.textContent = '☀️';
-  }
-})();
-</script>
+  </script>
 </body>
 </html>
