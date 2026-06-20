@@ -13,9 +13,8 @@
 </head>
 <body>
 
-  <!-- ================ 工具栏 ================ -->
   <div class="top-tools">
-    <div class="lang-switch" onclick="toggleLang()">
+    <div class="lang-switch" onclick="toggleLang()" title="中文 / English">
       <span class="lang-label active" data-lang="cn">中</span>
       <span class="lang-label" data-lang="en">EN</span>
     </div>
@@ -25,7 +24,6 @@
     <div class="edit-btn" onclick="toggleEdit()" title="编辑模式">&#x270f;</div>
   </div>
 
-  <!-- ================ 编辑工具栏 ================ -->
   <div id="ebar" class="edit-bar">
     <span>编辑模式</span>
     <button onclick="exportHTML()">导出</button>
@@ -33,8 +31,6 @@
   </div>
 
   <div class="container">
-
-    <!-- ========== HEADER ========== -->
     <header class="header">
       <img class="profile-photo" src="photo.jpg" alt="Photo"
            onerror="this.style.display='none';ge('pf').style.display='flex';" />
@@ -47,28 +43,45 @@
           <span data-cn="北京邮电大学 · 电信工程及管理 · 2025级本科" data-en="BUPT · E-commerce Engineering with Law · Class of 2029">北京邮电大学 · 电信工程及管理 · 2025级本科</span>
         </p>
         <p class="location">
-          <span data-cn="北京" data-en="Beijing, China">北京</span>
+          <span data-cn="AI / 具身智能 / 嵌入式系统 · 北京" data-en="AI / Embodied Intelligence / Embedded Systems · Beijing, China">AI / 具身智能 / 嵌入式系统 · 北京</span>
+        </p>
+        <p class="positioning-line">
+          <span data-cn="正在把科研阅读、模型实验和机器人控制项目串起来的 AI / 具身智能方向本科生。" data-en="An AI and embodied intelligence undergraduate connecting research reading, model experiments, and robot control projects.">正在把科研阅读、模型实验和机器人控制项目串起来的 AI / 具身智能方向本科生。</span>
         </p>
         <div class="contact-links">
           <a href="mailto:zzzqr007@gmail.com" class="clink">zzzqr007@gmail.com</a>
           <a href="https://github.com/zzzqr007-g" target="_blank" class="clink">GitHub</a>
-          <a href="https://zzzqr007-g.github.io/Resume_zqr/" target="_blank" class="clink">在线简历</a>
+          <a href="https://github.com/zzzqr007-g/study-room" target="_blank" class="clink">
+            <span data-cn="Study Room" data-en="Study Room">Study Room</span>
+          </a>
+          <a href="https://zzzqr007-g.github.io/Resume_zqr/" target="_blank" class="clink">
+            <span data-cn="在线简历" data-en="Online Resume">在线简历</span>
+          </a>
+          <a href="#projects" class="clink">
+            <span data-cn="代表项目" data-en="Selected Projects">代表项目</span>
+          </a>
         </div>
       </div>
     </header>
 
-    <!-- ========== 关于我 ========== -->
-    <section class="sec" data-sec="about">
+    <nav class="quick-nav" aria-label="Resume sections">
+      <a href="#education"><span data-cn="教育" data-en="Education">教育</span></a>
+      <a href="#research"><span data-cn="科研" data-en="Research">科研</span></a>
+      <a href="#projects"><span data-cn="项目" data-en="Projects">项目</span></a>
+      <a href="#skills"><span data-cn="技能" data-en="Skills">技能</span></a>
+      <a href="#awards"><span data-cn="荣誉活动" data-en="Awards">荣誉活动</span></a>
+    </nav>
+
+    <section class="sec" id="about" data-sec="about">
       <h2 class="sec-h">
         <span data-cn="关于我" data-en="About">关于我</span>
       </h2>
       <div class="card about-card" data-card="about" data-editable>
-        <p class="about-text" data-cn="北京邮电大学电信工程及管理专业2025级本科生。大一年级保研均分 <b>90.83</b>/100，专业排名 <b>前 6%</b>。对具身智能、大语言模型、深度学习等人工智能前沿方向有浓厚兴趣。具备扎实的编程基础（C/C++、Python）与嵌入式开发经验（瑞萨 RA8P1 平台），正在系统学习机器学习与深度学习。在物理实验与底层逻辑推导中展现出极强的严谨性——例如在等效电路分析中精准处理电位降落的极性转换，在标定实验中严谨定义计算参数为电阻箱上实际接入的活跃旋钮数量，拒绝套用模糊经验常数。目前在北京邮电大学模式识别与智能系统实验室（PRIS Lab）参与具身智能相关课题，未来期望在人工智能与具身智能领域深造。" data-en="First-year undergraduate at Beijing University of Posts and Telecommunications (BUPT), majoring in E-commerce Engineering with Law. First-semester GPA: <b>90.83</b>/100, ranked <b>top 6%</b> in major. Passionate about embodied intelligence, large language models, and deep learning. Possesses solid programming skills (C/C++, Python) and embedded development experience (Renesas RA8P1). Demonstrates exceptional rigor in scientific reasoning — e.g., precisely handling polarity transitions of potential drops in equivalent circuit analysis, and rigorously defining calculation parameters as the number of active dials physically connected on a resistance box rather than relying on vague empirical constants. Currently engaged in embodied intelligence research at BUPT's PRIS Lab, aspiring to pursue advanced studies in AI and embodied intelligence.">北京邮电大学电信工程及管理专业2025级本科生。大一年级保研均分 <b>90.83</b>/100，专业排名 <b>前 6%</b>。对具身智能、大语言模型、深度学习等人工智能前沿方向有浓厚兴趣。具备扎实的编程基础（C/C++、Python）与嵌入式开发经验（瑞萨 RA8P1 平台），正在系统学习机器学习与深度学习。目前在北京邮电大学模式识别与智能系统实验室（PRIS Lab）参与具身智能相关课题，未来期望在人工智能与具身智能领域深造。</p>
+        <p class="about-text" data-cn="北京邮电大学电信工程及管理专业 2025 级本科生，大一上学期保研均分 <b>90.83</b>/100，专业排名 <b>前 6%</b>。主线方向聚焦 <b>AI、具身智能与嵌入式系统</b>：在 PRIS Lab 参与具身智能科研训练，独立完成双向 LSTM 共享单车需求预测论文，并承担蓝莓采摘机器人嵌入式控制系统开发。希望把扎实的工程实现、数据建模能力与科研阅读能力结合起来，继续在智能体和机器人方向深造。" data-en="First-year undergraduate at BUPT, majoring in E-commerce Engineering with Law. First-semester GPA: <b>90.83</b>/100, ranked <b>top 6%</b> in the major. My current focus is <b>AI, embodied intelligence, and embedded systems</b>: research training at PRIS Lab, a sole-authored BiLSTM bike-sharing demand forecasting paper, and embedded control development for a blueberry picking robot. I aim to combine hands-on engineering, data modeling, and research reading ability for future work in agents and robotics.">北京邮电大学电信工程及管理专业 2025 级本科生，大一上学期保研均分 <b>90.83</b>/100，专业排名 <b>前 6%</b>。主线方向聚焦 <b>AI、具身智能与嵌入式系统</b>：在 PRIS Lab 参与具身智能科研训练，独立完成双向 LSTM 共享单车需求预测论文，并承担蓝莓采摘机器人嵌入式控制系统开发。希望把扎实的工程实现、数据建模能力与科研阅读能力结合起来，继续在智能体和机器人方向深造。</p>
       </div>
     </section>
 
-    <!-- ========== 教育背景 ========== -->
-    <section class="sec" data-sec="education">
+    <section class="sec" id="education" data-sec="education">
       <h2 class="sec-h">
         <span data-cn="教育背景" data-en="Education">教育背景</span>
         <span class="sec-add" onclick="addCard(this,'education')">+</span>
@@ -82,26 +95,27 @@
             <p class="c-sub">
               <span data-cn="本科在读 · 2025.09 — 2029.06（预期）" data-en="B.E. Candidate · Sep 2025 &ndash; Jun 2029 (Expected)">本科在读 · 2025.09 — 2029.06（预期）</span>
             </p>
+            <p class="c-meta">
+              <span data-cn="保研均分 90.83/100 · 专业前 6%" data-en="GPA 90.83/100 · Top 6% in major">保研均分 90.83/100 · 专业前 6%</span>
+            </p>
           </div>
           <div class="c-divider"></div>
           <div class="c-detail">
-            <p class="c-desc" data-cn="大一上学期保研均分 <b>90.83</b>/100，专业排名 <b>前 6%</b>。核心课程：高等数学上（88）、线性代数（90）、计算机导论与程序设计（91）。" data-en="First-semester GPA: <b>90.83</b>/100, ranked <b>top 6%</b> in major. Key courses: Advanced Mathematics I (88), Linear Algebra (90), Introduction to Computing &amp; Programming (91).">大一上学期保研均分 <b>90.83</b>/100，专业排名 <b>前 6%</b>。核心课程：高等数学上（88）、线性代数（90）、计算机导论与程序设计（91）。</p>
+            <p class="c-desc" data-cn="<b>成绩与课程：</b>大一上学期保研均分 <b>90.83</b>/100，专业排名 <b>前 6%</b>。核心课程包括高等数学上（88）、线性代数（90）、计算机导论与程序设计（91）。" data-en="<b>Academics:</b> First-semester GPA <b>90.83</b>/100, ranked <b>top 6%</b> in major. Key courses include Advanced Mathematics I (88), Linear Algebra (90), and Introduction to Computing &amp; Programming (91)."><b>成绩与课程：</b>大一上学期保研均分 <b>90.83</b>/100，专业排名 <b>前 6%</b>。核心课程包括高等数学上（88）、线性代数（90）、计算机导论与程序设计（91）。</p>
           </div>
           <span class="card-ctrl" onclick="delCard(this)" title="删除">&times;</span>
         </div>
       </div>
     </section>
 
-    <!-- ========== 科研经历 ========== -->
-    <section class="sec" data-sec="research">
+    <section class="sec" id="research" data-sec="research">
       <h2 class="sec-h">
         <span data-cn="科研经历" data-en="Research">科研经历</span>
         <span class="sec-add" onclick="addCard(this,'research')">+</span>
       </h2>
       <div class="cards-col" data-col="research">
-
-        <!-- PRIS Lab -->
-        <div class="card" data-card="r0" data-editable>
+        <div class="card card-featured" data-card="r0" data-editable>
+          <span class="feature-badge" data-cn="精选科研" data-en="Featured Research">精选科研</span>
           <div class="c-top">
             <h3 class="c-title">
               <span data-cn="模式识别与智能系统实验室（PRIS Lab）" data-en="Pattern Recognition &amp; Intelligent Systems Lab (PRIS Lab)">模式识别与智能系统实验室（PRIS Lab）</span>
@@ -110,18 +124,21 @@
               <span data-cn="本科生研究员 · 导师：高深教授（智能体与具身智能方向）" data-en="Undergraduate Researcher · Advisor: Prof. Gao Shen (Agents &amp; Embodied Intelligence)">本科生研究员 · 导师：高深教授（智能体与具身智能方向）</span>
             </p>
             <p class="c-meta">
-              <span data-cn="在读期间" data-en="Currently">在读期间</span>
+              <span data-cn="具身智能论文研读 · 组会汇报 · 机器人项目技术论证" data-en="Embodied AI paper reading · Lab presentation · Robotics technical research">具身智能论文研读 · 组会汇报 · 机器人项目技术论证</span>
             </p>
+            <div class="project-links">
+              <a href="#projects" class="plink"><span data-cn="关联机器人项目" data-en="Related Robot Project">关联机器人项目</span></a>
+            </div>
           </div>
           <div class="c-divider"></div>
           <div class="c-detail">
-            <p class="c-desc" data-cn="作为本科生进入北京邮电大学模式识别与智能系统实验室（PRIS Lab，高老师课题组），在导师指导下开展具身智能与智能体相关方向的科研训练。独立负责具身智能前沿大模型论文（如 <b>&pi;0.5</b> 视觉-语言-动作模型）的深度研读与组会汇报，为课题组提供理论支撑与技术路径参考。同时辅助蓝莓采摘机器人项目的嵌入式系统开发，负责机械臂/底盘硬件选型调研与技术方案论证。正在系统积累机器人学与具身智能领域的研究方法论与工程实践经验。" data-en="Joined BUPT's Pattern Recognition &amp; Intelligent Systems Lab (PRIS Lab, Prof. Gao's group) as an undergraduate researcher, conducting research training in embodied intelligence and AI agents under faculty supervision. Independently performed in-depth study of cutting-edge embodied intelligence papers (e.g., <b>&pi;0.5</b> vision-language-action model) and delivered group presentations to provide theoretical grounding for the lab's research directions. Also supporting the blueberry picking robot project through embedded system development and hardware selection research for robotic arm/chassis. Systematically building research methodology and hands-on engineering experience in robotics and embodied intelligence.">作为本科生进入北京邮电大学模式识别与智能系统实验室（PRIS Lab，高老师课题组），在导师指导下开展具身智能与智能体相关方向的科研训练。独立负责具身智能前沿大模型论文（如 <b>&pi;0.5</b> 视觉-语言-动作模型）的深度研读与组会汇报，为课题组提供理论支撑与技术路径参考。同时辅助蓝莓采摘机器人项目的嵌入式系统开发，负责机械臂/底盘硬件选型调研与技术方案论证。正在系统积累机器人学与具身智能领域的研究方法论与工程实践经验。</p>
+            <p class="c-desc" data-cn="<b>职责：</b>在导师指导下开展具身智能与智能体方向科研训练，重点补齐前沿论文阅读、技术路线拆解和工程落地理解。<br><b>工作：</b>独立研读 <b>&pi;0.5</b> 等视觉-语言-动作模型论文并完成组会汇报；围绕蓝莓采摘机器人项目调研机械臂、底盘与嵌入式控制方案。<br><b>收获：</b>形成从论文机制、系统架构到机器人硬件约束的连续理解，为后续具身智能研究与项目实现打基础。" data-en="<b>Role:</b> Conduct research training in embodied intelligence and AI agents under faculty supervision, focusing on paper reading, technical decomposition, and implementation constraints.<br><b>Work:</b> Independently studied vision-language-action models such as <b>&pi;0.5</b> and delivered lab presentations; researched robotic arm, chassis, and embedded control choices for the blueberry picking robot project.<br><b>Outcome:</b> Built a connected understanding from model mechanisms to robotic system design and hardware constraints."><b>职责：</b>在导师指导下开展具身智能与智能体方向科研训练，重点补齐前沿论文阅读、技术路线拆解和工程落地理解。<br><b>工作：</b>独立研读 <b>&pi;0.5</b> 等视觉-语言-动作模型论文并完成组会汇报；围绕蓝莓采摘机器人项目调研机械臂、底盘与嵌入式控制方案。<br><b>收获：</b>形成从论文机制、系统架构到机器人硬件约束的连续理解，为后续具身智能研究与项目实现打基础。</p>
           </div>
           <span class="card-ctrl" onclick="delCard(this)" title="删除">&times;</span>
         </div>
 
-        <!-- LSTM Paper -->
-        <div class="card" data-card="r1" data-editable>
+        <div class="card card-featured" data-card="r1" data-editable>
+          <span class="feature-badge" data-cn="精选论文" data-en="Featured Paper">精选论文</span>
           <div class="c-top">
             <h3 class="c-title">
               <span data-cn="基于双向 LSTM 的共享单车短期需求预测" data-en="Short-term Bike-sharing Demand Forecasting with Bidirectional LSTM">基于双向 LSTM 的共享单车短期需求预测</span>
@@ -130,17 +147,19 @@
               <span data-cn="独立研究者 / 第一作者" data-en="Independent Researcher / Sole Author">独立研究者 / 第一作者</span>
             </p>
             <p class="c-meta">
-              <span data-cn="独立撰写学术论文（国际会议在投）" data-en="Sole-authored paper under review at int'l conference">独立撰写学术论文（国际会议在投）</span>
+              <span data-cn="Python · PyTorch · 约 100 万条订单 · MAE 55.50 / RMSE 85.55" data-en="Python · PyTorch · ~1M orders · MAE 55.50 / RMSE 85.55">Python · PyTorch · 约 100 万条订单 · MAE 55.50 / RMSE 85.55</span>
             </p>
+            <div class="project-links">
+              <span class="plink muted"><span data-cn="英文论文：会议投稿/审稿中" data-en="English paper: conference submission/review">英文论文：会议投稿/审稿中</span></span>
+            </div>
           </div>
           <div class="c-divider"></div>
           <div class="c-detail">
-            <p class="c-desc" data-cn="<b>技术栈：</b>Python, PyTorch, Pandas, Scikit-learn<br><br><b>项目概述：</b>针对城市共享单车需求波动问题，构建基于双层双向 LSTM 的短期需求预测模型。<br><br><b>数据与特征：</b>使用深圳市政府开放数据平台约 <b>100 万条</b>订单记录（2017.04&ndash;2021.02），完成小时级数据聚合，引入周期性时间编码（sin/cos）、周末标记、早晚高峰标记等多维特征。<br><br><b>模型优化：</b>设计多步输出策略避免误差累积放大；引入 <b>Huber 损失函数</b>替代 MSE 以提升对异常值的鲁棒性；将第一层 LSTM 改造为双向结构以捕捉前后时序依赖。进一步尝试随机森林融合模型降低残差。<br><br><b>实验结果：</b>基线模型 MAE = 77.82, RMSE = 105.26；优化后 MAE 降至 <b>61.45</b>，RMSE 降至 <b>91.61</b>（提升 21.0% / 13.0%）；融合模型进一步降至 MAE = <b>55.50</b>，RMSE = <b>85.55</b>。独立撰写全英文学术论文（国际会议在投），为独立第一作者。" data-en="<b>Tech Stack:</b> Python, PyTorch, Pandas, Scikit-learn<br><br><b>Overview:</b> Built a short-term bike-sharing demand forecasting model using a two-layer bidirectional LSTM to address urban demand volatility.<br><br><b>Data &amp; Features:</b> Processed ~<b>1M</b> order records from Shenzhen Government Open Data Platform (Apr 2017&ndash;Feb 2021), performing hourly aggregation with multi-dimensional features including cyclical time encoding (sin/cos), weekend flags, and peak-hour markers.<br><br><b>Model Optimization:</b> Designed a multi-step output strategy to mitigate error accumulation; replaced MSE with <b>Huber loss</b> for outlier robustness; converted the first LSTM layer to bidirectional to capture forward/backward temporal dependencies. Further explored random forest fusion to reduce residuals.<br><br><b>Results:</b> Baseline MAE = 77.82, RMSE = 105.26; optimized model achieved MAE = <b>61.45</b>, RMSE = <b>91.61</b> (21.0% / 13.0% improvement); fusion model further reduced to MAE = <b>55.50</b>, RMSE = <b>85.55</b>. Sole-authored English academic paper under review at an international conference."><b>技术栈：</b>Python, PyTorch, Pandas, Scikit-learn<br><br><b>项目概述：</b>针对城市共享单车需求波动问题，构建基于双层双向 LSTM 的短期需求预测模型。<br><br><b>数据与特征：</b>使用深圳市政府开放数据平台约 <b>100 万条</b>订单记录（2017.04&ndash;2021.02），完成小时级数据聚合，引入周期性时间编码（sin/cos）、周末标记、早晚高峰标记等多维特征。<br><br><b>模型优化：</b>设计多步输出策略避免误差累积放大；引入 <b>Huber 损失函数</b>替代 MSE 以提升对异常值的鲁棒性；将第一层 LSTM 改造为双向结构以捕捉前后时序依赖。进一步尝试随机森林融合模型降低残差。<br><br><b>实验结果：</b>基线模型 MAE = 77.82, RMSE = 105.26；优化后 MAE 降至 <b>61.45</b>，RMSE 降至 <b>91.61</b>（提升 21.0% / 13.0%）；融合模型进一步降至 MAE = <b>55.50</b>，RMSE = <b>85.55</b>。独立撰写全英文学术论文（国际会议在投），为独立第一作者。</p>
+            <p class="c-desc" data-cn="<b>背景：</b>面向城市共享单车小时级需求波动问题，构建双层双向 LSTM 短期预测模型。<br><b>数据与方法：</b>处理深圳市政府开放数据平台约 <b>100 万条</b>订单记录（2017.04&ndash;2021.02），完成小时级聚合，并加入周期性时间编码、周末标记、早晚高峰标记等特征。<br><b>优化与结果：</b>采用多步输出策略、Huber 损失与双向结构降低误差；优化后 MAE 从 77.82 降至 <b>61.45</b>，随机森林融合模型进一步降至 <b>55.50</b>。已完成英文论文撰写，并以独立第一作者身份用于会议投稿/审稿。" data-en="<b>Problem:</b> Built a two-layer bidirectional LSTM model for hourly bike-sharing demand forecasting.<br><b>Data &amp; Method:</b> Processed ~<b>1M</b> order records from Shenzhen Government Open Data Platform (Apr 2017&ndash;Feb 2021), aggregated data hourly, and added cyclical time, weekend, and peak-hour features.<br><b>Result:</b> Used multi-step outputs, Huber loss, and bidirectional sequence modeling. MAE improved from 77.82 to <b>61.45</b>; a random-forest fusion model further reduced MAE to <b>55.50</b>. Completed a sole-authored English paper for conference submission/review."><b>背景：</b>面向城市共享单车小时级需求波动问题，构建双层双向 LSTM 短期预测模型。<br><b>数据与方法：</b>处理深圳市政府开放数据平台约 <b>100 万条</b>订单记录（2017.04&ndash;2021.02），完成小时级聚合，并加入周期性时间编码、周末标记、早晚高峰标记等特征。<br><b>优化与结果：</b>采用多步输出策略、Huber 损失与双向结构降低误差；优化后 MAE 从 77.82 降至 <b>61.45</b>，随机森林融合模型进一步降至 <b>55.50</b>。已完成英文论文撰写，并以独立第一作者身份用于会议投稿/审稿。</p>
           </div>
           <span class="card-ctrl" onclick="delCard(this)" title="删除">&times;</span>
         </div>
 
-        <!-- Knowledge Base -->
         <div class="card" data-card="r2" data-editable>
           <div class="c-top">
             <h3 class="c-title">
@@ -150,106 +169,108 @@
               <span data-cn="核心参与者 · 高校具身智能联盟框架下" data-en="Core Contributor · University Embodied Intelligence Alliance">核心参与者 · 高校具身智能联盟框架下</span>
             </p>
             <p class="c-meta">
-              <span data-cn="在读期间" data-en="Currently">在读期间</span>
+              <span data-cn="124 位核心学者 · 122 个核心实验室 · 结构化学术资源" data-en="124 scholars · 122 labs · Structured academic resources">124 位核心学者 · 122 个核心实验室 · 结构化学术资源</span>
             </p>
           </div>
           <div class="c-divider"></div>
           <div class="c-detail">
-            <p class="c-desc" data-cn="参与北京邮电大学与清华大学合作的高校具身智能知识库构建项目（<a href='https://mx77v4s54co.feishu.cn/wiki/GQqmwyfG0iPJXGkGmfJcy4CanSd' target='_blank'>访问链接</a>）。独立负责 <b>核心学者</b>与 <b>核心实验室</b>两个板块，通过全网检索与 AI 辅助搜集，手工整理并结构化录入 <b>124 位</b>核心学者与 <b>122 个</b>核心实验室的学术信息，服务于高校具身智能联盟的学术资源体系建设。" data-en="Contributed to the joint BUPT-Tsinghua embodied intelligence knowledge base project under the University Embodied Intelligence Alliance. Independently responsible for the <b>Core Scholars</b> and <b>Core Labs</b> modules, manually curating and structuring academic profiles for <b>124</b> scholars and <b>122</b> laboratories through web research and AI-assisted information gathering.">参与北京邮电大学与清华大学合作的高校具身智能知识库构建项目（<a href='https://mx77v4s54co.feishu.cn/wiki/GQqmwyfG0iPJXGkGmfJcy4CanSd' target='_blank'>访问链接</a>）。独立负责 <b>核心学者</b>与 <b>核心实验室</b>两个板块，通过全网检索与 AI 辅助搜集，手工整理并结构化录入 <b>124 位</b>核心学者与 <b>122 个</b>核心实验室的学术信息，服务于高校具身智能联盟的学术资源体系建设。</p>
+            <p class="c-desc" data-cn="<b>职责：</b>参与北京邮电大学与清华大学合作的高校具身智能知识库构建项目（内部知识库，可按需提供）。<br><b>工作：</b>独立负责核心学者与核心实验室两个板块，通过公开检索与 AI 辅助信息整理，手工校对并结构化录入 <b>124 位</b>学者与 <b>122 个</b>实验室信息。<br><b>价值：</b>为高校具身智能联盟提供可检索、可扩展的学术资源底座，也帮助自己快速建立领域地图。" data-en="<b>Role:</b> Contributed to the BUPT-Tsinghua embodied intelligence knowledge base project (internal knowledge base, available on request).<br><b>Work:</b> Owned the Core Scholars and Core Labs modules. Used public search and AI-assisted collection, then manually verified and structured profiles for <b>124</b> scholars and <b>122</b> labs.<br><b>Value:</b> Supported a searchable academic resource base for the alliance and built a clearer map of the embodied intelligence field."><b>职责：</b>参与北京邮电大学与清华大学合作的高校具身智能知识库构建项目（内部知识库，可按需提供）。<br><b>工作：</b>独立负责核心学者与核心实验室两个板块，通过公开检索与 AI 辅助信息整理，手工校对并结构化录入 <b>124 位</b>学者与 <b>122 个</b>实验室信息。<br><b>价值：</b>为高校具身智能联盟提供可检索、可扩展的学术资源底座，也帮助自己快速建立领域地图。</p>
           </div>
           <span class="card-ctrl" onclick="delCard(this)" title="删除">&times;</span>
         </div>
-
       </div>
     </section>
 
-    <!-- ========== 项目经历 ========== -->
-    <section class="sec" data-sec="projects">
+    <section class="sec" id="projects" data-sec="projects">
       <h2 class="sec-h">
         <span data-cn="项目经历" data-en="Projects">项目经历</span>
         <span class="sec-add" onclick="addCard(this,'projects')">+</span>
       </h2>
       <div class="cards-col" data-col="projects">
-
-        <!-- 蓝莓采摘机器人 — TOP -->
-        <div class="card" data-card="p0" data-editable>
+        <div class="card card-featured" data-card="p0" data-editable>
+          <span class="feature-badge" data-cn="精选工程" data-en="Featured Engineering">精选工程</span>
           <div class="c-top">
             <h3 class="c-title">
-              <span data-cn="基于瑞萨 RA8P1 的蓝莓采摘机器人嵌入式控制系统" data-en="Embedded Control System for Blueberry Picking Robot Based on Renesas RA8P1">基于瑞萨 RA8P1 的蓝莓采摘机器人嵌入式控制系统</span>
+              <span data-cn="基于瑞萨 RA8P1 的蓝莓采摘机器人嵌入式控制系统" data-en="Embedded Control System for a Blueberry Picking Robot Based on Renesas RA8P1">基于瑞萨 RA8P1 的蓝莓采摘机器人嵌入式控制系统</span>
             </h3>
             <p class="c-sub">
-              <span data-cn="核心开发成员 / 嵌入式软件开发 · 2026全国大学生嵌入式芯片与系统设计竞赛产业赛题" data-en="Core Developer / Embedded Software Engineer · 2026 National Embedded Design Competition">核心开发成员 / 嵌入式软件开发 · 2026全国大学生嵌入式芯片与系统设计竞赛产业赛题</span>
+              <span data-cn="核心开发成员 / 嵌入式软件开发 · 2026 全国大学生嵌入式芯片与系统设计竞赛产业赛题" data-en="Core Developer / Embedded Software · 2026 National Embedded Design Competition">核心开发成员 / 嵌入式软件开发 · 2026 全国大学生嵌入式芯片与系统设计竞赛产业赛题</span>
             </p>
             <p class="c-meta">
-              <span data-cn="C/C++ · 瑞萨 RA8P1 (Cortex-M85+M33, 0.25Tops NPU) · J-Link SWD · UART/CAN · e2 studio + FSP" data-en="C/C++ · Renesas RA8P1 (Cortex-M85+M33, 0.25Tops NPU) · J-Link SWD · UART/CAN · e2 studio + FSP">C/C++ · 瑞萨 RA8P1 (Cortex-M85+M33, 0.25Tops NPU) · J-Link SWD · UART/CAN · e2 studio + FSP</span>
+              <span data-cn="C/C++ · RA8P1 · J-Link SWD · UART/CAN · FSM 采摘流程" data-en="C/C++ · RA8P1 · J-Link SWD · UART/CAN · FSM picking workflow">C/C++ · RA8P1 · J-Link SWD · UART/CAN · FSM 采摘流程</span>
             </p>
+            <div class="project-links">
+              <span class="plink muted"><span data-cn="竞赛项目：实机联调中" data-en="Competition project: hardware integration in progress">竞赛项目：实机联调中</span></span>
+            </div>
           </div>
           <div class="c-divider"></div>
           <div class="c-detail">
-            <p class="c-desc" data-cn="<b>技术栈：</b>C/C++, 瑞萨 RA8P1 (1GHz Cortex-M85 + 250MHz M33 + 0.25Tops NPU), J-Link SWD 调试, UART/CAN 通信（115200 baud）, e2 studio + FSP<br><br><b>项目概述：</b>面向农业自动化采摘场景，基于瑞萨 RA8P1 开发板设计并实现蓝莓采摘机器人嵌入式控制系统。3 人团队中独立负责全部嵌入式软件架构设计与编码，完成机械臂（微雪 RoArm-M2-S，4-DOF，串口/Modbus/JSON 控制）与麦克纳姆轮底盘（CAN/串口通信）的硬件选型调研，设计 35cm 铝型材平台实现底盘 X/Y 轴补偿机械臂缺失自由度的集成方案。<br><br><b>系统架构（8 模块）：</b>基于 e2 studio + FSP 框架搭建工程，配置引脚与时钟树，设计并实现模块化代码架构（arm_control / chassis_control / gripper_control / camera / ai_detector / vision / picker_fsm / safety）。核心为<b>有限状态机（FSM）</b>采摘流程调度器（IDLE &rarr; SCAN &rarr; APPROACH &rarr; GRASP &rarr; RETRACT &rarr; DROP），含失败重试机制（最多 3 次）。<br><br><b>调试与硬件联调：</b>通过 J-Link 调试器 SWD 接口（SWDIO/SWCLK/GND 引脚连接）完成固件烧录与在线逐行调试（断点、单步、变量监视）；UART 串口实时输出系统状态日志；LED 状态灯实现运行状态可视化指示（快闪 3 次 = 初始化完成，慢闪 = 采摘中，常亮 = 急停）。目标指标：采摘效率 &ge; 15 颗/分钟，误采 &le; 5 颗，急停响应 &lt; 1 秒。" data-en="<b>Tech Stack:</b> C/C++, Renesas RA8P1 (1GHz Cortex-M85 + 250MHz M33 + 0.25Tops NPU), J-Link SWD Debugging, UART/CAN (115200 baud), e2 studio + FSP<br><br><b>Overview:</b> Designed and implemented an embedded control system for a blueberry picking robot based on the Renesas RA8P1 dev board, targeting agricultural automation. Solely responsible for all embedded software architecture and coding within a 3-person team. Completed hardware selection research for the robotic arm (Waveshare RoArm-M2-S, 4-DOF, serial/Modbus/JSON control) and mecanum-wheel chassis (CAN/serial), and designed a 35cm aluminum gantry platform with chassis X/Y compensation for missing arm DOFs.<br><br><b>System Architecture (8 modules):</b> Built on e2 studio + FSP framework with pin mux and clock tree configuration. Modular codebase: arm_control / chassis_control / gripper_control / camera / ai_detector / vision / picker_fsm / safety. Core is a <b>Finite State Machine (FSM)</b> picking pipeline (IDLE &rarr; SCAN &rarr; APPROACH &rarr; GRASP &rarr; RETRACT &rarr; DROP) with retry logic (max 3 attempts).<br><br><b>Debugging &amp; Integration:</b> Firmware flashing and online step-through debugging (breakpoints, single-step, variable watch) via J-Link SWD interface (SWDIO/SWCLK/GND pins); real-time system status logging via UART; LED-based operational state visualization (3 fast flashes = init OK, slow flash = picking, solid = E-stop). Target metrics: picking efficiency &ge; 15 berries/min, mis-pick &le; 5, E-stop response &lt; 1 second."><b>技术栈：</b>C/C++, 瑞萨 RA8P1, J-Link SWD 调试, UART 通信（115200 baud）, e2 studio<br><br><b>项目概述：</b>面向农业自动化采摘场景，基于瑞萨 RA8P1 微控制器设计并实现蓝莓采摘机器人嵌入式控制系统。3 人团队中独立负责全部嵌入式软件架构设计与编码，以及机械臂/底盘硬件选型背景调研。<br><br><b>系统架构：</b>设计并实现多模块协作框架，包括：安全监测模块（急停与状态指示）、机械臂 UART 串行通信控制模块、底盘运动控制模块、末端抓手驱动模块，以及基于<b>有限状态机（FSM）</b>的采摘流程调度器（Scanning &rarr; Approaching &rarr; Grasping &rarr; Retracting &rarr; Dropping）。<br><br><b>调试与监控：</b>通过 J-Link 调试器 SWD 接口完成固件烧录与在线调试；UART 串口实时输出系统状态日志（115200 baud）；LED 状态灯实现运行状态可视化指示（快闪 3 次 = 初始化成功，慢闪 = 采摘运行中，常亮 = 急停）。预留采摘计数与有效性校验逻辑。</p>
+            <p class="c-desc" data-cn="<b>背景：</b>面向农业自动化采摘场景，基于瑞萨 RA8P1 微控制器设计蓝莓采摘机器人嵌入式控制系统。<br><b>职责：</b>3 人团队中独立负责嵌入式软件架构与编码，并参与机械臂、底盘硬件选型调研。<br><b>实现：</b>设计安全监测、机械臂 UART 通信、底盘运动控制、末端抓手驱动与基于 <b>FSM</b> 的采摘流程调度；通过 J-Link/SWD 完成固件烧录、断点调试和变量监视；使用 UART 日志与 LED 状态灯辅助联调。<br><b>状态：</b>已预留采摘计数、有效性校验、失败重试与急停响应逻辑，便于后续接入视觉检测与实机验证。" data-en="<b>Context:</b> Designed an embedded control system for a blueberry picking robot based on the Renesas RA8P1 MCU.<br><b>Role:</b> In a 3-person team, owned embedded software architecture and implementation, and researched robotic arm/chassis hardware choices.<br><b>Implementation:</b> Built safety monitoring, robotic-arm UART control, chassis motion control, gripper control, and an <b>FSM</b>-based picking workflow. Used J-Link/SWD for flashing, breakpoints, and variable watch; used UART logs and LED states for integration debugging.<br><b>Status:</b> Reserved picking count, validity check, retry, and emergency-stop logic for future vision integration and robot testing."><b>背景：</b>面向农业自动化采摘场景，基于瑞萨 RA8P1 微控制器设计蓝莓采摘机器人嵌入式控制系统。<br><b>职责：</b>3 人团队中独立负责嵌入式软件架构与编码，并参与机械臂、底盘硬件选型调研。<br><b>实现：</b>设计安全监测、机械臂 UART 通信、底盘运动控制、末端抓手驱动与基于 <b>FSM</b> 的采摘流程调度；通过 J-Link/SWD 完成固件烧录、断点调试和变量监视；使用 UART 日志与 LED 状态灯辅助联调。<br><b>状态：</b>已预留采摘计数、有效性校验、失败重试与急停响应逻辑，便于后续接入视觉检测与实机验证。</p>
           </div>
           <span class="card-ctrl" onclick="delCard(this)" title="删除">&times;</span>
         </div>
 
-        <!-- 领航雁 LiDAR -->
         <div class="card" data-card="p1" data-editable>
           <div class="c-top">
             <h3 class="c-title">
-              <span data-cn="雏雁计划 ·「领航雁」— 基于 LiDAR 和定向体感震动的视障辅助传感系统" data-en="&lsquo;Navigator&rsquo; &mdash; LiDAR &amp; Haptic Feedback Assistive System for the Visually Impaired">雏雁计划 ·「领航雁」— 基于 LiDAR 和定向体感震动的视障辅助传感系统</span>
+              <span data-cn="雏雁计划 ·「领航雁」视障辅助传感系统" data-en="NaviGoose Assistive Sensing System for the Visually Impaired">雏雁计划 ·「领航雁」视障辅助传感系统</span>
             </h3>
             <p class="c-sub">
               <span data-cn="AI 场景识别方案设计 · 指导教师：章洋副教授（计算机学院）" data-en="AI Scene Recognition Design · Advisor: Prof. Zhang Yang (School of CS)">AI 场景识别方案设计 · 指导教师：章洋副教授（计算机学院）</span>
             </p>
             <p class="c-meta">
-              <span data-cn="LiDAR · 77GHz 毫米波雷达 · 边缘-云端协同架构 · 触觉反馈 · 已立项" data-en="LiDAR · 77GHz mmWave · Edge-Cloud Architecture · Haptic Feedback · Approved">LiDAR · 77GHz 毫米波雷达 · 边缘-云端协同架构 · 触觉反馈 · 已立项</span>
+              <span data-cn="LiDAR · 77GHz 毫米波雷达 · 边缘-云端协同 · 已立项" data-en="LiDAR · 77GHz mmWave · Edge-cloud architecture · Approved">LiDAR · 77GHz 毫米波雷达 · 边缘-云端协同 · 已立项</span>
             </p>
           </div>
           <div class="c-divider"></div>
           <div class="c-detail">
-            <p class="c-desc" data-cn="<b>技术栈：</b>LiDAR + 77GHz 毫米波雷达双波融合, MEMS 固态激光雷达, 全景摄像头, 骁龙 W5+ Gen1, 4 路 LRA 线性马达, 蓝牙 5.3<br><br><b>项目概述：</b>面向中国 1731 万视障人群出行痛点，参与设计「领航雁」多模态智能感知辅助系统。5 人团队中负责 <b>AI 场景识别方案设计</b>与智能眼镜-手环协同架构规划，独立完成技术方案撰写与竞品深度分析（涵盖雷鸟 V3、导盲兔 AI、上海交大导航眼镜、脑机接口等方案）。<br><br><b>架构设计：</b>主导系统架构的三版迭代分析——从 v0 纯边缘端（低功耗 MCU 算力瓶颈）、v1 纯云端（实时性与网络依赖问题）到 v2 边缘-云端混合协同架构（边缘端负责实时避障，云端负责三维场景重建与路径规划）。设计联邦学习隐私保护方案（「数据不动模型动」）。<br><br><b>方案成果：</b>完成完整的立项申请书、技术方案文稿与答辩材料撰写，项目已通过北京邮电大学 2025 年雏雁计划立项评审。" data-en="<b>Tech Stack:</b> LiDAR + 77GHz mmWave dual fusion, MEMS solid-state LiDAR, panoramic camera, Snapdragon W5+ Gen1, 4-LRA haptic wristband, BLE 5.3<br><br><b>Overview:</b> Participated in designing the &lsquo;NaviGoose&rsquo; multi-modal intelligent perception assistive system for China&rsquo;s 17.31 million visually impaired individuals. In a 5-person team, responsible for <b>AI scene recognition scheme design</b> and glasses-wristband collaborative architecture planning; independently authored technical documentation and conducted in-depth competitive analysis (Thunderbird V3, AI Guide Rabbit, SJTU navigation glasses, BCI solutions).<br><br><b>Architecture Design:</b> Led three-iteration architecture analysis — from v0 pure edge (MCU compute bottleneck), v1 pure cloud (latency &amp; offline reliability issues), to v2 edge-cloud hybrid architecture (edge handles real-time obstacle avoidance, cloud handles 3D scene reconstruction and path planning). Designed a federated learning privacy framework (&ldquo;data stays, models move&rdquo;).<br><br><b>Outcome:</b> Delivered complete project proposal, technical documentation, and defense materials. Project approved under BUPT&rsquo;s 2025 Nestling Plan." data-en="<b>Tech Stack:</b> LiDAR + 77GHz mmWave dual fusion, MEMS solid-state LiDAR, panoramic camera, Snapdragon W5+ Gen1, 4-LRA haptic wristband, BLE 5.3<br><br><b>Overview:</b> Participated in designing the &lsquo;NaviGoose&rsquo; multi-modal intelligent perception assistive system for China&rsquo;s 17.31 million visually impaired individuals. In a 5-person team, responsible for <b>AI scene recognition scheme design</b> and glasses-wristband collaborative architecture planning; independently authored technical documentation and conducted in-depth competitive analysis (Thunderbird V3, AI Guide Rabbit, SJTU navigation glasses, BCI solutions).<br><br><b>Architecture Design:</b> Led three-iteration architecture analysis — from v0 pure edge (MCU compute bottleneck), v1 pure cloud (latency &amp; offline reliability issues), to v2 edge-cloud hybrid architecture (edge handles real-time obstacle avoidance, cloud handles 3D scene reconstruction and path planning). Designed a federated learning privacy framework (&ldquo;data stays, models move&rdquo;).<br><br><b>Outcome:</b> Delivered complete project proposal, technical documentation, and defense materials. Project approved under BUPT&rsquo;s 2025 Nestling Plan."><b>技术栈：</b>LiDAR + 77GHz 毫米波雷达双波融合, MEMS 固态激光雷达, 全景摄像头, 骁龙 W5+ Gen1, 4 路 LRA 线性马达, 蓝牙 5.3<br><br><b>项目概述：</b>面向中国 1731 万视障人群出行痛点，参与设计「领航雁」多模态智能感知辅助系统。5 人团队中负责 <b>AI 场景识别方案设计</b>与智能眼镜-手环协同架构规划，独立完成技术方案撰写与竞品深度分析（涵盖雷鸟 V3、导盲兔 AI、上海交大导航眼镜、脑机接口等方案）。<br><br><b>架构设计：</b>主导系统架构的三版迭代分析——从 v0 纯边缘端（低功耗 MCU 算力瓶颈）、v1 纯云端（实时性与网络依赖问题）到 v2 边缘-云端混合协同架构（边缘端负责实时避障，云端负责三维场景重建与路径规划）。设计联邦学习隐私保护方案（「数据不动模型动」）。<br><br><b>方案成果：</b>完成完整的立项申请书、技术方案文稿与答辩材料撰写，项目已通过北京邮电大学 2025 年雏雁计划立项评审。</p>
+            <p class="c-desc" data-cn="<b>背景：</b>面向视障人群出行辅助，参与设计智能眼镜与触觉手环协同的多模态感知系统。<br><b>职责：</b>5 人团队中负责 AI 场景识别方案与系统架构分析，独立完成技术方案撰写、竞品调研与答辩材料整理。<br><b>方案：</b>比较纯边缘端、纯云端、边缘-云端混合三种架构，最终采用边缘端处理实时避障、云端承担三维场景重建与路径规划的协同方案，并设计联邦学习隐私保护思路。<br><b>结果：</b>项目已通过北京邮电大学 2025 年雏雁计划立项评审。" data-en="<b>Context:</b> Designed a multimodal assistive system combining smart glasses and a haptic wristband for visually impaired users.<br><b>Role:</b> In a 5-person team, owned AI scene-recognition design and architecture analysis; wrote technical documentation, competitor research, and defense materials.<br><b>Approach:</b> Compared pure-edge, pure-cloud, and edge-cloud hybrid architectures. Proposed edge-side real-time obstacle avoidance with cloud-side 3D reconstruction and path planning, plus a federated-learning privacy concept.<br><b>Result:</b> Approved under BUPT's 2025 Nestling Plan."><b>背景：</b>面向视障人群出行辅助，参与设计智能眼镜与触觉手环协同的多模态感知系统。<br><b>职责：</b>5 人团队中负责 AI 场景识别方案与系统架构分析，独立完成技术方案撰写、竞品调研与答辩材料整理。<br><b>方案：</b>比较纯边缘端、纯云端、边缘-云端混合三种架构，最终采用边缘端处理实时避障、云端承担三维场景重建与路径规划的协同方案，并设计联邦学习隐私保护思路。<br><b>结果：</b>项目已通过北京邮电大学 2025 年雏雁计划立项评审。</p>
           </div>
           <span class="card-ctrl" onclick="delCard(this)" title="删除">&times;</span>
         </div>
 
-        <!-- HarmonyOS Calculator -->
         <div class="card" data-card="p2" data-editable>
           <div class="c-top">
             <h3 class="c-title">
-              <span data-cn="鸿蒙嵌入式应用开发 · 计算器 App" data-en="HarmonyOS Embedded App Development &middot; Calculator">鸿蒙嵌入式应用开发 · 计算器 App</span>
+              <span data-cn="鸿蒙嵌入式应用开发 · 计算器 App" data-en="HarmonyOS Embedded App Development · Calculator">鸿蒙嵌入式应用开发 · 计算器 App</span>
             </h3>
             <p class="c-meta">
-              <span data-cn="HarmonyOS · 嵌入式 · 前端" data-en="HarmonyOS · Embedded · Frontend">HarmonyOS · 嵌入式 · 前端</span>
+              <span data-cn="HarmonyOS · 嵌入式应用 · 前端交互" data-en="HarmonyOS · Embedded app · Frontend interaction">HarmonyOS · 嵌入式应用 · 前端交互</span>
             </p>
           </div>
           <div class="c-divider"></div>
           <div class="c-detail">
-            <p class="c-desc" data-cn="参与国际学院「繁星工程」嵌入式鸿蒙应用开发实践，基于鸿蒙系统完成计算器应用的设计与开发，熟悉鸿蒙嵌入式应用开发流程。" data-en="Participated in the &lsquo;Starlight Project&rsquo; embedded HarmonyOS development program at the International School. Designed and developed a calculator application on the HarmonyOS platform, gaining familiarity with the HarmonyOS embedded development workflow.">参与国际学院「繁星工程」嵌入式鸿蒙应用开发实践，基于鸿蒙系统完成计算器应用的设计与开发，熟悉鸿蒙嵌入式应用开发流程。</p>
+            <p class="c-desc" data-cn="参与国际学院「繁星工程」嵌入式鸿蒙应用开发实践，完成计算器应用的基础设计与开发，熟悉 HarmonyOS 应用开发流程、界面组织与嵌入式应用调试方式。" data-en="Participated in the International School's Starlight Project for embedded HarmonyOS app development. Designed and developed a basic calculator app, gaining familiarity with HarmonyOS development workflow, UI organization, and embedded app debugging.">参与国际学院「繁星工程」嵌入式鸿蒙应用开发实践，完成计算器应用的基础设计与开发，熟悉 HarmonyOS 应用开发流程、界面组织与嵌入式应用调试方式。</p>
           </div>
           <span class="card-ctrl" onclick="delCard(this)" title="删除">&times;</span>
         </div>
 
-        <!-- Lab4AI -->
         <div class="card" data-card="p3" data-editable>
           <div class="c-top">
             <h3 class="c-title">
-              <span data-cn="Lab4AI × 北邮 · AI 赋能论文写作实战训练营" data-en="Lab4AI &times; BUPT &middot; AI-Powered Academic Writing Workshop">Lab4AI × 北邮 · AI 赋能论文写作实战训练营</span>
+              <span data-cn="个人自习室 Study Room · 沉浸式网页自习空间" data-en="Study Room · Immersive Web Study Space">个人自习室 Study Room · 沉浸式网页自习空间</span>
             </h3>
-            <p class="c-meta">
-              <span data-cn="AI 辅助研究 · 学术写作 · 文献管理 · 科研工具链" data-en="AI-Assisted Research · Academic Writing · Reference Management · Research Toolchain">AI 辅助研究 · 学术写作 · 文献管理 · 科研工具链</span>
+            <p class="c-sub">
+              <span data-cn="个人作品 / 产品化前端项目 · GitHub Pages 在线部署" data-en="Side Project / Productized Frontend App · Deployed on GitHub Pages">个人作品 / 产品化前端项目 · GitHub Pages 在线部署</span>
             </p>
+            <p class="c-meta">
+              <span data-cn="React 19 · TypeScript · Vite · Tailwind CSS · Zustand · Framer Motion · Recharts · PWA" data-en="React 19 · TypeScript · Vite · Tailwind CSS · Zustand · Framer Motion · Recharts · PWA">React 19 · TypeScript · Vite · Tailwind CSS · Zustand · Framer Motion · Recharts · PWA</span>
+            </p>
+            <div class="project-links">
+              <a href="https://zzzqr007-g.github.io/study-room/" target="_blank" class="plink"><span data-cn="在线体验" data-en="Live Demo">在线体验</span></a>
+              <a href="https://github.com/zzzqr007-g/study-room" target="_blank" class="plink"><span data-cn="GitHub 仓库" data-en="GitHub Repo">GitHub 仓库</span></a>
+            </div>
           </div>
           <div class="c-divider"></div>
           <div class="c-detail">
-            <p class="c-desc" data-cn="参加 Lab4AI 与北京邮电大学联合举办的 AI 赋能论文写作实战训练营，独立完成从文献检索、综述撰写到论文润色的 AI 辅助全流程，系统掌握 AI 时代的学术生产力工具链。" data-en="Attended the Lab4AI &times; BUPT workshop on AI-accelerated academic writing and research workflows. Independently completed the full AI-assisted pipeline from literature search and review writing to paper polishing, systematically mastering the AI-era academic productivity toolchain.">参加 Lab4AI 与北京邮电大学联合举办的 AI 赋能论文写作实战训练营，独立完成从文献检索、综述撰写到论文润色的 AI 辅助全流程，系统掌握 AI 时代的学术生产力工具链。</p>
+            <p class="c-desc" data-cn="<b>定位：</b>一个沉浸式网页自习空间，把今日任务、专注计时、环境音、学习统计和完成反馈放在同一个低干扰界面里。<br><b>功能：</b>支持任务添加与当前目标设置、专注/休息计时、倒计时/正计时、25/45/60/90 分钟预设、雨声/咖啡馆/篝火环境音、学习趋势统计、成就徽章、自然/图书馆场景切换、浅色/深色/自动主题、移动端任务抽屉与 PWA 安装。<br><b>价值：</b>这个项目更能展示完整产品意识：从用户场景、交互状态、视觉氛围、移动端适配到 GitHub Actions 自动部署都有闭环。" data-en="<b>Positioning:</b> An immersive web study space that combines daily tasks, focus timers, ambient sounds, study statistics, and completion feedback in one low-distraction interface.<br><b>Features:</b> Task creation and current-goal selection, focus/break timers, countdown/count-up modes, 25/45/60/90-minute presets, rain/cafe/fireplace ambient sounds, study trend statistics, achievement badges, nature/library scenes, light/dark/auto themes, mobile task drawer, and PWA installation.<br><b>Value:</b> This project shows product-oriented delivery: user scenario design, interaction states, visual atmosphere, mobile adaptation, and GitHub Actions deployment."><b>定位：</b>一个沉浸式网页自习空间，把今日任务、专注计时、环境音、学习统计和完成反馈放在同一个低干扰界面里。<br><b>功能：</b>支持任务添加与当前目标设置、专注/休息计时、倒计时/正计时、25/45/60/90 分钟预设、雨声/咖啡馆/篝火环境音、学习趋势统计、成就徽章、自然/图书馆场景切换、浅色/深色/自动主题、移动端任务抽屉与 PWA 安装。<br><b>价值：</b>这个项目更能展示完整产品意识：从用户场景、交互状态、视觉氛围、移动端适配到 GitHub Actions 自动部署都有闭环。</p>
           </div>
           <span class="card-ctrl" onclick="delCard(this)" title="删除">&times;</span>
         </div>
-
       </div>
     </section>
 
-    <!-- ========== 技能专长 ========== -->
-    <section class="sec" data-sec="skills">
+    <section class="sec" id="skills" data-sec="skills">
       <h2 class="sec-h">
         <span data-cn="技能专长" data-en="Skills">技能专长</span>
       </h2>
@@ -257,30 +278,29 @@
         <table class="skills-table">
           <tr>
             <td class="sk-label"><span data-cn="编程语言" data-en="Languages">编程语言</span></td>
-            <td class="sk-desc"><span data-cn="熟练掌握 C/C++, Python，熟悉 NumPy, PyTorch, Pandas, Scikit-learn 等科学计算与深度学习框架" data-en="Proficient in C/C++ and Python; experienced with NumPy, PyTorch, Pandas, Scikit-learn">熟练掌握 C/C++, Python，熟悉 NumPy, PyTorch, Pandas, Scikit-learn 等科学计算与深度学习框架</span></td>
+            <td class="sk-desc"><span data-cn="C/C++、Python；熟悉 NumPy、Pandas、PyTorch、Scikit-learn 等数据处理与深度学习工具" data-en="C/C++, Python; familiar with NumPy, Pandas, PyTorch, and Scikit-learn for data processing and deep learning">C/C++、Python；熟悉 NumPy、Pandas、PyTorch、Scikit-learn 等数据处理与深度学习工具</span></td>
           </tr>
           <tr>
-            <td class="sk-label"><span data-cn="算法与模型" data-en="Algorithms &amp; Models">算法与模型</span></td>
-            <td class="sk-desc"><span data-cn="熟悉 LSTM、双向 RNN、Transformer 架构及注意力机制，了解具身智能基础理论与 VLA（视觉-语言-动作）模型前沿" data-en="Experienced with LSTM, bidirectional RNN, Transformer architectures and attention mechanisms; familiar with embodied intelligence fundamentals and VLA (Vision-Language-Action) model frontiers">熟悉 LSTM、双向 RNN、Transformer 架构及注意力机制，了解具身智能基础理论与 VLA（视觉-语言-动作）模型前沿</span></td>
+            <td class="sk-label"><span data-cn="算法与模型" data-en="Algorithms">算法与模型</span></td>
+            <td class="sk-desc"><span data-cn="LSTM、双向 RNN、Transformer 与注意力机制；关注 VLA（视觉-语言-动作）模型和具身智能基础理论" data-en="LSTM, bidirectional RNNs, Transformers, and attention mechanisms; following VLA models and embodied intelligence fundamentals">LSTM、双向 RNN、Transformer 与注意力机制；关注 VLA（视觉-语言-动作）模型和具身智能基础理论</span></td>
           </tr>
           <tr>
-            <td class="sk-label"><span data-cn="工具链与环境" data-en="Toolchain &amp; Environment">工具链与环境</span></td>
-            <td class="sk-desc"><span data-cn="熟练使用 Git 版本控制、VS Code 开发环境、Linux 基础操作；掌握 Anaconda 环境管理与自动化脚本构建" data-en="Proficient with Git, VS Code, and Linux fundamentals; experienced with Anaconda environment management and build automation">熟练使用 Git 版本控制、VS Code 开发环境、Linux 基础操作；掌握 Anaconda 环境管理与自动化脚本构建</span></td>
+            <td class="sk-label"><span data-cn="嵌入式" data-en="Embedded">嵌入式</span></td>
+            <td class="sk-desc"><span data-cn="瑞萨 RA8P1 平台开发，SWD/J-Link 调试，UART/GPIO 外设驱动，e2 studio + FSP 工程配置与联调" data-en="Renesas RA8P1 development, SWD/J-Link debugging, UART/GPIO drivers, and e2 studio + FSP project configuration">瑞萨 RA8P1 平台开发，SWD/J-Link 调试，UART/GPIO 外设驱动，e2 studio + FSP 工程配置与联调</span></td>
           </tr>
           <tr>
-            <td class="sk-label"><span data-cn="科研工具" data-en="Research Tools">科研工具</span></td>
-            <td class="sk-desc"><span data-cn="熟练使用 Zotero 文献管理、AI 辅助文献检索与学术写作（Lab4AI 训练认证）、Markdown/LaTeX 论文排版；具备英文论文学术写作能力" data-en="Skilled in Zotero reference management, AI-assisted literature search and academic writing (Lab4AI certified), Markdown/LaTeX typesetting; competent in English academic writing">熟练使用 Zotero 文献管理、AI 辅助文献检索与学术写作（Lab4AI 训练认证）、Markdown/LaTeX 论文排版；具备英文论文学术写作能力</span></td>
+            <td class="sk-label"><span data-cn="工具链" data-en="Toolchain">工具链</span></td>
+            <td class="sk-desc"><span data-cn="Git、VS Code、Linux 基础操作、Anaconda 环境管理、Markdown/LaTeX 文档与论文排版" data-en="Git, VS Code, Linux basics, Anaconda environment management, Markdown/LaTeX documentation and typesetting">Git、VS Code、Linux 基础操作、Anaconda 环境管理、Markdown/LaTeX 文档与论文排版</span></td>
           </tr>
           <tr>
-            <td class="sk-label"><span data-cn="硬件与嵌入式" data-en="Hardware &amp; Embedded">硬件与嵌入式</span></td>
-            <td class="sk-desc"><span data-cn="瑞萨 RA8P1 平台开发经验，熟悉 SWD/J-Link 在线调试、UART/GPIO 外设驱动、e2 studio 开发环境；具备芯片 Datasheet 阅读与嵌入式系统联调能力" data-en="Renesas RA8P1 platform development; experienced with SWD/J-Link debugging, UART/GPIO peripheral drivers, e2 studio IDE; capable of reading chip datasheets and embedded system integration">瑞萨 RA8P1 平台开发经验，熟悉 SWD/J-Link 在线调试、UART/GPIO 外设驱动、e2 studio 开发环境；具备芯片 Datasheet 阅读与嵌入式系统联调能力</span></td>
+            <td class="sk-label"><span data-cn="科研能力" data-en="Research">科研能力</span></td>
+            <td class="sk-desc"><span data-cn="英文论文写作、Zotero 文献管理、AI 辅助文献检索与综述整理；Lab4AI 论文写作训练营结业认证" data-en="English academic writing, Zotero reference management, AI-assisted literature search and review writing; Lab4AI academic writing workshop certificate">英文论文写作、Zotero 文献管理、AI 辅助文献检索与综述整理；Lab4AI 论文写作训练营结业认证</span></td>
           </tr>
         </table>
       </div>
     </section>
 
-    <!-- ========== 获奖荣誉 + 学生工作（底部折叠） ========== -->
-    <section class="sec sec-bottom" data-sec="bottom">
+    <section class="sec sec-bottom" id="awards" data-sec="bottom">
       <div class="accordion" id="bottomAccordion">
         <div class="accordion-header" onclick="document.getElementById('bottomAccordion').classList.toggle('open')">
           <h2 class="sec-h" style="margin-bottom:0">
@@ -292,26 +312,23 @@
           <div class="accordion-two-col">
             <div class="accordion-col">
               <h4 class="acc-mini-h">
-                <span data-cn="获奖荣誉" data-en="Awards &amp; Honors">获奖荣誉</span>
+                <span data-cn="专业相关" data-en="Academic &amp; Technical">专业相关</span>
               </h4>
               <ul class="list">
                 <li><span data-cn="CSP-J 信息学奥林匹克竞赛 — 省级二等奖" data-en="CSP-J National Olympiad in Informatics — Provincial Second Prize">CSP-J 信息学奥林匹克竞赛 — 省级二等奖</span></li>
-                <li><span data-cn="2025 年秋季运动会集体跳绳 — 冠军" data-en="Fall 2025 Sports Meet — Rope Jumping Champion">2025 年秋季运动会集体跳绳 — 冠军</span></li>
-                <li><span data-cn="2026 年秋季运动会集体跳绳 — 第三名" data-en="Fall 2026 Sports Meet — Rope Jumping 3rd Place">2026 年秋季运动会集体跳绳 — 第三名</span></li>
-                <li><span data-cn="国际学院「博弈杯」新生辩论赛 — 六强" data-en="BUPT International School Debate Tournament — Top 6">国际学院「博弈杯」新生辩论赛 — 六强</span></li>
                 <li><span data-cn="Lab4AI × 北邮 AI 赋能论文写作实战训练营 — 结业认证" data-en="Lab4AI × BUPT AI-Powered Academic Writing Workshop — Completion Certificate">Lab4AI × 北邮 AI 赋能论文写作实战训练营 — 结业认证</span></li>
+                <li><span data-cn="北京邮电大学 2025 年雏雁计划 — 项目立项参与者" data-en="BUPT 2025 Nestling Plan — Approved project contributor">北京邮电大学 2025 年雏雁计划 — 项目立项参与者</span></li>
               </ul>
             </div>
             <div class="accordion-col">
               <h4 class="acc-mini-h">
-                <span data-cn="学生工作与活动" data-en="Leadership &amp; Activities">学生工作与活动</span>
+                <span data-cn="综合活动" data-en="Leadership &amp; Activities">综合活动</span>
               </h4>
               <ul class="list">
                 <li><span data-cn="2025215110 班劳动委员兼组织委员" data-en="Labor &amp; Organization Committee Member, Class 2025215110">2025215110 班劳动委员兼组织委员</span></li>
+                <li><span data-cn="国际学院「博弈杯」新生辩论赛 — 六强" data-en="BUPT International School Debate Tournament — Top 6">国际学院「博弈杯」新生辩论赛 — 六强</span></li>
                 <li><span data-cn="2025 年篮俱杯篮球赛 — 首发队员，随国际学院队伍进入八强" data-en="2025 BUPT Basketball Cup — Starter, advanced to Top 8 with International School team">2025 年篮俱杯篮球赛 — 首发队员，随国际学院队伍进入八强</span></li>
-                <li><span data-cn="2026 年篮球小班赛 — 主力队员" data-en="2026 Basketball Class League — Key player">2026 年篮球小班赛 — 主力队员</span></li>
-                <li><span data-cn="北京邮电大学开学典礼举旗手" data-en="BUPT Opening Ceremony Flag Bearer">北京邮电大学开学典礼举旗手</span></li>
-                <li><span data-cn="昌平图书馆志愿者、小班赛篮球裁判" data-en="Changping Library Volunteer, Basketball Referee">昌平图书馆志愿者、小班赛篮球裁判</span></li>
+                <li><span data-cn="秋季运动会集体跳绳冠军 / 第三名；开学典礼举旗手；图书馆志愿者" data-en="Sports meet rope-jumping champion / third place; opening ceremony flag bearer; library volunteer">秋季运动会集体跳绳冠军 / 第三名；开学典礼举旗手；图书馆志愿者</span></li>
               </ul>
             </div>
           </div>
@@ -319,10 +336,11 @@
       </div>
     </section>
 
-  </div><!-- /.container -->
+  </div>
 
   <script>
-  /* ==================== 主题 ==================== */
+  function ge(id){return document.getElementById(id);}
+
   function toggleTheme(){
     const h=document.documentElement, i=document.querySelector('.theme-toggle .icon');
     const d=h.getAttribute('data-theme')==='dark';
@@ -334,7 +352,6 @@
       const i=document.querySelector('.theme-toggle .icon');if(i)i.innerHTML='&#x2600;';}
   })();
 
-  /* ==================== 语言切换 ==================== */
   let lang='cn';
   function toggleLang(){
     lang=lang==='cn'?'en':'cn';
@@ -357,8 +374,8 @@
     }
   })();
 
-  /* ==================== 编辑模式 ==================== */
   let editing=false;
+  const resumeStorageKey='_resume_public_v3';
 
   async function sha256(t){const d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return Array.from(new Uint8Array(d)).map(b=>b.toString(16).padStart(2,'0')).join('');}
   async function checkPwd(p){const h=localStorage.getItem('_ph');return h?(await sha256(p))===h:true;}
@@ -367,6 +384,7 @@
   function setAuthed(v){v?sessionStorage.setItem('_ea','1'):sessionStorage.removeItem('_ea');}
 
   async function enterEdit(){
+    document.body.classList.add('edit-entry-visible');
     if(authed()){applyEdit(true);return;}
     const has=localStorage.getItem('_ph');
     const p=prompt(has?'请输入编辑密码':'首次使用，请设置编辑密码','');
@@ -385,20 +403,20 @@
     editing=on;
     document.body.classList.toggle('editing',on);
     document.getElementById('ebar').style.display=on?'flex':'none';
-    document.querySelector('.edit-btn').innerHTML=on?'&#x2716;':'&#x270f;';
+    const editBtn=document.querySelector('.edit-btn');
+    if(editBtn)editBtn.innerHTML=on?'&#x2716;':'&#x270f;';
     document.querySelectorAll('.card').forEach(c=>c.classList.toggle('force-open',on));
     if(!on){save();setAuthed(false);}
   }
 
-  /* ==================== 持久化 ==================== */
   function save(){
     const d={};
     document.querySelectorAll('[data-editable]').forEach(el=>{d[el.dataset.card]=el.innerHTML;});
-    localStorage.setItem('_resume',JSON.stringify(d));
+    localStorage.setItem(resumeStorageKey,JSON.stringify(d));
   }
   function load(){
     try{
-      const d=JSON.parse(localStorage.getItem('_resume'));
+      const d=JSON.parse(localStorage.getItem(resumeStorageKey));
       if(!d)return;
       Object.entries(d).forEach(([k,v])=>{
         const el=document.querySelector('[data-card="'+k+'"]');
@@ -412,7 +430,6 @@
     if(e.target.closest('[data-editable]')){clearTimeout(tmr);tmr=setTimeout(save,600);}
   });
 
-  /* ==================== 添加/删除卡片 ==================== */
   function addCard(btn,secName){
     const col=document.querySelector('[data-col="'+secName+'"]');
     if(!col)return;
@@ -444,30 +461,34 @@
     card.style.opacity='0';card.style.transform='translateX(20px)';
     setTimeout(()=>{card.remove();save();},250);
   }
-  window.addCard=addCard;
-  window.delCard=delCard;
 
-  /* ==================== 导出 ==================== */
   function exportHTML(){
     save();
     const cl=document.documentElement.cloneNode(true);
-    cl.querySelectorAll('#ebar,.sec-add,.card-ctrl,.edit-btn,.lang-switch,.theme-toggle').forEach(e=>e.remove());
+    cl.querySelectorAll('#ebar,.sec-add,.card-ctrl,.edit-btn').forEach(e=>e.remove());
     cl.querySelectorAll('.card').forEach(e=>{e.classList.remove('force-open');});
     cl.querySelectorAll('.c-detail').forEach(e=>{e.style.maxHeight='';e.style.opacity='';});
     cl.querySelectorAll('script').forEach(e=>e.remove());
-    cl.querySelector('.top-tools')?.remove();
     const html='<!DOCTYPE html>\n'+cl.outerHTML;
     const b=new Blob([html],{type:'text/html;charset=UTF-8'});
     const a=document.createElement('a');
     a.href=URL.createObjectURL(b);a.download='index.html';a.click();
     URL.revokeObjectURL(a.href);
   }
+
+  document.addEventListener('keydown',e=>{
+    if(e.ctrlKey&&e.altKey&&e.key.toLowerCase()==='e'){
+      document.body.classList.add('edit-entry-visible');
+      enterEdit();
+    }
+  });
+
+  window.addCard=addCard;
+  window.delCard=delCard;
   window.exportHTML=exportHTML;
   window.toggleEdit=toggleEdit;
   window.toggleLang=toggleLang;
   window.toggleTheme=toggleTheme;
-
-  /* ==================== init ==================== */
   load();
   </script>
 </body>

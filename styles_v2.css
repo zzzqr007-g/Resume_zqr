@@ -33,6 +33,7 @@
 }
 
 html{font-size:15px}
+html{scroll-behavior:smooth}
 body{
   font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Noto Sans CJK SC",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
   background:var(--bg);color:var(--text);line-height:1.65;
@@ -62,6 +63,9 @@ body{
   display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--shadow);
   font-size:14px;transition:var(--tr);
 }
+.edit-btn{display:none}
+body.edit-entry-visible .edit-btn,
+body.editing .edit-btn{display:flex}
 .theme-toggle:hover,.edit-btn:hover{transform:scale(1.08)}
 .edit-bar{
   position:fixed;top:0;left:0;right:0;background:var(--bg2);border-bottom:2px solid var(--primary);
@@ -90,7 +94,12 @@ body{
 .header-info{flex:1;min-width:0}
 .name{font-size:1.85rem;font-weight:700;letter-spacing:-.01em;margin-bottom:.15rem;color:var(--text)}
 .title{font-size:.88rem;color:var(--text2);margin-bottom:.1rem}
-.location{font-size:.78rem;color:var(--text3);margin-bottom:.6rem}
+.location{font-size:.78rem;color:var(--text3);margin-bottom:.2rem}
+.positioning-line{
+  max-width:620px;margin-bottom:.65rem;
+  font-size:.84rem;line-height:1.55;color:var(--text);
+  font-weight:600;
+}
 .contact-links{display:flex;gap:.45rem;flex-wrap:wrap}
 .clink{
   display:inline-flex;align-items:center;gap:.2rem;padding:.3rem .6rem;
@@ -98,6 +107,25 @@ body{
   color:var(--text2);text-decoration:none;font-size:.76rem;transition:var(--tr);
 }
 .clink:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+/* ================================================================
+   Quick Navigation
+   ================================================================ */
+.quick-nav{
+  position:sticky;top:.75rem;z-index:20;
+  display:flex;gap:.35rem;flex-wrap:wrap;align-items:center;
+  margin:-.85rem 0 1.45rem;padding:.35rem;
+  background:color-mix(in srgb,var(--bg2) 88%,transparent);
+  border:1px solid var(--border);border-radius:var(--r);
+  box-shadow:var(--shadow);backdrop-filter:blur(10px);
+}
+.quick-nav a{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:28px;padding:.22rem .58rem;border-radius:3px;
+  color:var(--text2);text-decoration:none;font-size:.72rem;font-weight:600;
+  transition:var(--tr);
+}
+.quick-nav a:hover{background:var(--primary-light);color:var(--primary)}
 
 /* ================================================================
    Sections
@@ -127,6 +155,31 @@ body.editing .sec-add{display:flex}
   box-shadow:var(--shadow);transition:var(--tr);position:relative;
 }
 .card:hover{box-shadow:var(--shadow2)}
+.card-featured{
+  border-left-width:4px;
+  background:linear-gradient(90deg,var(--primary-light),var(--bg2) 18%);
+}
+.feature-badge{
+  position:absolute;top:.55rem;right:.75rem;
+  padding:.12rem .38rem;border:1px solid var(--primary-muted);
+  border-radius:3px;background:var(--bg2);color:var(--primary);
+  font-size:.62rem;font-weight:700;line-height:1.35;
+}
+.project-links{
+  display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.42rem;
+}
+.plink{
+  display:inline-flex;align-items:center;min-height:24px;
+  padding:.16rem .45rem;border-radius:3px;
+  border:1px solid var(--primary-muted);background:var(--bg2);
+  color:var(--primary);text-decoration:none;font-size:.68rem;font-weight:700;
+  transition:var(--tr);
+}
+.plink:hover{background:var(--primary);border-color:var(--primary);color:#fff}
+.plink.muted{
+  color:var(--text3);border-color:var(--border);font-weight:600;
+}
+.plink.muted:hover{background:var(--bg2);color:var(--text3);border-color:var(--border)}
 
 /* Card expand hint arrow */
 .card:not(.about-card)::after{
@@ -155,6 +208,7 @@ body.editing .sec-add{display:flex}
 .about-card .c-divider{display:none}
 .about-card .c-detail{max-height:none;opacity:1}
 .about-text{font-size:.88rem;color:var(--text2);line-height:1.75}
+.about-text b,.c-desc b{color:var(--text)}
 
 /* card-ctrl (edit mode) */
 .card-ctrl{
@@ -228,6 +282,7 @@ body.editing .card-ctrl{display:flex}
   .header{flex-direction:column;text-align:center;gap:1rem}
   .contact-links{justify-content:center}
   .name{font-size:1.5rem}
+  .positioning-line{margin-left:auto;margin-right:auto;font-size:.8rem}
   .profile-photo,.photo-fb{width:80px;height:80px}
   .skills-table,.skills-table tbody,.skills-table tr,.skills-table td{display:block}
   .skills-table tr{border-bottom:1px solid var(--border);padding:.3rem 0}
@@ -236,12 +291,19 @@ body.editing .card-ctrl{display:flex}
   .accordion-two-col{grid-template-columns:1fr}
   .top-tools{top:.5rem;right:.5rem;gap:.25rem}
   .lang-label{padding:.25rem .45rem;font-size:.68rem}
+  .quick-nav{
+    position:static;justify-content:center;margin:-.25rem 0 1.2rem;
+  }
+  .quick-nav a{flex:1 1 auto;min-width:70px}
 }
 @media(max-width:480px){
   .container{padding:1rem .7rem 3rem}
   .name{font-size:1.3rem}
   .card{padding:.6rem .75rem}
+  .feature-badge{position:static;display:inline-flex;margin-bottom:.35rem}
   .c-title{font-size:.8rem}
+  .c-sub,.c-meta{overflow-wrap:anywhere}
+  .quick-nav a{font-size:.68rem;padding:.2rem .42rem;min-width:62px}
 }
 
 /* ================================================================
@@ -266,6 +328,9 @@ body.editing .card-ctrl{display:flex}
 
   /* HIDE non-essential UI elements */
   .top-tools,
+  .quick-nav,
+  .project-links,
+  .feature-badge,
   .edit-bar,
   .sec-add,
   .card-ctrl,
