@@ -399,8 +399,8 @@
         zh: "以机制理解、公式推导、可运行实践和闭卷复述为主线，持续整理从机器学习基础到 Transformer 与 BERT 的学习成果。",
         en: "A growing set of mechanism-first notes combining formulas, runnable practice, misconception checks, and closed-book review from ML fundamentals to Transformers and BERT."
       },
-      status: { zh: "公开精选版整理中", en: "Curated public edition in progress" },
-      url: "",
+      status: { zh: "公开精选版", en: "Public curated edition" },
+      url: "https://sequoia-profit-c67.notion.site/3cd3e6f3bcdd8113a3d6d6483c2cfbae?source=copy_link",
       topics: [
         { zh: "机器学习基础", en: "ML fundamentals" },
         { zh: "神经网络与深度学习", en: "Neural networks and deep learning" },
