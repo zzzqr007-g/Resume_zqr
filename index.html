@@ -1,495 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="章权瑞 — 北京邮电大学 电信工程及管理 个人简历" />
-  <meta name="robots" content="noindex" />
-  <link rel="stylesheet" href="styles_v2.css" />
-  <title>章权瑞 · Resume</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="章权瑞的双语个人简历，聚焦 AI、具身智能与嵌入式系统。">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="color-scheme" content="light dark">
+  <title>章权瑞 | Resume</title>
+  <link rel="stylesheet" href="styles_v2.css?v=5">
+  <script defer src="resume-data.js?v=4"></script>
+  <script defer src="app.js?v=6"></script>
+  <script defer src="editor.js?v=4"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
 
-  <div class="top-tools">
-    <div class="lang-switch" onclick="toggleLang()" title="中文 / English">
-      <span class="lang-label active" data-lang="cn">中</span>
-      <span class="lang-label" data-lang="en">EN</span>
+  <div class="page-tools" aria-label="页面工具">
+    <div class="language-control" role="group" aria-label="语言">
+      <button type="button" data-set-lang="zh" aria-pressed="true">中</button>
+      <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
     </div>
-    <div class="theme-toggle" onclick="toggleTheme()" title="亮/暗">
-      <span class="icon">&#x1f319;</span>
-    </div>
-    <div class="edit-btn" onclick="toggleEdit()" title="编辑模式">&#x270f;</div>
+    <button class="icon-button" type="button" id="theme-toggle" aria-label="切换明暗主题" title="切换明暗主题">
+      <span aria-hidden="true" id="theme-icon">◐</span>
+    </button>
   </div>
 
-  <div id="ebar" class="edit-bar">
-    <span>编辑模式</span>
-    <button onclick="exportHTML()">导出</button>
-    <button onclick="toggleEdit()">退出</button>
-  </div>
+  <main id="main-content"></main>
 
-  <div class="container">
-    <header class="header">
-      <img class="profile-photo" src="photo.jpg" alt="Photo"
-           onerror="this.style.display='none';ge('pf').style.display='flex';" />
-      <div id="pf" class="photo-fb">&#x1f464;</div>
-      <div class="header-info">
-        <h1 class="name">
-          <span data-cn="章权瑞" data-en="Zhang Quanrui">章权瑞</span>
-        </h1>
-        <p class="title">
-          <span data-cn="北京邮电大学 · 电信工程及管理 · 2025级本科" data-en="BUPT · E-commerce Engineering with Law · Class of 2029">北京邮电大学 · 电信工程及管理 · 2025级本科</span>
-        </p>
-        <p class="location">
-          <span data-cn="AI / 具身智能 / 嵌入式系统 · 北京" data-en="AI / Embodied Intelligence / Embedded Systems · Beijing, China">AI / 具身智能 / 嵌入式系统 · 北京</span>
-        </p>
-        <p class="positioning-line">
-          <span data-cn="正在把科研阅读、模型实验和机器人控制项目串起来的 AI / 具身智能方向本科生。" data-en="An AI and embodied intelligence undergraduate connecting research reading, model experiments, and robot control projects.">正在把科研阅读、模型实验和机器人控制项目串起来的 AI / 具身智能方向本科生。</span>
-        </p>
-        <div class="contact-links">
-          <a href="mailto:zzzqr007@gmail.com" class="clink">zzzqr007@gmail.com</a>
-          <a href="https://github.com/zzzqr007-g" target="_blank" class="clink">GitHub</a>
-          <a href="https://github.com/zzzqr007-g/study-room" target="_blank" class="clink">
-            <span data-cn="Study Room" data-en="Study Room">Study Room</span>
-          </a>
-          <a href="https://zzzqr007-g.github.io/Resume_zqr/" target="_blank" class="clink">
-            <span data-cn="在线简历" data-en="Online Resume">在线简历</span>
-          </a>
-          <a href="#projects" class="clink">
-            <span data-cn="代表项目" data-en="Selected Projects">代表项目</span>
-          </a>
-        </div>
+  <noscript>
+    <div class="noscript-message">
+      <h1>章权瑞</h1>
+      <p>本页面需要 JavaScript 才能显示完整的双语简历。</p>
+      <p><a href="mailto:zzzqr007@gmail.com">zzzqr007@gmail.com</a></p>
+    </div>
+  </noscript>
+
+  <div class="editor-backdrop" id="editor-backdrop" hidden></div>
+  <aside class="editor-panel" id="editor-panel" aria-labelledby="editor-title" aria-hidden="true">
+    <header class="editor-header">
+      <div>
+        <p class="editor-kicker">仅保存在当前浏览器</p>
+        <h2 id="editor-title">双语简历编辑器</h2>
       </div>
+      <button type="button" class="icon-button editor-close" id="editor-close" aria-label="关闭编辑器">×</button>
     </header>
 
-    <nav class="quick-nav" aria-label="Resume sections">
-      <a href="#education"><span data-cn="教育" data-en="Education">教育</span></a>
-      <a href="#research"><span data-cn="科研" data-en="Research">科研</span></a>
-      <a href="#projects"><span data-cn="项目" data-en="Projects">项目</span></a>
-      <a href="#skills"><span data-cn="技能" data-en="Skills">技能</span></a>
-      <a href="#awards"><span data-cn="荣誉活动" data-en="Awards">荣誉活动</span></a>
-    </nav>
+    <div class="editor-toolbar" aria-label="编辑器操作">
+      <button type="button" class="button button-primary" id="editor-save">保存草稿</button>
+      <button type="button" class="button" id="editor-undo">撤销本次修改</button>
+      <button type="button" class="button" id="editor-import">导入 JSON</button>
+      <button type="button" class="button" id="editor-export-json">导出 JSON</button>
+      <button type="button" class="button" id="editor-export-js">导出数据文件</button>
+      <button type="button" class="button button-danger" id="editor-reset">恢复默认</button>
+      <input type="file" id="editor-import-file" accept="application/json,.json" hidden>
+    </div>
 
-    <section class="sec" id="about" data-sec="about">
-      <h2 class="sec-h">
-        <span data-cn="关于我" data-en="About">关于我</span>
-      </h2>
-      <div class="card about-card" data-card="about" data-editable>
-        <p class="about-text" data-cn="北京邮电大学电信工程及管理专业 2025 级本科生，大一上学期保研均分 <b>90.83</b>/100，专业排名 <b>前 6%</b>。主线方向聚焦 <b>AI、具身智能与嵌入式系统</b>：在 PRIS Lab 参与具身智能科研训练，独立完成双向 LSTM 共享单车需求预测论文，并承担蓝莓采摘机器人嵌入式控制系统开发。希望把扎实的工程实现、数据建模能力与科研阅读能力结合起来，继续在智能体和机器人方向深造。" data-en="First-year undergraduate at BUPT, majoring in E-commerce Engineering with Law. First-semester GPA: <b>90.83</b>/100, ranked <b>top 6%</b> in the major. My current focus is <b>AI, embodied intelligence, and embedded systems</b>: research training at PRIS Lab, a sole-authored BiLSTM bike-sharing demand forecasting paper, and embedded control development for a blueberry picking robot. I aim to combine hands-on engineering, data modeling, and research reading ability for future work in agents and robotics.">北京邮电大学电信工程及管理专业 2025 级本科生，大一上学期保研均分 <b>90.83</b>/100，专业排名 <b>前 6%</b>。主线方向聚焦 <b>AI、具身智能与嵌入式系统</b>：在 PRIS Lab 参与具身智能科研训练，独立完成双向 LSTM 共享单车需求预测论文，并承担蓝莓采摘机器人嵌入式控制系统开发。希望把扎实的工程实现、数据建模能力与科研阅读能力结合起来，继续在智能体和机器人方向深造。</p>
-      </div>
-    </section>
+    <p class="editor-status" id="editor-status" role="status" aria-live="polite">
+      修改会即时预览，点击“保存草稿”后才会写入本地存储，不会自动同步 GitHub。
+    </p>
 
-    <section class="sec" id="education" data-sec="education">
-      <h2 class="sec-h">
-        <span data-cn="教育背景" data-en="Education">教育背景</span>
-        <span class="sec-add" onclick="addCard(this,'education')">+</span>
-      </h2>
-      <div class="cards-col" data-col="education">
-        <div class="card" data-card="edu" data-editable>
-          <div class="c-top">
-            <h3 class="c-title">
-              <span data-cn="北京邮电大学 · 电信工程及管理" data-en="BUPT · E-commerce Engineering with Law">北京邮电大学 · 电信工程及管理</span>
-            </h3>
-            <p class="c-sub">
-              <span data-cn="本科在读 · 2025.09 — 2029.06（预期）" data-en="B.E. Candidate · Sep 2025 &ndash; Jun 2029 (Expected)">本科在读 · 2025.09 — 2029.06（预期）</span>
-            </p>
-            <p class="c-meta">
-              <span data-cn="保研均分 90.83/100 · 专业前 6%" data-en="GPA 90.83/100 · Top 6% in major">保研均分 90.83/100 · 专业前 6%</span>
-            </p>
-          </div>
-          <div class="c-divider"></div>
-          <div class="c-detail">
-            <p class="c-desc" data-cn="<b>成绩与课程：</b>大一上学期保研均分 <b>90.83</b>/100，专业排名 <b>前 6%</b>。核心课程包括高等数学上（88）、线性代数（90）、计算机导论与程序设计（91）。" data-en="<b>Academics:</b> First-semester GPA <b>90.83</b>/100, ranked <b>top 6%</b> in major. Key courses include Advanced Mathematics I (88), Linear Algebra (90), and Introduction to Computing &amp; Programming (91)."><b>成绩与课程：</b>大一上学期保研均分 <b>90.83</b>/100，专业排名 <b>前 6%</b>。核心课程包括高等数学上（88）、线性代数（90）、计算机导论与程序设计（91）。</p>
-          </div>
-          <span class="card-ctrl" onclick="delCard(this)" title="删除">&times;</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="sec" id="research" data-sec="research">
-      <h2 class="sec-h">
-        <span data-cn="科研经历" data-en="Research">科研经历</span>
-        <span class="sec-add" onclick="addCard(this,'research')">+</span>
-      </h2>
-      <div class="cards-col" data-col="research">
-        <div class="card card-featured" data-card="r0" data-editable>
-          <span class="feature-badge" data-cn="精选科研" data-en="Featured Research">精选科研</span>
-          <div class="c-top">
-            <h3 class="c-title">
-              <span data-cn="模式识别与智能系统实验室（PRIS Lab）" data-en="Pattern Recognition &amp; Intelligent Systems Lab (PRIS Lab)">模式识别与智能系统实验室（PRIS Lab）</span>
-            </h3>
-            <p class="c-sub">
-              <span data-cn="本科生研究员 · 导师：高深教授（智能体与具身智能方向）" data-en="Undergraduate Researcher · Advisor: Prof. Gao Shen (Agents &amp; Embodied Intelligence)">本科生研究员 · 导师：高深教授（智能体与具身智能方向）</span>
-            </p>
-            <p class="c-meta">
-              <span data-cn="具身智能论文研读 · 组会汇报 · 机器人项目技术论证" data-en="Embodied AI paper reading · Lab presentation · Robotics technical research">具身智能论文研读 · 组会汇报 · 机器人项目技术论证</span>
-            </p>
-            <div class="project-links">
-              <a href="#projects" class="plink"><span data-cn="关联机器人项目" data-en="Related Robot Project">关联机器人项目</span></a>
-            </div>
-          </div>
-          <div class="c-divider"></div>
-          <div class="c-detail">
-            <p class="c-desc" data-cn="<b>职责：</b>在导师指导下开展具身智能与智能体方向科研训练，重点补齐前沿论文阅读、技术路线拆解和工程落地理解。<br><b>工作：</b>独立研读 <b>&pi;0.5</b> 等视觉-语言-动作模型论文并完成组会汇报；围绕蓝莓采摘机器人项目调研机械臂、底盘与嵌入式控制方案。<br><b>收获：</b>形成从论文机制、系统架构到机器人硬件约束的连续理解，为后续具身智能研究与项目实现打基础。" data-en="<b>Role:</b> Conduct research training in embodied intelligence and AI agents under faculty supervision, focusing on paper reading, technical decomposition, and implementation constraints.<br><b>Work:</b> Independently studied vision-language-action models such as <b>&pi;0.5</b> and delivered lab presentations; researched robotic arm, chassis, and embedded control choices for the blueberry picking robot project.<br><b>Outcome:</b> Built a connected understanding from model mechanisms to robotic system design and hardware constraints."><b>职责：</b>在导师指导下开展具身智能与智能体方向科研训练，重点补齐前沿论文阅读、技术路线拆解和工程落地理解。<br><b>工作：</b>独立研读 <b>&pi;0.5</b> 等视觉-语言-动作模型论文并完成组会汇报；围绕蓝莓采摘机器人项目调研机械臂、底盘与嵌入式控制方案。<br><b>收获：</b>形成从论文机制、系统架构到机器人硬件约束的连续理解，为后续具身智能研究与项目实现打基础。</p>
-          </div>
-          <span class="card-ctrl" onclick="delCard(this)" title="删除">&times;</span>
-        </div>
-
-        <div class="card card-featured" data-card="r1" data-editable>
-          <span class="feature-badge" data-cn="精选论文" data-en="Featured Paper">精选论文</span>
-          <div class="c-top">
-            <h3 class="c-title">
-              <span data-cn="基于双向 LSTM 的共享单车短期需求预测" data-en="Short-term Bike-sharing Demand Forecasting with Bidirectional LSTM">基于双向 LSTM 的共享单车短期需求预测</span>
-            </h3>
-            <p class="c-sub">
-              <span data-cn="独立研究者 / 第一作者" data-en="Independent Researcher / Sole Author">独立研究者 / 第一作者</span>
-            </p>
-            <p class="c-meta">
-              <span data-cn="Python · PyTorch · 约 100 万条订单 · MAE 55.50 / RMSE 85.55" data-en="Python · PyTorch · ~1M orders · MAE 55.50 / RMSE 85.55">Python · PyTorch · 约 100 万条订单 · MAE 55.50 / RMSE 85.55</span>
-            </p>
-            <div class="project-links">
-              <span class="plink muted"><span data-cn="英文论文：会议投稿/审稿中" data-en="English paper: conference submission/review">英文论文：会议投稿/审稿中</span></span>
-            </div>
-          </div>
-          <div class="c-divider"></div>
-          <div class="c-detail">
-            <p class="c-desc" data-cn="<b>背景：</b>面向城市共享单车小时级需求波动问题，构建双层双向 LSTM 短期预测模型。<br><b>数据与方法：</b>处理深圳市政府开放数据平台约 <b>100 万条</b>订单记录（2017.04&ndash;2021.02），完成小时级聚合，并加入周期性时间编码、周末标记、早晚高峰标记等特征。<br><b>优化与结果：</b>采用多步输出策略、Huber 损失与双向结构降低误差；优化后 MAE 从 77.82 降至 <b>61.45</b>，随机森林融合模型进一步降至 <b>55.50</b>。已完成英文论文撰写，并以独立第一作者身份用于会议投稿/审稿。" data-en="<b>Problem:</b> Built a two-layer bidirectional LSTM model for hourly bike-sharing demand forecasting.<br><b>Data &amp; Method:</b> Processed ~<b>1M</b> order records from Shenzhen Government Open Data Platform (Apr 2017&ndash;Feb 2021), aggregated data hourly, and added cyclical time, weekend, and peak-hour features.<br><b>Result:</b> Used multi-step outputs, Huber loss, and bidirectional sequence modeling. MAE improved from 77.82 to <b>61.45</b>; a random-forest fusion model further reduced MAE to <b>55.50</b>. Completed a sole-authored English paper for conference submission/review."><b>背景：</b>面向城市共享单车小时级需求波动问题，构建双层双向 LSTM 短期预测模型。<br><b>数据与方法：</b>处理深圳市政府开放数据平台约 <b>100 万条</b>订单记录（2017.04&ndash;2021.02），完成小时级聚合，并加入周期性时间编码、周末标记、早晚高峰标记等特征。<br><b>优化与结果：</b>采用多步输出策略、Huber 损失与双向结构降低误差；优化后 MAE 从 77.82 降至 <b>61.45</b>，随机森林融合模型进一步降至 <b>55.50</b>。已完成英文论文撰写，并以独立第一作者身份用于会议投稿/审稿。</p>
-          </div>
-          <span class="card-ctrl" onclick="delCard(this)" title="删除">&times;</span>
-        </div>
-
-        <div class="card" data-card="r2" data-editable>
-          <div class="c-top">
-            <h3 class="c-title">
-              <span data-cn="北邮-清华具身智能知识库构建" data-en="BUPT-Tsinghua Embodied Intelligence Knowledge Base">北邮-清华具身智能知识库构建</span>
-            </h3>
-            <p class="c-sub">
-              <span data-cn="核心参与者 · 高校具身智能联盟框架下" data-en="Core Contributor · University Embodied Intelligence Alliance">核心参与者 · 高校具身智能联盟框架下</span>
-            </p>
-            <p class="c-meta">
-              <span data-cn="124 位核心学者 · 122 个核心实验室 · 结构化学术资源" data-en="124 scholars · 122 labs · Structured academic resources">124 位核心学者 · 122 个核心实验室 · 结构化学术资源</span>
-            </p>
-          </div>
-          <div class="c-divider"></div>
-          <div class="c-detail">
-            <p class="c-desc" data-cn="<b>职责：</b>参与北京邮电大学与清华大学合作的高校具身智能知识库构建项目（内部知识库，可按需提供）。<br><b>工作：</b>独立负责核心学者与核心实验室两个板块，通过公开检索与 AI 辅助信息整理，手工校对并结构化录入 <b>124 位</b>学者与 <b>122 个</b>实验室信息。<br><b>价值：</b>为高校具身智能联盟提供可检索、可扩展的学术资源底座，也帮助自己快速建立领域地图。" data-en="<b>Role:</b> Contributed to the BUPT-Tsinghua embodied intelligence knowledge base project (internal knowledge base, available on request).<br><b>Work:</b> Owned the Core Scholars and Core Labs modules. Used public search and AI-assisted collection, then manually verified and structured profiles for <b>124</b> scholars and <b>122</b> labs.<br><b>Value:</b> Supported a searchable academic resource base for the alliance and built a clearer map of the embodied intelligence field."><b>职责：</b>参与北京邮电大学与清华大学合作的高校具身智能知识库构建项目（内部知识库，可按需提供）。<br><b>工作：</b>独立负责核心学者与核心实验室两个板块，通过公开检索与 AI 辅助信息整理，手工校对并结构化录入 <b>124 位</b>学者与 <b>122 个</b>实验室信息。<br><b>价值：</b>为高校具身智能联盟提供可检索、可扩展的学术资源底座，也帮助自己快速建立领域地图。</p>
-          </div>
-          <span class="card-ctrl" onclick="delCard(this)" title="删除">&times;</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="sec" id="projects" data-sec="projects">
-      <h2 class="sec-h">
-        <span data-cn="项目经历" data-en="Projects">项目经历</span>
-        <span class="sec-add" onclick="addCard(this,'projects')">+</span>
-      </h2>
-      <div class="cards-col" data-col="projects">
-        <div class="card card-featured" data-card="p0" data-editable>
-          <span class="feature-badge" data-cn="精选工程" data-en="Featured Engineering">精选工程</span>
-          <div class="c-top">
-            <h3 class="c-title">
-              <span data-cn="基于瑞萨 RA8P1 的蓝莓采摘机器人嵌入式控制系统" data-en="Embedded Control System for a Blueberry Picking Robot Based on Renesas RA8P1">基于瑞萨 RA8P1 的蓝莓采摘机器人嵌入式控制系统</span>
-            </h3>
-            <p class="c-sub">
-              <span data-cn="核心开发成员 / 嵌入式软件开发 · 2026 全国大学生嵌入式芯片与系统设计竞赛产业赛题" data-en="Core Developer / Embedded Software · 2026 National Embedded Design Competition">核心开发成员 / 嵌入式软件开发 · 2026 全国大学生嵌入式芯片与系统设计竞赛产业赛题</span>
-            </p>
-            <p class="c-meta">
-              <span data-cn="C/C++ · RA8P1 · J-Link SWD · UART/CAN · FSM 采摘流程" data-en="C/C++ · RA8P1 · J-Link SWD · UART/CAN · FSM picking workflow">C/C++ · RA8P1 · J-Link SWD · UART/CAN · FSM 采摘流程</span>
-            </p>
-            <div class="project-links">
-              <span class="plink muted"><span data-cn="竞赛项目：实机联调中" data-en="Competition project: hardware integration in progress">竞赛项目：实机联调中</span></span>
-            </div>
-          </div>
-          <div class="c-divider"></div>
-          <div class="c-detail">
-            <p class="c-desc" data-cn="<b>背景：</b>面向农业自动化采摘场景，基于瑞萨 RA8P1 微控制器设计蓝莓采摘机器人嵌入式控制系统。<br><b>职责：</b>3 人团队中独立负责嵌入式软件架构与编码，并参与机械臂、底盘硬件选型调研。<br><b>实现：</b>设计安全监测、机械臂 UART 通信、底盘运动控制、末端抓手驱动与基于 <b>FSM</b> 的采摘流程调度；通过 J-Link/SWD 完成固件烧录、断点调试和变量监视；使用 UART 日志与 LED 状态灯辅助联调。<br><b>状态：</b>已预留采摘计数、有效性校验、失败重试与急停响应逻辑，便于后续接入视觉检测与实机验证。" data-en="<b>Context:</b> Designed an embedded control system for a blueberry picking robot based on the Renesas RA8P1 MCU.<br><b>Role:</b> In a 3-person team, owned embedded software architecture and implementation, and researched robotic arm/chassis hardware choices.<br><b>Implementation:</b> Built safety monitoring, robotic-arm UART control, chassis motion control, gripper control, and an <b>FSM</b>-based picking workflow. Used J-Link/SWD for flashing, breakpoints, and variable watch; used UART logs and LED states for integration debugging.<br><b>Status:</b> Reserved picking count, validity check, retry, and emergency-stop logic for future vision integration and robot testing."><b>背景：</b>面向农业自动化采摘场景，基于瑞萨 RA8P1 微控制器设计蓝莓采摘机器人嵌入式控制系统。<br><b>职责：</b>3 人团队中独立负责嵌入式软件架构与编码，并参与机械臂、底盘硬件选型调研。<br><b>实现：</b>设计安全监测、机械臂 UART 通信、底盘运动控制、末端抓手驱动与基于 <b>FSM</b> 的采摘流程调度；通过 J-Link/SWD 完成固件烧录、断点调试和变量监视；使用 UART 日志与 LED 状态灯辅助联调。<br><b>状态：</b>已预留采摘计数、有效性校验、失败重试与急停响应逻辑，便于后续接入视觉检测与实机验证。</p>
-          </div>
-          <span class="card-ctrl" onclick="delCard(this)" title="删除">&times;</span>
-        </div>
-
-        <div class="card" data-card="p1" data-editable>
-          <div class="c-top">
-            <h3 class="c-title">
-              <span data-cn="雏雁计划 ·「领航雁」视障辅助传感系统" data-en="NaviGoose Assistive Sensing System for the Visually Impaired">雏雁计划 ·「领航雁」视障辅助传感系统</span>
-            </h3>
-            <p class="c-sub">
-              <span data-cn="AI 场景识别方案设计 · 指导教师：章洋副教授（计算机学院）" data-en="AI Scene Recognition Design · Advisor: Prof. Zhang Yang (School of CS)">AI 场景识别方案设计 · 指导教师：章洋副教授（计算机学院）</span>
-            </p>
-            <p class="c-meta">
-              <span data-cn="LiDAR · 77GHz 毫米波雷达 · 边缘-云端协同 · 已立项" data-en="LiDAR · 77GHz mmWave · Edge-cloud architecture · Approved">LiDAR · 77GHz 毫米波雷达 · 边缘-云端协同 · 已立项</span>
-            </p>
-          </div>
-          <div class="c-divider"></div>
-          <div class="c-detail">
-            <p class="c-desc" data-cn="<b>背景：</b>面向视障人群出行辅助，参与设计智能眼镜与触觉手环协同的多模态感知系统。<br><b>职责：</b>5 人团队中负责 AI 场景识别方案与系统架构分析，独立完成技术方案撰写、竞品调研与答辩材料整理。<br><b>方案：</b>比较纯边缘端、纯云端、边缘-云端混合三种架构，最终采用边缘端处理实时避障、云端承担三维场景重建与路径规划的协同方案，并设计联邦学习隐私保护思路。<br><b>结果：</b>项目已通过北京邮电大学 2025 年雏雁计划立项评审。" data-en="<b>Context:</b> Designed a multimodal assistive system combining smart glasses and a haptic wristband for visually impaired users.<br><b>Role:</b> In a 5-person team, owned AI scene-recognition design and architecture analysis; wrote technical documentation, competitor research, and defense materials.<br><b>Approach:</b> Compared pure-edge, pure-cloud, and edge-cloud hybrid architectures. Proposed edge-side real-time obstacle avoidance with cloud-side 3D reconstruction and path planning, plus a federated-learning privacy concept.<br><b>Result:</b> Approved under BUPT's 2025 Nestling Plan."><b>背景：</b>面向视障人群出行辅助，参与设计智能眼镜与触觉手环协同的多模态感知系统。<br><b>职责：</b>5 人团队中负责 AI 场景识别方案与系统架构分析，独立完成技术方案撰写、竞品调研与答辩材料整理。<br><b>方案：</b>比较纯边缘端、纯云端、边缘-云端混合三种架构，最终采用边缘端处理实时避障、云端承担三维场景重建与路径规划的协同方案，并设计联邦学习隐私保护思路。<br><b>结果：</b>项目已通过北京邮电大学 2025 年雏雁计划立项评审。</p>
-          </div>
-          <span class="card-ctrl" onclick="delCard(this)" title="删除">&times;</span>
-        </div>
-
-        <div class="card" data-card="p2" data-editable>
-          <div class="c-top">
-            <h3 class="c-title">
-              <span data-cn="鸿蒙嵌入式应用开发 · 计算器 App" data-en="HarmonyOS Embedded App Development · Calculator">鸿蒙嵌入式应用开发 · 计算器 App</span>
-            </h3>
-            <p class="c-meta">
-              <span data-cn="HarmonyOS · 嵌入式应用 · 前端交互" data-en="HarmonyOS · Embedded app · Frontend interaction">HarmonyOS · 嵌入式应用 · 前端交互</span>
-            </p>
-          </div>
-          <div class="c-divider"></div>
-          <div class="c-detail">
-            <p class="c-desc" data-cn="参与国际学院「繁星工程」嵌入式鸿蒙应用开发实践，完成计算器应用的基础设计与开发，熟悉 HarmonyOS 应用开发流程、界面组织与嵌入式应用调试方式。" data-en="Participated in the International School's Starlight Project for embedded HarmonyOS app development. Designed and developed a basic calculator app, gaining familiarity with HarmonyOS development workflow, UI organization, and embedded app debugging.">参与国际学院「繁星工程」嵌入式鸿蒙应用开发实践，完成计算器应用的基础设计与开发，熟悉 HarmonyOS 应用开发流程、界面组织与嵌入式应用调试方式。</p>
-          </div>
-          <span class="card-ctrl" onclick="delCard(this)" title="删除">&times;</span>
-        </div>
-
-        <div class="card" data-card="p3" data-editable>
-          <div class="c-top">
-            <h3 class="c-title">
-              <span data-cn="个人自习室 Study Room · 沉浸式网页自习空间" data-en="Study Room · Immersive Web Study Space">个人自习室 Study Room · 沉浸式网页自习空间</span>
-            </h3>
-            <p class="c-sub">
-              <span data-cn="个人作品 / 产品化前端项目 · GitHub Pages 在线部署" data-en="Side Project / Productized Frontend App · Deployed on GitHub Pages">个人作品 / 产品化前端项目 · GitHub Pages 在线部署</span>
-            </p>
-            <p class="c-meta">
-              <span data-cn="React 19 · TypeScript · Vite · Tailwind CSS · Zustand · Framer Motion · Recharts · PWA" data-en="React 19 · TypeScript · Vite · Tailwind CSS · Zustand · Framer Motion · Recharts · PWA">React 19 · TypeScript · Vite · Tailwind CSS · Zustand · Framer Motion · Recharts · PWA</span>
-            </p>
-            <div class="project-links">
-              <a href="https://zzzqr007-g.github.io/study-room/" target="_blank" class="plink"><span data-cn="在线体验" data-en="Live Demo">在线体验</span></a>
-              <a href="https://github.com/zzzqr007-g/study-room" target="_blank" class="plink"><span data-cn="GitHub 仓库" data-en="GitHub Repo">GitHub 仓库</span></a>
-            </div>
-          </div>
-          <div class="c-divider"></div>
-          <div class="c-detail">
-            <p class="c-desc" data-cn="<b>定位：</b>一个沉浸式网页自习空间，把今日任务、专注计时、环境音、学习统计和完成反馈放在同一个低干扰界面里。<br><b>功能：</b>支持任务添加与当前目标设置、专注/休息计时、倒计时/正计时、25/45/60/90 分钟预设、雨声/咖啡馆/篝火环境音、学习趋势统计、成就徽章、自然/图书馆场景切换、浅色/深色/自动主题、移动端任务抽屉与 PWA 安装。<br><b>价值：</b>这个项目更能展示完整产品意识：从用户场景、交互状态、视觉氛围、移动端适配到 GitHub Actions 自动部署都有闭环。" data-en="<b>Positioning:</b> An immersive web study space that combines daily tasks, focus timers, ambient sounds, study statistics, and completion feedback in one low-distraction interface.<br><b>Features:</b> Task creation and current-goal selection, focus/break timers, countdown/count-up modes, 25/45/60/90-minute presets, rain/cafe/fireplace ambient sounds, study trend statistics, achievement badges, nature/library scenes, light/dark/auto themes, mobile task drawer, and PWA installation.<br><b>Value:</b> This project shows product-oriented delivery: user scenario design, interaction states, visual atmosphere, mobile adaptation, and GitHub Actions deployment."><b>定位：</b>一个沉浸式网页自习空间，把今日任务、专注计时、环境音、学习统计和完成反馈放在同一个低干扰界面里。<br><b>功能：</b>支持任务添加与当前目标设置、专注/休息计时、倒计时/正计时、25/45/60/90 分钟预设、雨声/咖啡馆/篝火环境音、学习趋势统计、成就徽章、自然/图书馆场景切换、浅色/深色/自动主题、移动端任务抽屉与 PWA 安装。<br><b>价值：</b>这个项目更能展示完整产品意识：从用户场景、交互状态、视觉氛围、移动端适配到 GitHub Actions 自动部署都有闭环。</p>
-          </div>
-          <span class="card-ctrl" onclick="delCard(this)" title="删除">&times;</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="sec" id="skills" data-sec="skills">
-      <h2 class="sec-h">
-        <span data-cn="技能专长" data-en="Skills">技能专长</span>
-      </h2>
-      <div data-editable data-card="skills">
-        <table class="skills-table">
-          <tr>
-            <td class="sk-label"><span data-cn="编程语言" data-en="Languages">编程语言</span></td>
-            <td class="sk-desc"><span data-cn="C/C++、Python；熟悉 NumPy、Pandas、PyTorch、Scikit-learn 等数据处理与深度学习工具" data-en="C/C++, Python; familiar with NumPy, Pandas, PyTorch, and Scikit-learn for data processing and deep learning">C/C++、Python；熟悉 NumPy、Pandas、PyTorch、Scikit-learn 等数据处理与深度学习工具</span></td>
-          </tr>
-          <tr>
-            <td class="sk-label"><span data-cn="算法与模型" data-en="Algorithms">算法与模型</span></td>
-            <td class="sk-desc"><span data-cn="LSTM、双向 RNN、Transformer 与注意力机制；关注 VLA（视觉-语言-动作）模型和具身智能基础理论" data-en="LSTM, bidirectional RNNs, Transformers, and attention mechanisms; following VLA models and embodied intelligence fundamentals">LSTM、双向 RNN、Transformer 与注意力机制；关注 VLA（视觉-语言-动作）模型和具身智能基础理论</span></td>
-          </tr>
-          <tr>
-            <td class="sk-label"><span data-cn="嵌入式" data-en="Embedded">嵌入式</span></td>
-            <td class="sk-desc"><span data-cn="瑞萨 RA8P1 平台开发，SWD/J-Link 调试，UART/GPIO 外设驱动，e2 studio + FSP 工程配置与联调" data-en="Renesas RA8P1 development, SWD/J-Link debugging, UART/GPIO drivers, and e2 studio + FSP project configuration">瑞萨 RA8P1 平台开发，SWD/J-Link 调试，UART/GPIO 外设驱动，e2 studio + FSP 工程配置与联调</span></td>
-          </tr>
-          <tr>
-            <td class="sk-label"><span data-cn="工具链" data-en="Toolchain">工具链</span></td>
-            <td class="sk-desc"><span data-cn="Git、VS Code、Linux 基础操作、Anaconda 环境管理、Markdown/LaTeX 文档与论文排版" data-en="Git, VS Code, Linux basics, Anaconda environment management, Markdown/LaTeX documentation and typesetting">Git、VS Code、Linux 基础操作、Anaconda 环境管理、Markdown/LaTeX 文档与论文排版</span></td>
-          </tr>
-          <tr>
-            <td class="sk-label"><span data-cn="科研能力" data-en="Research">科研能力</span></td>
-            <td class="sk-desc"><span data-cn="英文论文写作、Zotero 文献管理、AI 辅助文献检索与综述整理；Lab4AI 论文写作训练营结业认证" data-en="English academic writing, Zotero reference management, AI-assisted literature search and review writing; Lab4AI academic writing workshop certificate">英文论文写作、Zotero 文献管理、AI 辅助文献检索与综述整理；Lab4AI 论文写作训练营结业认证</span></td>
-          </tr>
-        </table>
-      </div>
-    </section>
-
-    <section class="sec sec-bottom" id="awards" data-sec="bottom">
-      <div class="accordion" id="bottomAccordion">
-        <div class="accordion-header" onclick="document.getElementById('bottomAccordion').classList.toggle('open')">
-          <h2 class="sec-h" style="margin-bottom:0">
-            <span data-cn="获奖荣誉 &amp; 学生工作" data-en="Awards &amp; Activities">获奖荣誉 &amp; 学生工作</span>
-          </h2>
-          <span class="accordion-arrow">&#x25bc;</span>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-two-col">
-            <div class="accordion-col">
-              <h4 class="acc-mini-h">
-                <span data-cn="专业相关" data-en="Academic &amp; Technical">专业相关</span>
-              </h4>
-              <ul class="list">
-                <li><span data-cn="CSP-J 信息学奥林匹克竞赛 — 省级二等奖" data-en="CSP-J National Olympiad in Informatics — Provincial Second Prize">CSP-J 信息学奥林匹克竞赛 — 省级二等奖</span></li>
-                <li><span data-cn="Lab4AI × 北邮 AI 赋能论文写作实战训练营 — 结业认证" data-en="Lab4AI × BUPT AI-Powered Academic Writing Workshop — Completion Certificate">Lab4AI × 北邮 AI 赋能论文写作实战训练营 — 结业认证</span></li>
-                <li><span data-cn="北京邮电大学 2025 年雏雁计划 — 项目立项参与者" data-en="BUPT 2025 Nestling Plan — Approved project contributor">北京邮电大学 2025 年雏雁计划 — 项目立项参与者</span></li>
-              </ul>
-            </div>
-            <div class="accordion-col">
-              <h4 class="acc-mini-h">
-                <span data-cn="综合活动" data-en="Leadership &amp; Activities">综合活动</span>
-              </h4>
-              <ul class="list">
-                <li><span data-cn="2025215110 班劳动委员兼组织委员" data-en="Labor &amp; Organization Committee Member, Class 2025215110">2025215110 班劳动委员兼组织委员</span></li>
-                <li><span data-cn="国际学院「博弈杯」新生辩论赛 — 六强" data-en="BUPT International School Debate Tournament — Top 6">国际学院「博弈杯」新生辩论赛 — 六强</span></li>
-                <li><span data-cn="2025 年篮俱杯篮球赛 — 首发队员，随国际学院队伍进入八强" data-en="2025 BUPT Basketball Cup — Starter, advanced to Top 8 with International School team">2025 年篮俱杯篮球赛 — 首发队员，随国际学院队伍进入八强</span></li>
-                <li><span data-cn="秋季运动会集体跳绳冠军 / 第三名；开学典礼举旗手；图书馆志愿者" data-en="Sports meet rope-jumping champion / third place; opening ceremony flag bearer; library volunteer">秋季运动会集体跳绳冠军 / 第三名；开学典礼举旗手；图书馆志愿者</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </div>
-
-  <script>
-  function ge(id){return document.getElementById(id);}
-
-  function toggleTheme(){
-    const h=document.documentElement, i=document.querySelector('.theme-toggle .icon');
-    const d=h.getAttribute('data-theme')==='dark';
-    d?(h.removeAttribute('data-theme'),i.innerHTML='&#x1f319;',localStorage.setItem('t','l'))
-      :(h.setAttribute('data-theme','dark'),i.innerHTML='&#x2600;',localStorage.setItem('t','d'));
-  }
-  (function(){
-    if(localStorage.getItem('t')==='d'){document.documentElement.setAttribute('data-theme','dark');
-      const i=document.querySelector('.theme-toggle .icon');if(i)i.innerHTML='&#x2600;';}
-  })();
-
-  let lang='cn';
-  function toggleLang(){
-    lang=lang==='cn'?'en':'cn';
-    document.querySelectorAll('.lang-label').forEach(el=>{
-      el.classList.toggle('active',el.dataset.lang===lang);
-    });
-    document.querySelectorAll('[data-cn][data-en]').forEach(el=>{
-      el.classList.add('lang-fade');
-      setTimeout(()=>{el.innerHTML=el.dataset[lang];el.classList.remove('lang-fade');},120);
-    });
-    document.documentElement.lang=lang==='cn'?'zh-CN':'en';
-    localStorage.setItem('lang',lang);
-  }
-  (function(){
-    const s=localStorage.getItem('lang');if(s){lang=s;}
-    document.querySelectorAll('.lang-label').forEach(el=>el.classList.toggle('active',el.dataset.lang===lang));
-    if(lang==='en'){
-      document.querySelectorAll('[data-cn][data-en]').forEach(el=>{el.innerHTML=el.dataset.en;});
-      document.documentElement.lang='en';
-    }
-  })();
-
-  let editing=false;
-  const resumeStorageKey='_resume_public_v3';
-
-  async function sha256(t){const d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return Array.from(new Uint8Array(d)).map(b=>b.toString(16).padStart(2,'0')).join('');}
-  async function checkPwd(p){const h=localStorage.getItem('_ph');return h?(await sha256(p))===h:true;}
-  async function setPwd(p){localStorage.setItem('_ph',await sha256(p));}
-  function authed(){return sessionStorage.getItem('_ea')==='1';}
-  function setAuthed(v){v?sessionStorage.setItem('_ea','1'):sessionStorage.removeItem('_ea');}
-
-  async function enterEdit(){
-    document.body.classList.add('edit-entry-visible');
-    if(authed()){applyEdit(true);return;}
-    const has=localStorage.getItem('_ph');
-    const p=prompt(has?'请输入编辑密码':'首次使用，请设置编辑密码','');
-    if(p===null)return;
-    if(!has){await setPwd(p);setAuthed(true);applyEdit(true);}
-    else if(await checkPwd(p)){setAuthed(true);applyEdit(true);}
-    else{alert('密码错误');}
-  }
-
-  function toggleEdit(){
-    if(editing){applyEdit(false);}
-    else{enterEdit();}
-  }
-
-  function applyEdit(on){
-    editing=on;
-    document.body.classList.toggle('editing',on);
-    document.getElementById('ebar').style.display=on?'flex':'none';
-    const editBtn=document.querySelector('.edit-btn');
-    if(editBtn)editBtn.innerHTML=on?'&#x2716;':'&#x270f;';
-    document.querySelectorAll('.card').forEach(c=>c.classList.toggle('force-open',on));
-    if(!on){save();setAuthed(false);}
-  }
-
-  function save(){
-    const d={};
-    document.querySelectorAll('[data-editable]').forEach(el=>{d[el.dataset.card]=el.innerHTML;});
-    localStorage.setItem(resumeStorageKey,JSON.stringify(d));
-  }
-  function load(){
-    try{
-      const d=JSON.parse(localStorage.getItem(resumeStorageKey));
-      if(!d)return;
-      Object.entries(d).forEach(([k,v])=>{
-        const el=document.querySelector('[data-card="'+k+'"]');
-        if(el)el.innerHTML=v;
-      });
-    }catch(_){}
-  }
-  let tmr;
-  document.addEventListener('input',e=>{
-    if(!editing)return;
-    if(e.target.closest('[data-editable]')){clearTimeout(tmr);tmr=setTimeout(save,600);}
-  });
-
-  function addCard(btn,secName){
-    const col=document.querySelector('[data-col="'+secName+'"]');
-    if(!col)return;
-    const cards=col.querySelectorAll('.card');
-    const tmpl=cards.length?cards[cards.length-1]:null;
-    if(!tmpl)return;
-    const clone=tmpl.cloneNode(true);
-    clone.setAttribute('data-card',secName+'-'+Date.now());
-    clone.querySelectorAll('.c-detail').forEach(e=>{e.style.maxHeight='none';e.style.opacity='1';});
-    clone.querySelectorAll('.c-title span[data-cn]').forEach(e=>{e.dataset.cn='新条目';e.dataset.en='New Entry';e.innerHTML='新条目';});
-    clone.querySelectorAll('.c-sub span[data-cn]').forEach(e=>{e.dataset.cn='副标题';e.dataset.en='Subtitle';e.innerHTML='副标题';});
-    clone.querySelectorAll('.c-meta span[data-cn]').forEach(e=>{e.dataset.cn='标签';e.dataset.en='Tags';e.innerHTML='标签';});
-    clone.querySelectorAll('.c-desc').forEach(e=>{e.dataset.cn='描述内容';e.dataset.en='Description';e.innerHTML='描述内容';});
-    clone.classList.add('force-open');
-    if(!clone.querySelector('.card-ctrl')){
-      const ctrl=document.createElement('span');ctrl.className='card-ctrl';
-      ctrl.onclick=function(){delCard(this);};
-      ctrl.title='删除';ctrl.innerHTML='&times;';
-      clone.appendChild(ctrl);
-    }
-    tmpl.after(clone);
-    save();
-  }
-  function delCard(ctrl){
-    if(!editing)return;
-    const card=ctrl.closest('.card');
-    const col=card.closest('.cards-col');
-    if(col&&col.querySelectorAll('.card').length<=1){alert('至少保留一个条目');return;}
-    card.style.opacity='0';card.style.transform='translateX(20px)';
-    setTimeout(()=>{card.remove();save();},250);
-  }
-
-  function exportHTML(){
-    save();
-    const cl=document.documentElement.cloneNode(true);
-    cl.querySelectorAll('#ebar,.sec-add,.card-ctrl,.edit-btn').forEach(e=>e.remove());
-    cl.querySelectorAll('.card').forEach(e=>{e.classList.remove('force-open');});
-    cl.querySelectorAll('.c-detail').forEach(e=>{e.style.maxHeight='';e.style.opacity='';});
-    cl.querySelectorAll('script').forEach(e=>e.remove());
-    const html='<!DOCTYPE html>\n'+cl.outerHTML;
-    const b=new Blob([html],{type:'text/html;charset=UTF-8'});
-    const a=document.createElement('a');
-    a.href=URL.createObjectURL(b);a.download='index.html';a.click();
-    URL.revokeObjectURL(a.href);
-  }
-
-  document.addEventListener('keydown',e=>{
-    if(e.ctrlKey&&e.altKey&&e.key.toLowerCase()==='e'){
-      document.body.classList.add('edit-entry-visible');
-      enterEdit();
-    }
-  });
-
-  window.addCard=addCard;
-  window.delCard=delCard;
-  window.exportHTML=exportHTML;
-  window.toggleEdit=toggleEdit;
-  window.toggleLang=toggleLang;
-  window.toggleTheme=toggleTheme;
-  load();
-  </script>
+    <nav class="editor-tabs" id="editor-tabs" aria-label="编辑内容分类"></nav>
+    <form class="editor-form" id="editor-form"></form>
+  </aside>
 </body>
 </html>
