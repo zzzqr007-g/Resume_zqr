@@ -5,6 +5,7 @@
   const LEGACY_KEY = "_resume_public_v3";
   const DEFAULT_DATA = structuredClone(window.RESUME_DATA);
   const expandedCards = new Set();
+  const expandableAnimations = new WeakMap();
   let resumeData = loadData();
   let lang = loadLanguage();
   let theme = loadTheme();
@@ -46,9 +47,30 @@
       Array.isArray(candidate.education) &&
       Array.isArray(candidate.research) &&
       Array.isArray(candidate.projects) &&
+      (!candidate.competitions || Array.isArray(candidate.competitions)) &&
       Array.isArray(candidate.skills) &&
       candidate.awards
     );
+  }
+
+  function normalizeData(candidate) {
+    const normalized = clone(candidate);
+    if (!Array.isArray(normalized.competitions)) normalized.competitions = [];
+    if (!Array.isArray(normalized.metrics)) normalized.metrics = clone(DEFAULT_DATA.metrics);
+    normalized.metrics = normalized.metrics
+      .filter((metric) => metric.id !== "orders")
+      .map((metric) => {
+        const fallback = DEFAULT_DATA.metrics.find((item) => item.id === metric.id);
+        const scalarValue = String(metric.value ?? "");
+        const value = metric.value && typeof metric.value === "object"
+          ? metric.value
+          : (scalarValue ? { zh: scalarValue, en: scalarValue } : clone(fallback?.value || { zh: "", en: "" }));
+        const label = metric.label && typeof metric.label === "object"
+          ? metric.label
+          : clone(fallback?.label || { zh: String(metric.label ?? ""), en: String(metric.label ?? "") });
+        return { ...metric, value, label };
+      });
+    return normalized;
   }
 
   function extractLegacyExperience(html, id) {
@@ -109,13 +131,16 @@
   }
 
   function loadData() {
+    if (new URLSearchParams(location.search).get("source") === "default") {
+      return normalizeData(clone(DEFAULT_DATA));
+    }
     try {
       const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
-      if (validateData(stored)) return stored;
+      if (validateData(stored)) return normalizeData(stored);
     } catch (_) {
       // Invalid local drafts never prevent the public resume from loading.
     }
-    return migrateLegacy(clone(DEFAULT_DATA));
+    return normalizeData(migrateLegacy(clone(DEFAULT_DATA)));
   }
 
   function loadLanguage() {
@@ -153,7 +178,7 @@
     const detailsId = `details-${item.id}`;
     const links = (item.links || []).map((link) => linkMarkup(link)).join("");
     return `
-      <article class="experience${item.featured ? " experience-featured" : ""}" data-card-id="${escapeHtml(item.id)}">
+      <article class="experience${item.featured ? " experience-featured" : ""}${isOpen ? " is-expanded" : ""}" data-card-id="${escapeHtml(item.id)}">
         <div class="experience-main">
           <div class="experience-copy">
             <p class="experience-badge">${escapeHtml(text(item.badge))}</p>
@@ -187,9 +212,18 @@
       <section class="evidence-strip" aria-label="${lang === "zh" ? "关键数据" : "Key evidence"}">
         ${resumeData.metrics.map((metric) => `
           <div class="metric">
-            <strong>${escapeHtml(metric.value)}</strong>
+            <strong>${escapeHtml(text(metric.value))}</strong>
             <span>${escapeHtml(text(metric.label))}</span>
           </div>`).join("")}
+      </section>`;
+  }
+
+  function competitionsMarkup() {
+    if (!resumeData.competitions.length) return "";
+    return `
+      <section class="section" id="competitions" aria-labelledby="competitions-title">
+        ${sectionHeading("competitions", "竞赛成果", "Competitions", "只呈现本人角色、实际工作与可核验结果。", "Only verifiable roles, work, and outcomes are shown.")}
+        <div class="experience-list">${resumeData.competitions.map(experienceMarkup).join("")}</div>
       </section>`;
   }
 
@@ -260,7 +294,10 @@
     const pageTools = document.querySelector(".page-tools");
     if (pageTools) pageTools.setAttribute("aria-label", lang === "zh" ? "页面工具" : "Page tools");
     const languageControl = document.querySelector(".language-control");
-    if (languageControl) languageControl.setAttribute("aria-label", lang === "zh" ? "语言" : "Language");
+    if (languageControl) {
+      languageControl.setAttribute("aria-label", lang === "zh" ? "语言" : "Language");
+      languageControl.dataset.activeLang = lang;
+    }
     document.querySelectorAll("[data-set-lang]").forEach((button) => {
       button.setAttribute("aria-pressed", String(button.dataset.setLang === lang));
     });
@@ -271,7 +308,10 @@
       themeToggle.title = label;
     }
     const themeIcon = document.getElementById("theme-icon");
-    if (themeIcon) themeIcon.textContent = theme === "dark" ? "☀" : "◐";
+    if (themeIcon) {
+      themeIcon.textContent = theme === "dark" ? "☀" : "◐";
+      themeIcon.dataset.theme = theme;
+    }
 
     const profile = resumeData.profile;
     const main = document.getElementById("main-content");
@@ -304,6 +344,7 @@
         <nav class="section-nav" aria-label="${lang === "zh" ? "简历目录" : "Resume sections"}">
           <a href="#research">${lang === "zh" ? "科研" : "Research"}</a>
           <a href="#projects">${lang === "zh" ? "工程" : "Engineering"}</a>
+          ${resumeData.competitions.length ? `<a href="#competitions">${lang === "zh" ? "竞赛" : "Competitions"}</a>` : ""}
           <a href="#learning">${lang === "zh" ? "学习" : "Learning"}</a>
           <a href="#skills">${lang === "zh" ? "技能" : "Skills"}</a>
           <a href="#awards">${lang === "zh" ? "荣誉" : "Awards"}</a>
@@ -318,7 +359,7 @@
         </section>
 
         <section class="section" id="research" aria-labelledby="research-title">
-          ${sectionHeading("research", "科研经历", "Research", "重点展示可验证的研究训练、独立论文与领域资源建设。", "Verifiable research training, independent work, and field-resource building.")}
+          ${sectionHeading("research", "科研经历", "Research", "重点展示可验证的研究训练、独立实验与领域资源建设。", "Verifiable research training, independent work, and field-resource building.")}
           <div class="experience-list">${resumeData.research.map(experienceMarkup).join("")}</div>
         </section>
 
@@ -327,6 +368,7 @@
           <div class="experience-list">${resumeData.projects.map(experienceMarkup).join("")}</div>
         </section>
 
+        ${competitionsMarkup()}
         ${learningMarkup()}
         ${skillsMarkup()}
         ${awardsMarkup()}
@@ -344,27 +386,44 @@
       </div>`;
   }
 
+  function withPageTransition(update) {
+    const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (!reduceMotion && document.startViewTransition) {
+      document.startViewTransition(update);
+      return;
+    }
+    update();
+    if (reduceMotion) return;
+    document.getElementById("main-content")?.animate([
+      { opacity: 0.72, transform: "translateY(5px) scale(0.997)", filter: "blur(1.5px)" },
+      { opacity: 1, transform: "translateY(0) scale(1)", filter: "blur(0)" }
+    ], {
+      duration: 360,
+      easing: "cubic-bezier(0.16, 1, 0.3, 1)"
+    });
+  }
+
   function setLanguage(next) {
     lang = next === "en" ? "en" : "zh";
     localStorage.setItem("resume:lang", lang);
-    render();
+    withPageTransition(render);
   }
 
   function setTheme(next) {
     theme = next === "dark" ? "dark" : "light";
     localStorage.setItem("resume:theme", theme);
-    render();
+    withPageTransition(render);
   }
 
   function setData(next) {
     if (!validateData(next)) throw new Error("Invalid resume data");
-    resumeData = clone(next);
+    resumeData = normalizeData(next);
     render();
   }
 
   function saveData(next = resumeData) {
     if (!validateData(next)) throw new Error("Invalid resume data");
-    resumeData = clone(next);
+    resumeData = normalizeData(next);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(resumeData));
     render();
   }
@@ -401,9 +460,9 @@
     const toggle = event.target.closest("[data-toggle-card]");
     if (toggle) {
       const id = toggle.dataset.toggleCard;
-      expandedCards.has(id) ? expandedCards.delete(id) : expandedCards.add(id);
-      render();
-      document.querySelector(`[data-toggle-card="${CSS.escape(id)}"]`)?.focus();
+      const shouldOpen = !expandedCards.has(id);
+      shouldOpen ? expandedCards.add(id) : expandedCards.delete(id);
+      updateCardState(toggle.closest(".experience"), shouldOpen);
       return;
     }
     const awardsToggle = event.target.closest("#awards-toggle");
@@ -412,8 +471,82 @@
       const isOpen = awardsToggle.getAttribute("aria-expanded") === "true";
       awardsToggle.setAttribute("aria-expanded", String(!isOpen));
       awardsToggle.lastElementChild.textContent = isOpen ? "+" : "−";
-      content.hidden = isOpen;
+      awardsToggle.classList.toggle("is-expanded", !isOpen);
+      animateExpandable(content, !isOpen);
     }
+  });
+
+  function animateExpandable(element, isOpen) {
+    if (!element) return;
+    const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    const startHeight = element.hidden ? 0 : element.getBoundingClientRect().height;
+    expandableAnimations.get(element)?.cancel();
+    if (isOpen) element.hidden = false;
+    const endHeight = isOpen ? element.scrollHeight : 0;
+
+    if (reduceMotion || Math.abs(endHeight - startHeight) < 1) {
+      element.hidden = !isOpen;
+      element.style.removeProperty("height");
+      element.style.removeProperty("overflow");
+      expandableAnimations.delete(element);
+      return;
+    }
+
+    element.style.height = `${startHeight}px`;
+    element.style.overflow = "hidden";
+    const animation = element.animate([
+      {
+        height: `${startHeight}px`,
+        opacity: isOpen ? 0.18 : 1,
+        transform: isOpen ? "translateY(-8px) scale(0.995)" : "translateY(0) scale(1)"
+      },
+      {
+        height: `${endHeight}px`,
+        opacity: isOpen ? 1 : 0,
+        transform: isOpen ? "translateY(0) scale(1)" : "translateY(-6px) scale(0.996)"
+      }
+    ], {
+      duration: isOpen ? 430 : 300,
+      easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+      fill: "both"
+    });
+    expandableAnimations.set(element, animation);
+    animation.onfinish = () => {
+      if (expandableAnimations.get(element) !== animation) return;
+      element.hidden = !isOpen;
+      element.style.removeProperty("height");
+      element.style.removeProperty("overflow");
+      expandableAnimations.delete(element);
+      animation.cancel();
+    };
+  }
+
+  function updateCardState(card, isOpen) {
+    const button = card?.querySelector("[data-toggle-card]");
+    const detail = card?.querySelector(".experience-detail");
+    if (!button || !detail) return;
+    button.setAttribute("aria-expanded", String(isOpen));
+    card.classList.toggle("is-expanded", isOpen);
+    animateExpandable(detail, isOpen);
+    const labels = button.querySelectorAll("span");
+    if (labels[0]) labels[0].textContent = isOpen
+      ? (lang === "zh" ? "收起" : "Collapse")
+      : (lang === "zh" ? "展开" : "Details");
+    if (labels[1]) labels[1].textContent = isOpen ? "−" : "+";
+  }
+
+  document.addEventListener("pointerover", (event) => {
+    if (!window.matchMedia?.("(hover: hover) and (pointer: fine)").matches) return;
+    const card = event.target.closest(".experience");
+    if (!card || card.contains(event.relatedTarget)) return;
+    updateCardState(card, true);
+  });
+
+  document.addEventListener("pointerout", (event) => {
+    if (!window.matchMedia?.("(hover: hover) and (pointer: fine)").matches) return;
+    const card = event.target.closest(".experience");
+    if (!card || card.contains(event.relatedTarget)) return;
+    updateCardState(card, expandedCards.has(card.dataset.cardId));
   });
 
   window.ResumeApp = {

@@ -4,7 +4,7 @@
 
   window.RESUME_DATA = {
     version: 4,
-    updated: "2026-08-31",
+    updated: "2026-09-01",
     profile: {
       name: { zh: "章权瑞", en: "Zhang Quanrui" },
       academicLine: {
@@ -29,28 +29,23 @@
     metrics: [
       {
         id: "average",
-        value: "90.83/100",
-        label: { zh: "大一上学期保研均分", en: "First-semester average" }
+        value: { zh: "90.85/100", en: "90.85/100" },
+        label: { zh: "大一学年保研加权", en: "First-year weighted average" }
       },
       {
         id: "rank",
-        value: "前 6%",
+        value: { zh: "前 7%", en: "Top 7%" },
         label: { zh: "专业排名", en: "Major ranking" }
       },
       {
-        id: "orders",
-        value: "约 100 万",
-        label: { zh: "论文实验订单数据", en: "Paper dataset records" }
-      },
-      {
-        id: "knowledge",
-        value: "124 + 122",
-        label: { zh: "学者与实验室条目", en: "Scholar and lab records" }
+        id: "cet4",
+        value: { zh: "CET-4 / 530", en: "CET-4 / 530" },
+        label: { zh: "大学英语四级", en: "College English Test" }
       }
     ],
     about: {
-      zh: "北京邮电大学电信工程及管理专业 2025 级本科生。大一上学期保研均分 90.83/100，专业排名前 6%。目前围绕 AI、具身智能与嵌入式系统积累研究和工程能力：在 PRIS Lab 参与具身智能科研训练，独立完成双向 LSTM 共享单车需求预测论文，并主要承担蓝莓采摘机器人嵌入式软件架构、核心功能开发与实机联调。",
-      en: "Undergraduate at BUPT, Class of 2029, majoring in Telecommunications Engineering with Management. My first-semester average was 90.83/100, ranking in the top 6% of the major. I am building research and engineering depth across AI, embodied intelligence, and embedded systems through PRIS Lab research training, a sole-authored BiLSTM forecasting paper, and embedded software development for a blueberry-picking robot."
+      zh: "北京邮电大学电信工程及管理专业 2025 级本科生。大一学年保研加权平均分 90.85/100，专业排名前 7%，大学英语四级 530 分。目前围绕 AI、具身智能与机器人系统积累研究和工程能力：在 PRIS Lab 参与具身智能科研训练，独立完成 LSTM 共享单车短期需求预测实验，并主要承担蓝莓采摘机器人从环境配置、串口与遥操作开发到视觉控制联调和实机集成的工作。",
+      en: "Undergraduate at BUPT, Class of 2029, majoring in Telecommunications Engineering with Management. My first-year weighted academic average is 90.85/100, ranking in the top 7% of the major, with a CET-4 score of 530. I am building research and engineering experience across AI, embodied intelligence, and robotic systems through PRIS Lab training, an independently completed LSTM bike-demand forecasting experiment, and system development for a blueberry-picking robot."
     },
     education: [
       {
@@ -66,23 +61,30 @@
           en: "B.Eng. Candidate / Sep 2025 - Jun 2029 (Expected)"
         },
         meta: {
-          zh: "保研均分 90.83/100 / 专业前 6%",
-          en: "Average 90.83/100 / Top 6% in major"
+          zh: "保研加权平均分 90.85/100 / 专业前 7% / 四级 530",
+          en: "Weighted average 90.85/100 / Top 7% / CET-4 530"
         },
         status: { zh: "2025级本科生", en: "Class of 2029" },
         details: [
           {
             label: { zh: "成绩", en: "Academics" },
             text: {
-              zh: "大一上学期保研均分 90.83/100，专业排名前 6%。",
-              en: "First-semester average of 90.83/100, ranking in the top 6% of the major."
+              zh: "大一学年保研加权平均分 90.85/100，专业排名前 7%。",
+              en: "First-year weighted academic average of 90.85/100, ranking in the top 7% of the major."
             }
           },
           {
             label: { zh: "课程", en: "Coursework" },
             text: {
-              zh: "高等数学上（88）、线性代数（90）、计算机导论与程序设计（91）。",
-              en: "Advanced Mathematics I (88), Linear Algebra (90), and Introduction to Computing and Programming (91)."
+              zh: "高等数学上（88）、高等数学下（89）、线性代数（90）、计算机导论与程序设计（91）、计算机导论与程序设计实验（99）、电子系统基础（98）。",
+              en: "Advanced Mathematics I (88), Advanced Mathematics II (89), Linear Algebra (90), Introduction to Computing and Programming (91), Introduction to Computing and Programming Lab (99), and Fundamentals of Electronic Systems (98)."
+            }
+          },
+          {
+            label: { zh: "英语", en: "English" },
+            text: {
+              zh: "大学英语四级（CET-4）530 分。",
+              en: "College English Test Band 4 (CET-4): 530."
             }
           }
         ],
@@ -99,12 +101,12 @@
           en: "Pattern Recognition and Intelligent Systems Lab (PRIS Lab)"
         },
         role: {
-          zh: "本科生研究员 / 导师：高深教授",
-          en: "Undergraduate Researcher / Advisor: Prof. Gao Shen"
+          zh: "本科生研究员 / 导师：高升教授",
+          en: "Undergraduate Researcher / Advisor: Prof. Gao Sheng"
         },
         meta: {
-          zh: "具身智能论文研读 / 组会汇报 / 机器人技术论证",
-          en: "Embodied AI papers / Lab presentations / Robotics technical research"
+          zh: "具身智能论文研读 / 蓝莓采摘机器人 / 系统联调",
+          en: "Embodied AI reading / Blueberry-picking robot / System integration"
         },
         status: { zh: "持续进行", en: "Ongoing" },
         details: [
@@ -118,15 +120,15 @@
           {
             label: { zh: "工作", en: "Work" },
             text: {
-              zh: "独立研读 π0.5 等视觉-语言-动作模型论文并完成组会汇报；围绕蓝莓采摘机器人调研机械臂、底盘与嵌入式控制方案。",
-              en: "Independently studied vision-language-action models including π0.5, presented findings in lab meetings, and evaluated robotic-arm, chassis, and embedded-control options for a blueberry-picking robot."
+              zh: "正在研读 π0.5 等视觉-语言-动作模型资料，已完成部分章节阅读与笔记整理，后续继续补充模型机制与实验设计。",
+              en: "Currently studying vision-language-action models including π0.5, with partial paper reading and notes completed while continuing to examine model mechanisms and experimental design."
             }
           },
           {
             label: { zh: "产出", en: "Outcome" },
             text: {
-              zh: "形成论文拆解、技术路线比较和工程落地约束分析的研究工作流。",
-              en: "Built a repeatable workflow for paper decomposition, technical route comparison, and implementation-constraint analysis."
+              zh: "在实验室蓝莓采摘机器人竞赛项目中，将论文研读延伸到环境配置、串口与遥操作开发、视觉控制联调及移动底盘实机集成。",
+              en: "Applied the lab training in a blueberry-picking robot competition project, covering environment setup, serial and teleoperation development, vision-control integration, and mobile-platform testing."
             }
           }
         ],
@@ -135,39 +137,39 @@
         ]
       },
       {
-        id: "research-bilstm",
+        id: "research-lstm",
         featured: true,
-        badge: { zh: "独立论文", en: "Independent Paper" },
+        badge: { zh: "独立实验研究", en: "Independent Study" },
         title: {
-          zh: "基于双向 LSTM 的共享单车短期需求预测",
-          en: "Short-term Bike-sharing Demand Forecasting with Bidirectional LSTM"
+          zh: "基于 LSTM 的共享单车短期需求预测",
+          en: "Short-term Bike-sharing Demand Forecasting with LSTM"
         },
-        role: { zh: "独立研究者 / 第一作者", en: "Independent Researcher / Sole Author" },
+        role: { zh: "独立完成实验、分析与报告撰写", en: "Independent Experiment, Analysis, and Report" },
         meta: {
-          zh: "Python / PyTorch / 约 100 万条订单 / MAE 55.50",
-          en: "Python / PyTorch / About 1M orders / MAE 55.50"
+          zh: "Python / LSTM / 24 小时输入 / 未来 8 小时预测",
+          en: "Python / LSTM / 24-hour input / 8-hour forecast"
         },
-        status: { zh: "英文稿件审稿中", en: "Manuscript under review" },
+        status: { zh: "实验报告已完成", en: "Experimental report completed" },
         details: [
           {
             label: { zh: "问题", en: "Problem" },
             text: {
-              zh: "面向城市共享单车小时级需求波动，构建双层双向 LSTM 短期预测模型。",
-              en: "Built a two-layer bidirectional LSTM model for hourly urban bike-sharing demand forecasting."
+              zh: "面向共享单车小时级需求波动，使用过去 24 小时租赁量直接预测未来 8 小时，按时间顺序划分训练、验证与测试集。",
+              en: "Forecasted the next eight hours of bike demand from the preceding 24 hours, using chronological training, validation, and test splits."
             }
           },
           {
             label: { zh: "方法", en: "Method" },
             text: {
-              zh: "处理深圳市政府开放数据平台约 100 万条订单记录（2017.04-2021.02），完成小时级聚合、周期性时间编码、周末和高峰标记等特征构造。",
-              en: "Processed about one million Shenzhen open-data order records from Apr 2017 to Feb 2021, with hourly aggregation, cyclical time encoding, weekend indicators, and peak-hour features."
+              zh: "先处理上海摩拜约 10 万条订单并聚合为 713 个小时样本，完成缺失补齐、归一化和双层 LSTM 建模；后续在深圳开放数据中截取约 100 万条订单，加入周期、周末与高峰特征。",
+              en: "Processed about 100,000 Shanghai Mobike orders into 713 hourly samples for imputation, normalization, and a two-layer LSTM; later evaluated about one million Shenzhen open-data orders with cyclical, weekend, and peak-hour features."
             }
           },
           {
-            label: { zh: "结果", en: "Result" },
+            label: { zh: "结果与边界", en: "Results and limits" },
             text: {
-              zh: "采用多步输出、Huber 损失与双向结构，将 MAE 从 77.82 降至 61.45；随机森林融合模型进一步降至 55.50，RMSE 为 85.55。",
-              en: "Multi-step outputs, Huber loss, and bidirectional modeling reduced MAE from 77.82 to 61.45; a random-forest fusion model further reduced it to 55.50, with RMSE 85.55."
+              zh: "首轮优化将 MAE 从 77.82 降至 61.45、RMSE 从 105.26 降至 91.61；扩展数据实验的 R² 约为 0.3-0.4，并识别出稀疏脉冲与 28.6% 零值占比是主要限制，未把有限效果包装成高精度成果。",
+              en: "Initial tuning reduced MAE from 77.82 to 61.45 and RMSE from 105.26 to 91.61. The expanded-data experiment reached an R² of roughly 0.3-0.4; sparse spikes and a 28.6% zero-value share were documented as major limitations."
             }
           }
         ],
@@ -226,34 +228,41 @@
           en: "Embedded Control System for a Blueberry-picking Robot Based on Renesas RA8P1"
         },
         role: {
-          zh: "核心开发成员 / 主要负责嵌入式软件",
-          en: "Core Developer / Primary Embedded Software Contributor"
+          zh: "主要开发成员 / 负责嵌入式、视觉控制联调与交付材料",
+          en: "Primary Developer / Embedded, Vision-control Integration, and Delivery"
         },
         meta: {
-          zh: "C/C++ / RA8P1 / J-Link SWD / UART/CAN / FSM",
-          en: "C/C++ / RA8P1 / J-Link SWD / UART/CAN / FSM"
+          zh: "环境配置 / 串口通信 / 机械臂遥操作 / YOLO 集成 / 实机联调",
+          en: "Environment setup / Serial communication / Arm teleoperation / YOLO integration / Hardware testing"
         },
         status: { zh: "项目获省级二等奖", en: "Project received a provincial second prize" },
         details: [
           {
             label: { zh: "目标", en: "Goal" },
             text: {
-              zh: "面向农业自动化采摘场景，基于瑞萨 RA8P1 微控制器实现机器人底层控制与采摘流程调度。",
-              en: "Implement low-level robot control and picking-workflow orchestration for automated agriculture using the Renesas RA8P1 MCU."
+              zh: "面向蓝莓目标识别与抓取场景，完成机械臂、视觉检测与可移动小车底盘的系统集成。",
+              en: "Integrated a robotic arm, visual detection, and a mobile chassis for blueberry target recognition and grasping."
             }
           },
           {
             label: { zh: "个人职责", en: "Contribution" },
             text: {
-              zh: "在 3 人团队中主要负责嵌入式软件架构、核心功能开发与实机联调，并参与机械臂和底盘硬件选型。",
-              en: "In a three-person team, primarily owned embedded software architecture, core feature development, and hardware integration, while contributing to robotic-arm and chassis selection."
+              zh: "承担项目大部分工程开发：完成前期环境配置与串口通信，编写机械臂遥操作控制代码，并持续进行实机调试。",
+              en: "Handled most of the engineering implementation, including environment setup, serial communication, robotic-arm teleoperation code, and iterative hardware debugging."
             }
           },
           {
-            label: { zh: "实现", en: "Implementation" },
+            label: { zh: "视觉与控制", en: "Vision and control" },
             text: {
-              zh: "实现安全监测、机械臂 UART 通信、底盘运动控制、末端抓手驱动与基于 FSM 的采摘流程；使用 J-Link/SWD、UART 日志和 LED 状态完成调试。",
-              en: "Implemented safety monitoring, robotic-arm UART communication, chassis motion control, gripper actuation, and an FSM-based picking workflow; debugged through J-Link/SWD, UART logs, and LED states."
+              zh: "接入已有 YOLO 检测模型，将识别结果转换为机械臂转动数据与抓取指令，并配合图像识别和抓取流程采集数据；本阶段未完成模型训练。",
+              en: "Integrated an existing YOLO detector, converted detections into arm-rotation data and grasp commands, and collected data through recognition and grasp trials; model training was not completed at this stage."
+            }
+          },
+          {
+            label: { zh: "系统与交付", en: "System and delivery" },
+            text: {
+              zh: "将机械臂安装到可移动小车底盘，完成目标检测、控制数据返回与抓取链路联调，并负责后续项目计划书和答辩 PPT 制作。",
+              en: "Mounted the arm on a mobile chassis, tested the target-detection, control-data, and grasping pipeline, and prepared the project proposal and presentation deck."
             }
           },
           {
@@ -282,7 +291,7 @@
           zh: "LiDAR / 77GHz 毫米波雷达 / 边缘-云端协同",
           en: "LiDAR / 77GHz mmWave / Edge-cloud architecture"
         },
-        status: { zh: "2025 年雏雁计划立项", en: "Approved under BUPT's 2025 Nestling Plan" },
+        status: { zh: "雏雁计划已结项", en: "Nestling Plan project completed" },
         details: [
           {
             label: { zh: "目标", en: "Goal" },
@@ -379,6 +388,7 @@
         ]
       }
     ],
+    competitions: [],
     learning: {
       id: "learning-ml-notes",
       title: {
@@ -413,24 +423,24 @@
         id: "skill-models",
         label: { zh: "模型与算法", en: "Models and Algorithms" },
         text: {
-          zh: "LSTM、双向 RNN、Transformer、注意力机制；持续学习 VLA 与具身智能基础。",
-          en: "LSTM, bidirectional RNNs, Transformers, and attention; continuing study of VLA models and embodied intelligence."
+          zh: "LSTM、Transformer 与注意力机制；持续学习 VLA 模型和具身智能基础。",
+          en: "LSTM, Transformers, and attention mechanisms; continuing study of VLA models and embodied intelligence."
         }
       },
       {
         id: "skill-embedded",
         label: { zh: "嵌入式", en: "Embedded Systems" },
         text: {
-          zh: "瑞萨 RA8P1、FSP、e2 studio、SWD/J-Link、UART、GPIO、FSM 与实机联调。",
-          en: "Renesas RA8P1, FSP, e2 studio, SWD/J-Link, UART, GPIO, FSMs, and hardware integration."
+          zh: "瑞萨 RA8P1、e2 studio、串口通信、机械臂遥操作、YOLO 推理接入与实机联调。",
+          en: "Renesas RA8P1, e2 studio, serial communication, robotic-arm teleoperation, YOLO inference integration, and hardware testing."
         }
       },
       {
         id: "skill-research",
-        label: { zh: "科研与工具", en: "Research and Tooling" },
+        label: { zh: "研究与开发方法", en: "Research and Development Practice" },
         text: {
-          zh: "英文论文写作、Zotero、文献检索与综述整理；Git、Linux、Anaconda、Markdown/LaTeX。",
-          en: "Academic writing, Zotero, literature search and review; Git, Linux, Anaconda, Markdown, and LaTeX."
+          zh: "文献检索、论文阅读与实验记录；Zotero、Anaconda、Markdown，以及 AI 辅助编程、调试和技术文档整理。",
+          en: "Literature search, paper reading, and experiment logging; Zotero, Anaconda, Markdown, plus AI-assisted programming, debugging, and technical documentation."
         }
       }
     ],
@@ -453,8 +463,8 @@
         {
           id: "award-nestling",
           text: {
-            zh: "北京邮电大学 2025 年雏雁计划 / 项目立项参与者",
-            en: "BUPT 2025 Nestling Plan / Approved Project Contributor"
+            zh: "北京邮电大学 2025 年雏雁计划 / 结项项目参与者",
+            en: "BUPT 2025 Nestling Plan / Contributor to a Completed Project"
           }
         }
       ],

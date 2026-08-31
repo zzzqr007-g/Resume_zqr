@@ -11,10 +11,12 @@
 
   const tabDefinitions = [
     ["profile", "基本信息"],
+    ["metrics", "关键数据"],
     ["about", "个人概况"],
     ["education", "教育"],
     ["research", "科研"],
     ["projects", "项目"],
+    ["competitions", "竞赛"],
     ["learning", "学习成果"],
     ["skills", "技能"],
     ["awards", "荣誉活动"]
@@ -24,6 +26,7 @@
   let draft = app.getData();
   let openSnapshot = structuredClone(draft);
   let dirty = false;
+  let dragState = null;
 
   function clone(value) {
     return structuredClone(value);
@@ -109,6 +112,7 @@
   function itemActions(collection, index, total) {
     return `
       <div class="editor-item-actions">
+        <span class="editor-drag-handle" data-drag-collection="${collection}" data-drag-index="${index}" aria-hidden="true" title="拖动排序">⋮⋮</span>
         <button type="button" class="editor-mini-button" data-action="move-up" data-collection="${collection}" data-index="${index}" ${index === 0 ? "disabled" : ""}>上移</button>
         <button type="button" class="editor-mini-button" data-action="move-down" data-collection="${collection}" data-index="${index}" ${index === total - 1 ? "disabled" : ""}>下移</button>
         <button type="button" class="editor-mini-button" data-action="duplicate" data-collection="${collection}" data-index="${index}">复制</button>
@@ -145,7 +149,7 @@
   function experienceEditor(collection, item, index, total) {
     const base = `${collection}.${index}`;
     return `
-      <article class="editor-item">
+      <article class="editor-item" data-sort-collection="${collection}" data-sort-index="${index}">
         <header class="editor-item-header">
           <h3>${escapeHtml(item.title?.zh || `条目 ${index + 1}`)}</h3>
           ${itemActions(collection, index, total)}
@@ -208,6 +212,22 @@
     return `<section class="editor-section">${bilingualField("个人概况", "about", true)}</section>`;
   }
 
+  function metricsPanel() {
+    return `
+      ${(draft.metrics || []).map((metric, index) => `
+        <article class="editor-item" data-sort-collection="metrics" data-sort-index="${index}">
+          <header class="editor-item-header">
+            <h3>${escapeHtml(metric.label?.zh || `关键数据 ${index + 1}`)}</h3>
+            ${itemActions("metrics", index, draft.metrics.length)}
+          </header>
+          <div class="editor-item-body">
+            ${bilingualField("数值", `metrics.${index}.value`)}
+            ${bilingualField("说明", `metrics.${index}.label`)}
+          </div>
+        </article>`).join("")}
+      <button type="button" class="editor-add-button" data-action="add-metric">添加关键数据</button>`;
+  }
+
   function collectionPanel(collection, addLabel) {
     const items = draft[collection] || [];
     return `
@@ -224,7 +244,7 @@
         ${scalarField("公开精选版 URL（留空显示待发布）", "learning.url", "url")}
       </section>
       ${(draft.learning.topics || []).map((topic, index) => `
-        <article class="editor-item">
+        <article class="editor-item" data-sort-collection="learning.topics" data-sort-index="${index}">
           <header class="editor-item-header">
             <h3>主题 ${index + 1}</h3>
             ${itemActions("learning.topics", index, draft.learning.topics.length)}
@@ -237,7 +257,7 @@
   function skillsPanel() {
     return `
       ${draft.skills.map((skill, index) => `
-        <article class="editor-item">
+        <article class="editor-item" data-sort-collection="skills" data-sort-index="${index}">
           <header class="editor-item-header">
             <h3>${escapeHtml(skill.label?.zh || `技能 ${index + 1}`)}</h3>
             ${itemActions("skills", index, draft.skills.length)}
@@ -255,7 +275,7 @@
     return `
       <section class="editor-section"><h3>${escapeHtml(title)}</h3></section>
       ${items.map((item, index) => `
-        <article class="editor-item">
+        <article class="editor-item" data-sort-collection="${path}" data-sort-index="${index}">
           <header class="editor-item-header">
             <h3>${escapeHtml(item.text?.zh || `条目 ${index + 1}`)}</h3>
             ${itemActions(path, index, items.length)}
@@ -277,10 +297,12 @@
   function renderForm() {
     const panels = {
       profile: profilePanel,
+      metrics: metricsPanel,
       about: aboutPanel,
       education: () => collectionPanel("education", "添加教育经历"),
       research: () => collectionPanel("research", "添加科研经历"),
       projects: () => collectionPanel("projects", "添加工程项目"),
+      competitions: () => collectionPanel("competitions", "添加竞赛成果"),
       learning: learningPanel,
       skills: skillsPanel,
       awards: awardsPanel
@@ -347,6 +369,14 @@
       }));
       return;
     }
+    if (action === "add-metric") {
+      mutateCollection("metrics", (items) => items.push({
+        id: uid("metric"),
+        value: { zh: "请输入数值", en: "Enter value" },
+        label: { zh: "请输入说明", en: "Enter label" }
+      }));
+      return;
+    }
     if (action === "add-simple") {
       mutateCollection(collectionPath, (items) => items.push({
         id: uid("item"),
@@ -410,6 +440,54 @@
   form.addEventListener("click", (event) => {
     const button = event.target.closest("[data-action]");
     if (button) handleStructureAction(button);
+  });
+
+  form.addEventListener("pointerdown", (event) => {
+    const handle = event.target.closest("[data-drag-collection]");
+    if (!handle || event.button !== 0) return;
+    event.preventDefault();
+    dragState = {
+      collection: handle.dataset.dragCollection,
+      index: Number(handle.dataset.dragIndex),
+      pointerId: event.pointerId,
+      handle
+    };
+    handle.setPointerCapture?.(event.pointerId);
+    handle.closest(".editor-item")?.classList.add("is-dragging");
+  });
+
+  form.addEventListener("pointermove", (event) => {
+    if (!dragState || event.pointerId !== dragState.pointerId) return;
+    const target = document.elementFromPoint(event.clientX, event.clientY)?.closest("[data-sort-collection]");
+    if (!dragState || !target || target.dataset.sortCollection !== dragState.collection) return;
+    event.preventDefault();
+    form.querySelectorAll(".is-drag-target").forEach((item) => item.classList.remove("is-drag-target"));
+    target.classList.add("is-drag-target");
+  });
+
+  form.addEventListener("pointerup", (event) => {
+    if (!dragState || event.pointerId !== dragState.pointerId) return;
+    const target = document.elementFromPoint(event.clientX, event.clientY)?.closest("[data-sort-collection]");
+    const { collection, index, handle } = dragState;
+    handle.releasePointerCapture?.(event.pointerId);
+    dragState = null;
+    form.querySelectorAll(".is-dragging, .is-drag-target").forEach((item) => {
+      item.classList.remove("is-dragging", "is-drag-target");
+    });
+    if (!target || target.dataset.sortCollection !== collection) return;
+    const targetIndex = Number(target.dataset.sortIndex);
+    mutateCollection(collection, (items) => {
+      if (!items[index] || index === targetIndex) return;
+      const [moved] = items.splice(index, 1);
+      items.splice(targetIndex, 0, moved);
+    });
+  });
+
+  form.addEventListener("pointercancel", () => {
+    dragState = null;
+    form.querySelectorAll(".is-dragging, .is-drag-target").forEach((item) => {
+      item.classList.remove("is-dragging", "is-drag-target");
+    });
   });
 
   tabs.addEventListener("click", (event) => {

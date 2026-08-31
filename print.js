@@ -5,8 +5,7 @@
   const lang = params.get("lang") === "en" ? "en" : "zh";
   const pages = params.get("pages") === "1" ? 1 : 2;
   const root = document.getElementById("print-root");
-  const defaults = structuredClone(window.RESUME_DATA);
-  let data = defaults;
+  let data = structuredClone(window.RESUME_DATA);
 
   try {
     const saved = JSON.parse(localStorage.getItem("_resume_public_v4") || "null");
@@ -15,7 +14,12 @@
     console.warn("Unable to load local resume draft for printing.", error);
   }
 
-  const t = (value) => value?.[lang] || value?.zh || "";
+  if (!Array.isArray(data.competitions)) data.competitions = [];
+
+  const t = (value) => {
+    if (value && typeof value === "object") return value[lang] ?? value.zh ?? value.en ?? "";
+    return value ?? "";
+  };
   const labelSeparator = lang === "zh" ? "：" : ": ";
   const esc = (value) => String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -28,8 +32,9 @@
     const profile = data.profile;
     return `
       <header class="resume-header${compact ? " is-compact" : ""}">
-        <div>
-          <p class="eyebrow">${esc(t(profile.direction))}</p>
+        <img class="resume-photo" src="${esc(profile.photo)}" alt="${esc(lang === "zh" ? `${t(profile.name)}的证件照` : `Portrait of ${t(profile.name)}`)}">
+        <div class="identity">
+          <p class="target-line">${esc(t(profile.direction))}</p>
           <h1>${esc(t(profile.name))}</h1>
           <p class="headline">${esc(t(profile.academicLine))}</p>
         </div>
@@ -45,10 +50,11 @@
     return `<h2>${lang === "zh" ? zh : en}</h2>`;
   }
 
-  function education() {
+  function education(compact = false) {
     const item = data.education[0];
+    const details = compact ? item.details.slice(0, 3) : item.details;
     return `
-      <section>
+      <section class="education-section">
         ${sectionTitle("教育背景", "Education")}
         <article class="entry education-entry">
           <div class="entry-heading">
@@ -56,52 +62,71 @@
             <strong>${esc(t(item.status))}</strong>
           </div>
           <p class="entry-meta">${esc(t(item.meta))}</p>
-          <ul>${item.details.map((detail) => `<li><b>${esc(t(detail.label))}${labelSeparator}</b>${esc(t(detail.text))}</li>`).join("")}</ul>
+          <ul>${details.map((detail) => `<li><b>${esc(t(detail.label))}${labelSeparator}</b>${esc(t(detail.text))}</li>`).join("")}</ul>
         </article>
       </section>`;
   }
 
-  function entry(item, detailSelection = item.details.length) {
+  function entry(item, detailSelection = item.details.length, options = {}) {
     const details = Array.isArray(detailSelection)
       ? detailSelection.map((index) => item.details[index]).filter(Boolean)
       : item.details.slice(0, detailSelection);
     return `
-      <article class="entry">
+      <article class="entry${options.compact ? " is-compact" : ""}">
         <div class="entry-heading">
           <div><h3>${esc(t(item.title))}</h3><p>${esc(t(item.role))}</p></div>
           <strong>${esc(t(item.status))}</strong>
         </div>
-        <p class="entry-meta">${esc(t(item.meta))}</p>
+        ${options.hideMeta ? "" : `<p class="entry-meta">${esc(t(item.meta))}</p>`}
         <ul>${details.map((detail) => `<li><b>${esc(t(detail.label))}${labelSeparator}</b>${esc(t(detail.text))}</li>`).join("")}</ul>
       </article>`;
   }
 
   function skills(compact = false) {
-    const selected = compact ? data.skills.slice(0, 3) : data.skills;
+    const selected = compact ? data.skills.slice(0, 4) : data.skills;
     return `
       <section class="skills-section">
-        ${sectionTitle("核心技能", "Skills")}
+        ${sectionTitle("能力与工具", "Skills and Tools")}
         <dl>${selected.map((skill) => `<div><dt>${esc(t(skill.label))}</dt><dd>${esc(t(skill.text))}</dd></div>`).join("")}</dl>
       </section>`;
   }
 
-  function learning(oneLine = false) {
+  function learning(compact = false) {
     const topics = data.learning.topics.map(t).join(lang === "zh" ? "、" : ", ");
+    const summary = compact
+      ? (lang === "zh"
+        ? "按模型机制、公式推导、代码实践与复习自测组织学习笔记。"
+        : "Mechanism-first notes with formulas, runnable practice, and review checks.")
+      : t(data.learning.summary);
     return `
       <section class="learning-section">
         ${sectionTitle("机器学习学习成果", "Machine Learning Portfolio")}
-        <p><b>${esc(t(data.learning.title))}${labelSeparator}</b>${oneLine ? esc(topics) : esc(t(data.learning.summary))}</p>
-        ${oneLine ? "" : `<p class="topics">${esc(topics)} / ${esc(t(data.learning.status))}</p>`}
+        <p><b>${esc(t(data.learning.title))}${labelSeparator}</b>${esc(summary)}</p>
+        <p class="support-line">${esc(topics)} / ${esc(t(data.learning.status))}</p>
+      </section>`;
+  }
+
+  function highlights() {
+    const items = data.awards.technical.slice(0, 2);
+    return `
+      <section class="highlights-section">
+        ${sectionTitle("精选荣誉", "Selected Recognition")}
+        <ul>${items.map((item) => `<li>${esc(t(item.text))}</li>`).join("")}</ul>
       </section>`;
   }
 
   function awards() {
-    const items = [...data.awards.technical, ...data.awards.activities.slice(0, 2)];
+    const items = [...data.awards.technical, data.awards.activities[1]].filter(Boolean);
     return `
       <section class="awards-section">
         ${sectionTitle("精选荣誉与活动", "Selected Awards and Activities")}
         <ul class="compact-list">${items.map((item) => `<li>${esc(t(item.text))}</li>`).join("")}</ul>
       </section>`;
+  }
+
+  function competitions() {
+    if (!data.competitions.length) return "";
+    return `<section>${sectionTitle("竞赛成果", "Competitions")}${data.competitions.map((item) => entry(item, item.details.length, { compact: true })).join("")}</section>`;
   }
 
   function page(content, number) {
@@ -110,33 +135,49 @@
 
   function onePage() {
     const pris = data.research.find((item) => item.id === "research-pris") || data.research[0];
-    const bilstm = data.research.find((item) => item.id === "research-bilstm") || data.research[1];
+    const lstm = data.research.find((item) => ["research-lstm", "research-bilstm"].includes(item.id)) || data.research[1];
     const blueberry = data.projects.find((item) => item.id === "project-blueberry") || data.projects[0];
     return page(`
       ${header(true)}
-      ${education()}
-      <section>${sectionTitle("科研与代表项目", "Research and Selected Project")}${entry(pris, 2)}${entry(bilstm, 3)}${entry(blueberry, 3)}</section>
-      <div class="bottom-grid">${skills(true)}${learning(true)}</div>
+      ${education(true)}
+      <section class="primary-experience">
+        ${sectionTitle("科研与代表项目", "Research and Selected Engineering")}
+        ${entry(pris, [0], { compact: true })}
+        ${entry(lstm, [0, 1, 2], { compact: true })}
+        ${entry(blueberry, [1, 2, 3], { compact: true })}
+      </section>
+      <div class="bottom-grid">${skills(true)}${highlights()}</div>
     `, 1);
   }
 
   function twoPages() {
+    const profileSummary = lang === "zh"
+      ? t(data.about)
+      : "BUPT undergraduate with a first-year weighted average of 90.85/100 (top 7%). Building research and engineering experience in embodied intelligence, time-series forecasting, and robotic systems through PRIS Lab training and independent experimentation.";
+    const researchDetails = {
+      "research-pris": lang === "en" ? [0, 2] : [0, 1, 2],
+      "research-lstm": [0, 1, 2],
+      "research-bilstm": [0, 1, 2],
+      "research-knowledge-base": [0, 1]
+    };
     const first = page(`
       ${header()}
-      <section class="summary-section">${sectionTitle("个人概况", "Profile")}<p>${esc(t(data.about))}</p></section>
+      <section class="summary-section">${sectionTitle("个人概况", "Profile")}<p>${esc(profileSummary)}</p></section>
       ${education()}
-      <section>${sectionTitle("科研经历", "Research Experience")}${data.research.map((item) => entry(item)).join("")}</section>
+      <section class="research-section">${sectionTitle("科研经历", "Research Experience")}${data.research.map((item) => entry(item, researchDetails[item.id] || item.details.length)).join("")}</section>
     `, 1);
+
     const projectDetails = {
       "project-blueberry": [1, 2, 3],
       "project-navigoose": [1, 2],
       "project-harmony": [0],
-      "project-study-room": [0, 2]
+      "project-study-room": [0]
     };
     const second = page(`
       ${header(true)}
-      <section>${sectionTitle("工程项目", "Engineering Projects")}${data.projects.map((item) => entry(item, projectDetails[item.id] || 1)).join("")}</section>
-      <div class="page-two-support">${learning(true)}${skills()}</div>
+      <section class="projects-section">${sectionTitle("工程项目", "Engineering Projects")}${data.projects.map((item) => entry(item, projectDetails[item.id] || 1, { compact: true })).join("")}</section>
+      ${competitions()}
+      <div class="support-grid">${learning(true)}${skills()}</div>
       ${awards()}
     `, 2);
     return first + second;

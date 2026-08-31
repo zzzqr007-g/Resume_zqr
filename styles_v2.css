@@ -15,7 +15,9 @@
   --shadow: 0 18px 50px rgba(29, 55, 89, 0.09);
   --radius-card: 12px;
   --radius-control: 8px;
-  --transition: 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --transition: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  --spring-fast: 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --spring-slow: 430ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 :root[data-theme="dark"] {
@@ -41,6 +43,28 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 360ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+::view-transition-old(root) {
+  animation-name: ui-fade-out;
+}
+
+::view-transition-new(root) {
+  animation-name: ui-fade-in;
+}
+
+@keyframes ui-fade-out {
+  to { opacity: 0; transform: scale(0.997); filter: blur(1px); }
+}
+
+@keyframes ui-fade-in {
+  from { opacity: 0.72; transform: translateY(4px) scale(0.997); filter: blur(1.5px); }
 }
 
 body {
@@ -117,15 +141,40 @@ select:focus-visible {
   background: color-mix(in srgb, var(--surface) 92%, transparent);
   box-shadow: 0 8px 24px rgba(26, 54, 89, 0.08);
   backdrop-filter: blur(14px);
+  transition: background-color var(--transition), border-color var(--transition), box-shadow var(--transition), color var(--transition), transform var(--transition);
 }
 
 .language-control {
+  position: relative;
+  isolation: isolate;
   display: flex;
+  overflow: hidden;
   padding: 3px;
   border-radius: 999px;
 }
 
+.language-control::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  z-index: 0;
+  width: 38px;
+  height: 32px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--accent) 26%, transparent);
+  transform: translateX(0);
+  transition: transform var(--spring-slow), background-color var(--transition), box-shadow var(--transition);
+}
+
+.language-control[data-active-lang="en"]::before {
+  transform: translateX(38px);
+}
+
 .language-control button {
+  position: relative;
+  z-index: 1;
   min-width: 38px;
   min-height: 32px;
   border: 0;
@@ -135,10 +184,15 @@ select:focus-visible {
   cursor: pointer;
   font-size: 0.78rem;
   font-weight: 700;
+  transition: background-color var(--transition), color var(--transition), transform var(--transition);
+}
+
+.language-control button:hover,
+.icon-button:hover {
+  transform: translateY(-1px) scale(1.025);
 }
 
 .language-control button[aria-pressed="true"] {
-  background: var(--accent);
   color: var(--surface);
 }
 
@@ -156,11 +210,20 @@ select:focus-visible {
   cursor: pointer;
 }
 
+#theme-icon {
+  display: inline-block;
+  transition: transform var(--spring-slow), opacity var(--spring-fast);
+}
+
+#theme-icon[data-theme="dark"] {
+  transform: rotate(180deg) scale(1.04);
+}
+
 .icon-button:active,
 .button:active,
 .expand-button:active,
 .awards-toggle:active {
-  transform: translateY(1px);
+  transform: translateY(1px) scale(0.97);
 }
 
 .site-shell {
@@ -190,16 +253,30 @@ select:focus-visible {
   z-index: -1;
   border-radius: var(--radius-card);
   background: var(--accent-soft);
+  transition: background-color var(--transition), transform var(--transition);
 }
 
 .hero-photo {
   display: block;
   width: 190px;
-  aspect-ratio: 5 / 7;
-  object-fit: cover;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
   border: 1px solid var(--border);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow);
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-photo-wrap:hover::before {
+    transform: translate3d(3px, 3px, 0);
+  }
+
+  .hero-photo-wrap:hover .hero-photo {
+    transform: translate3d(0, -3px, 0) scale(1.008);
+    box-shadow: 0 24px 58px rgba(29, 55, 89, 0.13);
+  }
 }
 
 .hero-stage,
@@ -263,12 +340,14 @@ select:focus-visible {
   line-height: 1;
   text-decoration: none;
   white-space: nowrap;
-  transition: border-color var(--transition), background-color var(--transition), color var(--transition), transform var(--transition);
+  transition: border-color var(--transition), background-color var(--transition), color var(--transition), box-shadow var(--transition), transform var(--spring-fast);
 }
 
 .button:hover {
   border-color: var(--accent);
   color: var(--accent-strong);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--accent) 10%, transparent);
+  transform: translateY(-2px);
 }
 
 .button-primary {
@@ -317,18 +396,27 @@ select:focus-visible {
 
 .evidence-strip {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   margin: 0 0 1.2rem;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: var(--radius-card);
   background: var(--surface);
   box-shadow: 0 8px 30px rgba(29, 55, 89, 0.05);
+  transition: background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
 .metric {
   min-width: 0;
   padding: 1rem 1.1rem;
+  transition: background-color var(--transition), transform var(--spring-fast);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .metric:hover {
+    background: var(--surface-subtle);
+    transform: translateY(-2px);
+  }
 }
 
 .metric + .metric {
@@ -367,6 +455,7 @@ select:focus-visible {
   background: color-mix(in srgb, var(--surface) 92%, transparent);
   box-shadow: 0 10px 35px rgba(29, 55, 89, 0.07);
   backdrop-filter: blur(16px);
+  transition: background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
 .section-nav a {
@@ -377,12 +466,14 @@ select:focus-visible {
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
+  transition: background-color var(--transition), color var(--transition), transform var(--spring-fast);
 }
 
 .section-nav a:hover,
 .section-nav a:focus-visible {
   background: var(--accent-soft);
   color: var(--accent-strong);
+  transform: translateY(-1px) scale(1.02);
 }
 
 .section {
@@ -429,8 +520,25 @@ select:focus-visible {
 
 .experience {
   position: relative;
+  isolation: isolate;
+  overflow: clip;
   border-bottom: 1px solid var(--border);
   background: transparent;
+  box-shadow: 0 0 0 rgba(29, 55, 89, 0);
+  transition: background-color var(--transition), border-color var(--transition), box-shadow var(--transition), transform var(--spring-slow);
+}
+
+.experience:hover {
+  background: color-mix(in srgb, var(--accent-soft) 38%, transparent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .experience:hover {
+    z-index: 2;
+    border-color: color-mix(in srgb, var(--accent) 34%, var(--border));
+    box-shadow: 0 16px 38px rgba(29, 55, 89, 0.09);
+    transform: translate3d(0, -2px, 0) scale(1.002);
+  }
 }
 
 .experience-featured {
@@ -446,6 +554,7 @@ select:focus-visible {
   gap: 1.5rem;
   align-items: start;
   padding: 1.35rem 0;
+  transition: padding var(--spring-slow), transform var(--spring-slow);
 }
 
 .experience-badge {
@@ -517,10 +626,20 @@ select:focus-visible {
   place-items: center;
   border: 1px solid var(--border);
   border-radius: 999px;
+  transition: background-color var(--transition), border-color var(--transition), color var(--transition), transform var(--spring-slow);
+}
+
+.experience.is-expanded .expand-button span:last-child,
+.awards-toggle.is-expanded span:last-child {
+  border-color: color-mix(in srgb, var(--accent) 44%, var(--border));
+  background: var(--accent-soft);
+  transform: rotate(180deg) scale(1.04);
 }
 
 .experience-detail {
   padding: 0 0 1.35rem;
+  transform-origin: top;
+  will-change: height, opacity, transform;
 }
 
 .experience-detail[hidden],
@@ -564,6 +683,28 @@ select:focus-visible {
   text-underline-offset: 3px;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .expand-button:not(:focus-visible) {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    clip-path: inset(50%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .experience:focus-within .expand-button {
+    width: auto;
+    height: auto;
+    overflow: visible;
+    padding: 0.25rem 0;
+    clip-path: none;
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
 .learning-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(290px, 0.85fr);
@@ -573,6 +714,7 @@ select:focus-visible {
   border-radius: var(--radius-card);
   background: var(--surface);
   box-shadow: var(--shadow);
+  transition: background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
 .learning-copy h3 {
@@ -604,6 +746,15 @@ select:focus-visible {
   color: var(--text-secondary);
   font-size: 0.8rem;
   font-weight: 700;
+  transition: background-color var(--transition), color var(--transition), transform var(--spring-fast);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .topic-grid li:hover {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+    transform: translateY(-2px);
+  }
 }
 
 .skills-grid {
@@ -642,7 +793,14 @@ select:focus-visible {
 }
 
 .awards-toggle span:last-child {
+  display: inline-grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
   font-size: 1.2rem;
+  transition: background-color var(--transition), border-color var(--transition), transform var(--spring-slow);
 }
 
 .awards-content {
@@ -650,6 +808,8 @@ select:focus-visible {
   grid-template-columns: 1fr 1fr;
   gap: 2.5rem;
   padding: 1.35rem 0;
+  transform-origin: top;
+  will-change: height, opacity, transform;
 }
 
 .awards-content h3 {
@@ -718,7 +878,7 @@ select:focus-visible {
   box-shadow: -22px 0 60px rgba(0, 0, 0, 0.24);
   transform: translateX(105%);
   visibility: hidden;
-  transition: transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1), visibility 240ms;
+  transition: transform var(--spring-slow), visibility 430ms;
 }
 
 .editor-panel.is-open {
@@ -813,6 +973,16 @@ select:focus-visible {
 
 .editor-item {
   overflow: hidden;
+  transition: border-color 180ms ease, opacity 180ms ease, transform 180ms ease;
+}
+
+.editor-item.is-dragging {
+  opacity: 0.52;
+}
+
+.editor-item.is-drag-target {
+  border-color: var(--accent);
+  transform: translateY(2px);
 }
 
 .editor-item-header {
@@ -834,6 +1004,27 @@ select:focus-visible {
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 0.3rem;
+}
+
+.editor-drag-handle {
+  display: inline-grid;
+  min-width: 30px;
+  min-height: 30px;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  background: var(--surface);
+  cursor: grab;
+  font-size: 0.9rem;
+  font-weight: 900;
+  line-height: 1;
+  touch-action: none;
+  user-select: none;
+}
+
+.editor-drag-handle:active {
+  cursor: grabbing;
 }
 
 .editor-mini-button {
@@ -956,16 +1147,7 @@ select:focus-visible {
   }
 
   .evidence-strip {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .metric:nth-child(3) {
-    border-left: 0;
-    border-top: 1px solid var(--border);
-  }
-
-  .metric:nth-child(4) {
-    border-top: 1px solid var(--border);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .about-layout,
@@ -975,6 +1157,11 @@ select:focus-visible {
 
   .experience-detail dl {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .experience-featured {
+    margin-inline: -0.4rem;
+    padding-inline: 0.4rem;
   }
 }
 
@@ -997,7 +1184,7 @@ select:focus-visible {
 
   .hero-photo-wrap,
   .hero-photo {
-    width: 104px;
+    width: 124px;
   }
 
   .hero-photo-wrap {
@@ -1019,6 +1206,15 @@ select:focus-visible {
 
   .hero-positioning {
     font-size: 1.02rem;
+  }
+
+  .evidence-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .metric + .metric {
+    border-top: 1px solid var(--border);
+    border-left: 0;
   }
 
   .section-nav {

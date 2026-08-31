@@ -1,10 +1,10 @@
 :root {
   color-scheme: light;
   --ink: #142033;
-  --muted: #536174;
-  --blue: #1358b3;
+  --muted: #526174;
+  --blue: #0c4f9f;
   --blue-soft: #eaf2fc;
-  --line: #cbd7e7;
+  --line: #c9d7e8;
 }
 
 * { box-sizing: border-box; }
@@ -15,7 +15,7 @@ body {
   margin: 0;
   color: var(--ink);
   font-family: "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif;
-  line-height: 1.42;
+  line-height: 1.38;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
@@ -38,9 +38,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 .print-toolbar a { text-decoration: underline; text-underline-offset: 3px; }
-.print-toolbar span { opacity: .8; }
+.print-toolbar span { opacity: .82; }
 .print-toolbar button {
-  border: 1px solid rgba(255, 255, 255, .7);
+  border: 1px solid rgba(255, 255, 255, .72);
   border-radius: 7px;
   padding: 8px 13px;
   color: #0d3266;
@@ -57,163 +57,212 @@ a { color: inherit; text-decoration: none; }
   width: 210mm;
   min-height: 297mm;
   margin: 0 auto 24px;
-  padding: 14mm 15mm 13mm;
+  padding: 11mm 13mm 11mm;
+  overflow: hidden;
   background: #fff;
   box-shadow: 0 10px 42px rgba(18, 37, 60, .18);
-  overflow: hidden;
 }
 
 .print-page > footer {
   position: absolute;
-  right: 15mm;
-  bottom: 6mm;
+  right: 13mm;
+  bottom: 5mm;
   color: #788598;
   font-size: 8.5pt;
 }
 
 .resume-header {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 14mm;
-  align-items: end;
-  padding-bottom: 5mm;
+  grid-template-columns: 25mm minmax(0, 1fr) 52mm;
+  gap: 5mm;
+  align-items: center;
+  padding-bottom: 4mm;
   border-bottom: 2px solid var(--blue);
 }
 
-.resume-header.is-compact { padding-bottom: 3.5mm; }
-.eyebrow {
-  margin: 0 0 1.5mm;
+.resume-photo {
+  display: block;
+  width: 25mm;
+  height: 35mm;
+  border: .35mm solid var(--line);
+  border-radius: 2mm;
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
+}
+
+.target-line {
+  margin: 0 0 1mm;
   color: var(--blue);
   font-size: 10pt;
   font-weight: 800;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-
-h1 { margin: 0; font-size: 24pt; line-height: 1; letter-spacing: -.03em; }
-.headline { margin: 2mm 0 0; color: var(--muted); font-size: 10pt; }
-.resume-header address { display: grid; gap: 1.1mm; font-size: 10pt; font-style: normal; text-align: right; }
-.resume-header address a { color: var(--blue); }
-
-section { margin-top: 4mm; }
-h2 {
-  margin: 0 0 2mm;
-  padding-bottom: 1mm;
-  color: var(--blue);
-  border-bottom: 1px solid var(--line);
-  font-size: 11.3pt;
-  line-height: 1.2;
   letter-spacing: .02em;
 }
 
-.summary-section p, .learning-section p { margin: 0; font-size: 10pt; }
-.entry { margin: 0 0 3.1mm; break-inside: avoid; }
-.entry:last-child { margin-bottom: 0; }
-.entry-heading { display: grid; grid-template-columns: 1fr auto; gap: 6mm; align-items: start; }
-.entry-heading h3 { margin: 0; font-size: 10.2pt; line-height: 1.3; }
-.entry-heading p { margin: .6mm 0 0; color: var(--muted); font-size: 10pt; }
-.entry-heading strong {
-  max-width: 48mm;
-  padding: .8mm 1.6mm;
-  color: var(--blue);
-  background: var(--blue-soft);
-  border-radius: 3px;
-  font-size: 10pt;
-  text-align: right;
+h1 {
+  margin: 0;
+  font-size: 23pt;
+  line-height: 1;
+  letter-spacing: -.03em;
 }
 
-.entry-meta { margin: 1.1mm 0; color: var(--blue); font-size: 10pt; font-weight: 700; }
-ul { margin: 0; padding-left: 4.2mm; }
-li { margin: .7mm 0; font-size: 10pt; }
-li::marker { color: var(--blue); }
+.headline {
+  margin: 1.6mm 0 0;
+  color: var(--muted);
+  font-size: 10pt;
+}
 
-.skills-section dl { display: grid; gap: 1.1mm; margin: 0; }
-.skills-section dl > div { display: grid; grid-template-columns: 29mm 1fr; gap: 2mm; font-size: 10pt; }
-.skills-section dt { color: var(--blue); font-weight: 800; }
-.skills-section dd { margin: 0; }
-.topics { margin-top: 1.3mm !important; color: var(--muted); font-size: 10pt !important; }
-.bottom-grid { display: grid; grid-template-columns: 1.12fr .88fr; gap: 6mm; break-inside: avoid; }
-.page-two-support { break-inside: avoid; }
-.compact-list { columns: 2; column-gap: 8mm; }
-.compact-list li { break-inside: avoid; }
+.resume-header address {
+  display: grid;
+  gap: 1.1mm;
+  font-size: 10pt;
+  font-style: normal;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
 
-.print-page[data-page="2"] {
-  padding-top: 9mm;
+.resume-header address a { color: var(--blue); }
+
+.resume-header.is-compact {
+  grid-template-columns: 20mm minmax(0, 1fr) 52mm;
+  padding-bottom: 3mm;
+}
+
+.resume-header.is-compact .resume-photo {
+  width: 20mm;
+  height: 28mm;
+}
+
+.resume-header.is-compact h1 { font-size: 20pt; }
+
+section { margin-top: 3.1mm; }
+
+h2 {
+  margin: 0 0 1.7mm;
+  padding-bottom: .8mm;
+  color: var(--blue);
+  border-bottom: .25mm solid var(--line);
+  font-size: 11.2pt;
+  line-height: 1.18;
+  letter-spacing: .01em;
+}
+
+.summary-section p,
+.learning-section p {
+  margin: 0;
+  font-size: 10pt;
+}
+
+.entry {
+  margin: 0 0 2.3mm;
+  break-inside: avoid;
+}
+
+.entry:last-child { margin-bottom: 0; }
+
+.entry-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4mm;
+  align-items: start;
+}
+
+.entry-heading h3 {
+  margin: 0;
+  font-size: 10.2pt;
   line-height: 1.28;
 }
 
-.print-page[data-page="2"] .resume-header {
-  gap: 8mm;
-  padding-bottom: 2mm;
-}
-
-.print-page[data-page="2"] .resume-header h1 {
-  font-size: 18pt;
-}
-
-.print-page[data-page="2"] .resume-header .headline {
-  margin-top: .8mm;
-  font-size: 9pt;
-}
-
-.print-page[data-page="2"] .resume-header .eyebrow {
-  margin-bottom: .6mm;
+.entry-heading p {
+  margin: .35mm 0 0;
+  color: var(--muted);
   font-size: 10pt;
 }
 
-.print-page[data-page="2"] .resume-header address {
-  gap: .6mm;
+.entry-heading strong {
+  max-width: 48mm;
+  padding: .55mm 1.2mm;
+  border-radius: 1.2mm;
+  color: var(--blue);
+  background: var(--blue-soft);
+  font-size: 10pt;
+  line-height: 1.25;
+  text-align: right;
+}
+
+.entry-meta {
+  margin: .7mm 0;
+  color: var(--blue);
+  font-size: 10pt;
+  font-weight: 700;
+}
+
+ul { margin: 0; padding-left: 4.2mm; }
+li { margin: .42mm 0; font-size: 10pt; }
+li::marker { color: var(--blue); }
+
+.skills-section dl {
+  display: grid;
+  gap: .65mm;
+  margin: 0;
+}
+
+.skills-section dl > div {
+  display: grid;
+  grid-template-columns: 31mm 1fr;
+  gap: 2mm;
   font-size: 10pt;
 }
 
-.print-page[data-page="2"] section {
-  margin-top: 2mm;
+.skills-section dt { color: var(--blue); font-weight: 800; }
+.skills-section dd { margin: 0; }
+.support-line { margin-top: 1mm !important; color: var(--muted); }
+.compact-list { columns: 2; column-gap: 8mm; }
+.compact-list li { break-inside: avoid; }
+.bottom-grid { display: grid; grid-template-columns: 1.35fr .65fr; gap: 6mm; break-inside: avoid; }
+.support-grid { break-inside: avoid; }
+
+body[data-pages="1"] .print-page {
+  padding: 8mm 11mm 9mm;
+  line-height: 1.28;
 }
 
-.print-page[data-page="2"] h2 {
-  margin-bottom: 1mm;
-  padding-bottom: .7mm;
-}
-
-.print-page[data-page="2"] .entry {
-  margin-bottom: 1.5mm;
-}
-
-.print-page[data-page="2"] .entry-heading p {
-  margin-top: .3mm;
-}
-
-.print-page[data-page="2"] .entry-meta {
-  margin: .6mm 0;
-}
-
-.print-page[data-page="2"] li {
-  margin: .18mm 0;
-}
-
-.print-page[data-page="2"] .skills-section dl {
-  gap: .35mm;
-}
-
-.print-page[data-page="2"] .skills-section dl > div {
-  grid-template-columns: 32mm 1fr;
-}
-
-body[data-pages="1"] .print-page { padding-top: 10mm; }
-body[data-pages="1"] .resume-header { padding-bottom: 3mm; }
-body[data-pages="1"] section { margin-top: 2.8mm; }
-body[data-pages="1"] h2 { margin-bottom: 1.4mm; font-size: 10.4pt; }
-body[data-pages="1"] .entry { margin-bottom: 2mm; }
-body[data-pages="1"] .entry-heading h3 { font-size: 9.5pt; }
-body[data-pages="1"] .eyebrow,
+body[data-pages="1"] .print-page > footer { right: 11mm; bottom: 4mm; }
+body[data-pages="1"] .resume-header { grid-template-columns: 21mm minmax(0, 1fr) 48mm; gap: 4mm; padding-bottom: 2.5mm; }
+body[data-pages="1"] .resume-photo { width: 21mm; height: 29.4mm; }
+body[data-pages="1"] h1 { font-size: 20pt; }
+body[data-pages="1"] section { margin-top: 2.15mm; }
+body[data-pages="1"] h2 { margin-bottom: 1mm; padding-bottom: .55mm; font-size: 10.4pt; }
+body[data-pages="1"] .entry { margin-bottom: 1.45mm; }
+body[data-pages="1"] .entry-heading h3 { font-size: 9.4pt; }
+body[data-pages="1"] .target-line,
+body[data-pages="1"] .headline,
 body[data-pages="1"] .resume-header address,
 body[data-pages="1"] .entry-heading p,
 body[data-pages="1"] .entry-heading strong,
-body[data-pages="1"] .entry-meta { font-size: 9pt; }
+body[data-pages="1"] .entry-meta,
 body[data-pages="1"] li,
-body[data-pages="1"] .skills-section dl > div,
-body[data-pages="1"] .learning-section p { font-size: 9pt; }
-body[data-pages="1"] .education-entry ul li:last-child { display: none; }
+body[data-pages="1"] .skills-section dl > div { font-size: 9pt; }
+body[data-pages="1"] .entry-heading strong { max-width: 42mm; }
+body[data-pages="1"] .entry-meta { margin: .4mm 0; }
+body[data-pages="1"] li { margin: .18mm 0; }
+body[data-pages="1"] .skills-section dl { gap: .28mm; }
+body[data-pages="1"] .skills-section dl > div { grid-template-columns: 27mm 1fr; gap: 1.5mm; }
+
+.print-page[data-page="2"] {
+  padding-top: 8mm;
+  line-height: 1.27;
+}
+
+.print-page[data-page="2"] .resume-header { padding-bottom: 2mm; }
+.print-page[data-page="2"] .resume-header.is-compact { grid-template-columns: 18mm minmax(0, 1fr) 52mm; }
+.print-page[data-page="2"] .resume-header.is-compact .resume-photo { width: 18mm; height: 25.2mm; }
+.print-page[data-page="2"] .resume-header.is-compact h1 { font-size: 17pt; }
+.print-page[data-page="2"] section { margin-top: 1.8mm; }
+.print-page[data-page="2"] h2 { margin-bottom: .8mm; padding-bottom: .55mm; }
+.print-page[data-page="2"] .entry { margin-bottom: 1.25mm; }
+.print-page[data-page="2"] .entry-meta { margin: .45mm 0; }
+.print-page[data-page="2"] li { margin: .12mm 0; }
 
 @page { size: A4; margin: 0; }
 
@@ -237,5 +286,4 @@ body[data-pages="1"] .education-entry ul li:last-child { display: none; }
   .print-toolbar { justify-content: space-between; gap: 10px; font-size: 13px; }
   .print-toolbar span { display: none; }
   #print-root { overflow-x: auto; }
-  .print-page { transform-origin: top left; }
 }
