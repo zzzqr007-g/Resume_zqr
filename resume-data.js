@@ -4,7 +4,7 @@
 
   window.RESUME_DATA = {
     version: 4,
-    updated: "2026-10-09",
+    updated: "2026-10-10",
     profile: {
       name: { zh: "章权瑞", en: "Zhang Quanrui" },
       academicLine: {
@@ -71,6 +71,13 @@
             text: {
               zh: "大一学年保研加权平均分 90.85/100，专业排名前 5%。",
               en: "First-year weighted academic average of 90.85/100, ranking in the top 5% of the major."
+            }
+          },
+          {
+            label: { zh: "荣誉", en: "Honors" },
+            text: {
+              zh: "2025-2026 学年北京邮电大学一等奖学金。",
+              en: "BUPT First-Class Scholarship, 2025-2026 academic year."
             }
           },
           {
@@ -453,6 +460,13 @@
     ],
     awards: {
       technical: [
+        {
+          id: "award-scholarship-2026",
+          text: {
+            zh: "北京邮电大学一等奖学金 / 2025-2026 学年",
+            en: "BUPT First-Class Scholarship / 2025-2026 Academic Year"
+          }
+        },
         {
           id: "award-cspj",
           text: {

@@ -106,8 +106,11 @@
       </section>`;
   }
 
+  // The scholarship is printed in the education entry, so award lists skip it.
+  const printedAwards = () => data.awards.technical.filter((item) => item.id !== "award-scholarship-2026");
+
   function highlights() {
-    const items = data.awards.technical.slice(0, 2);
+    const items = printedAwards().slice(0, 2);
     return `
       <section class="highlights-section">
         ${sectionTitle("精选荣誉", "Selected Recognition")}
@@ -116,7 +119,7 @@
   }
 
   function awards() {
-    const items = [...data.awards.technical, data.awards.activities[1]].filter(Boolean);
+    const items = [...printedAwards(), data.awards.activities[1]].filter(Boolean);
     return `
       <section class="awards-section">
         ${sectionTitle("精选荣誉与活动", "Selected Awards and Activities")}
