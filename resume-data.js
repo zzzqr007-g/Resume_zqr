@@ -4,7 +4,7 @@
 
   window.RESUME_DATA = {
     version: 4,
-    updated: "2026-09-01",
+    updated: "2026-10-09",
     profile: {
       name: { zh: "章权瑞", en: "Zhang Quanrui" },
       academicLine: {
@@ -34,7 +34,7 @@
       },
       {
         id: "rank",
-        value: { zh: "前 7%", en: "Top 7%" },
+        value: { zh: "前 5%", en: "Top 5%" },
         label: { zh: "专业排名", en: "Major ranking" }
       },
       {
@@ -44,8 +44,8 @@
       }
     ],
     about: {
-      zh: "北京邮电大学电信工程及管理专业 2025 级本科生。大一学年保研加权平均分 90.85/100，专业排名前 7%，大学英语四级 530 分。目前围绕 AI、具身智能与机器人系统积累研究和工程能力：在 PRIS Lab 参与具身智能科研训练，独立完成 LSTM 共享单车短期需求预测实验，并主要承担蓝莓采摘机器人从环境配置、串口与遥操作开发到视觉控制联调和实机集成的工作。",
-      en: "Undergraduate at BUPT, Class of 2029, majoring in Telecommunications Engineering with Management. My first-year weighted academic average is 90.85/100, ranking in the top 7% of the major, with a CET-4 score of 530. I am building research and engineering experience across AI, embodied intelligence, and robotic systems through PRIS Lab training, an independently completed LSTM bike-demand forecasting experiment, and system development for a blueberry-picking robot."
+      zh: "北京邮电大学电信工程及管理专业 2025 级本科生。大一学年保研加权平均分 90.85/100，专业排名前 5%，大学英语四级 530 分。在 PRIS Lab 参与具身智能科研训练，独立完成 LSTM 共享单车短期需求预测实验；主要承担蓝莓采摘机器人嵌入式开发与视觉控制联调，并参与完成自主采摘仿真系统、评测与计算机应用大赛交付材料。",
+      en: "Undergraduate at BUPT, Class of 2029, majoring in Telecommunications Engineering with Management. My first-year weighted average is 90.85/100, ranking in the top 5% of the major, with a CET-4 score of 530. My experience includes PRIS Lab embodied AI training, an independent LSTM bike-demand forecasting study, embedded development and vision-control integration for a blueberry-picking robot, and contributions to its autonomous picking simulation, evaluation, and competition deliverables."
     },
     education: [
       {
@@ -61,16 +61,16 @@
           en: "B.Eng. Candidate / Sep 2025 - Jun 2029 (Expected)"
         },
         meta: {
-          zh: "保研加权平均分 90.85/100 / 专业前 7% / 四级 530",
-          en: "Weighted average 90.85/100 / Top 7% / CET-4 530"
+          zh: "保研加权平均分 90.85/100 / 专业前 5% / 四级 530",
+          en: "Weighted average 90.85/100 / Top 5% / CET-4 530"
         },
         status: { zh: "2025级本科生", en: "Class of 2029" },
         details: [
           {
             label: { zh: "成绩", en: "Academics" },
             text: {
-              zh: "大一学年保研加权平均分 90.85/100，专业排名前 7%。",
-              en: "First-year weighted academic average of 90.85/100, ranking in the top 7% of the major."
+              zh: "大一学年保研加权平均分 90.85/100，专业排名前 5%。",
+              en: "First-year weighted academic average of 90.85/100, ranking in the top 5% of the major."
             }
           },
           {
@@ -224,52 +224,59 @@
         featured: true,
         badge: { zh: "核心工程", en: "Featured Engineering" },
         title: {
-          zh: "基于瑞萨 RA8P1 的蓝莓采摘机器人嵌入式控制系统",
-          en: "Embedded Control System for a Blueberry-picking Robot Based on Renesas RA8P1"
+          zh: "蓝莓采摘机器人：嵌入式控制与自主采摘仿真系统",
+          en: "Blueberry-picking Robot: Embedded Control and Picking Simulation"
         },
         role: {
-          zh: "主要开发成员 / 负责嵌入式、视觉控制联调与交付材料",
-          en: "Primary Developer / Embedded, Vision-control Integration, and Delivery"
+          zh: "主要开发成员 / 嵌入式开发、系统联调与比赛交付",
+          en: "Primary Developer / Embedded Control, Integration, and Delivery"
         },
         meta: {
-          zh: "环境配置 / 串口通信 / 机械臂遥操作 / YOLO 集成 / 实机联调",
-          en: "Environment setup / Serial communication / Arm teleoperation / YOLO integration / Hardware testing"
+          zh: "Renesas RA8P1 / Python / YOLO11n / Blender / MuJoCo / Panda",
+          en: "Renesas RA8P1 / Python / YOLO11n / Blender / MuJoCo / Panda"
         },
-        status: { zh: "项目获省级二等奖", en: "Project received a provincial second prize" },
+        status: { zh: "仿真系统与比赛材料已完成", en: "Simulation delivered" },
         details: [
           {
             label: { zh: "目标", en: "Goal" },
             text: {
-              zh: "面向蓝莓目标识别与抓取场景，完成机械臂、视觉检测与可移动小车底盘的系统集成。",
-              en: "Integrated a robotic arm, visual detection, and a mobile chassis for blueberry target recognition and grasping."
+              zh: "在蓝莓采摘机器人嵌入式控制与实机联调基础上，拓展自主采摘仿真系统，用于华北五省计算机应用大赛，贯通识别、定位、采摘、投放与结果复核。",
+              en: "Extended prior embedded control and hardware integration work into an autonomous picking simulation for the Huabei Five-Province Computer Application Competition, connecting detection, localization, picking, placement, and outcome verification."
             }
           },
           {
-            label: { zh: "个人职责", en: "Contribution" },
+            label: { zh: "嵌入式与实机", en: "Embedded and hardware" },
             text: {
-              zh: "承担项目大部分工程开发：完成前期环境配置与串口通信，编写机械臂遥操作控制代码，并持续进行实机调试。",
-              en: "Handled most of the engineering implementation, including environment setup, serial communication, robotic-arm teleoperation code, and iterative hardware debugging."
+              zh: "承担前期主要工程开发：完成 RA8P1 环境配置、串口通信与机械臂遥操作；接入已有 YOLO 检测模型，将识别结果转换为控制指令，完成机械臂与移动底盘集成及实机联调。",
+              en: "Developed RA8P1 serial communication and arm teleoperation; integrated an existing YOLO detector into control commands and tested the arm on a mobile chassis."
             }
           },
           {
-            label: { zh: "视觉与控制", en: "Vision and control" },
+            label: { zh: "自主采摘仿真", en: "Autonomous simulation" },
             text: {
-              zh: "接入已有 YOLO 检测模型，将识别结果转换为机械臂转动数据与抓取指令，并配合图像识别和抓取流程采集数据；本阶段未完成模型训练。",
-              en: "Integrated an existing YOLO detector, converted detections into arm-rotation data and grasp commands, and collected data through recognition and grasp trials; model training was not completed at this stage."
+              zh: "参与构建 Blender 合成数据与 YOLO11n 微调检测驱动的 MuJoCo/Panda 仿真闭环，结合目标定位、逆运动学、状态机与接触反馈，实现桌面抓取及简化灌木采摘、转移和入盘复核。",
+              en: "Contributed to a Blender/YOLO11n/MuJoCo/Panda loop using localization, inverse kinematics, state control, and contact feedback for grasping, shrub picking, transfer, and tray verification."
             }
           },
           {
-            label: { zh: "系统与交付", en: "System and delivery" },
+            label: { zh: "量化评测", en: "Evaluation" },
             text: {
-              zh: "将机械臂安装到可移动小车底盘，完成目标检测、控制数据返回与抓取链路联调，并负责后续项目计划书和答辩 PPT 制作。",
-              en: "Mounted the arm on a mobile chassis, tested the target-detection, control-data, and grasping pipeline, and prepared the project proposal and presentation deck."
+              zh: "团队冻结场景评测：桌面可抓场景成功 30/30，无目标正确拒绝 6/6；简化灌木场景成功 17/20，未成熟外观代理误采为 0。以上为合成场景仿真结果。",
+              en: "Frozen simulation evaluation: 30/30 tabletop grasps, 6/6 no-target refusals, and 17/20 shrub scenes succeeded; no unripe-appearance proxies detached. Team results on synthetic scenes."
+            }
+          },
+          {
+            label: { zh: "比赛交付", en: "Competition delivery" },
+            text: {
+              zh: "负责项目计划书与答辩 PPT，并参与完成华北五省计算机应用大赛的软件设计文档、源码包、桌面运行包、功能图与演示视频，整理运行日志和评测记录，形成可演示、可复核的交付成果。",
+              en: "Prepared the proposal and slides; contributed to the Huabei competition design document, source and runtime packages, feature images, demo video, and evaluation records."
             }
           },
           {
             label: { zh: "结果边界", en: "Result boundary" },
             text: {
-              zh: "项目获得省级二等奖。奖项属于项目成果，本人未作为证书署名获奖者，个人贡献按实际分工单独陈述。",
-              en: "The project received a provincial second prize. The award belongs to the project outcome; personal contribution is stated separately because I was not a named certificate recipient."
+              zh: "前期嵌入式机器人项目获省级二等奖，本人未作为证书署名获奖者。此次新增成果为自主采摘仿真与比赛交付，不代表真实蓝莓成熟度识别或实物自主采摘能力。",
+              en: "The earlier embedded robot project received a provincial second prize; I was not a named certificate recipient. The new work demonstrates simulation and competition delivery, without establishing real-fruit ripeness recognition or autonomous physical picking."
             }
           }
         ],

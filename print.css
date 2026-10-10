@@ -264,6 +264,8 @@ body[data-pages="1"] .skills-section dl > div { grid-template-columns: 27mm 1fr;
 .print-page[data-page="2"] .entry-meta { margin: .45mm 0; }
 .print-page[data-page="2"] li { margin: .12mm 0; }
 
+body[data-lang="en"] .print-page[data-page="2"] { line-height: 1.2; }
+
 @page { size: A4; margin: 0; }
 
 @media print {
