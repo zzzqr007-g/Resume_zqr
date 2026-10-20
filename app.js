@@ -364,7 +364,7 @@
         </section>
 
         <section class="section" id="projects" aria-labelledby="projects-title">
-          ${sectionHeading("projects", "工程项目", "Engineering Projects", "把模型理解落实到嵌入式控制、系统方案与完整产品交付。", "Turning model understanding into embedded control, systems planning, and product delivery.")}
+          ${sectionHeading("projects", "工程项目", "Engineering Projects", "把模型理解落实到自主导航、嵌入式控制与完整产品交付。", "Turning model understanding into autonomous navigation, embedded control, and product delivery.")}
           <div class="experience-list">${resumeData.projects.map(experienceMarkup).join("")}</div>
         </section>
 

@@ -140,6 +140,7 @@
     const pris = data.research.find((item) => item.id === "research-pris") || data.research[0];
     const lstm = data.research.find((item) => ["research-lstm", "research-bilstm"].includes(item.id)) || data.research[1];
     const blueberry = data.projects.find((item) => item.id === "project-blueberry") || data.projects[0];
+    const aic = data.projects.find((item) => item.id === "project-aic");
     return page(`
       ${header(true)}
       ${education(true)}
@@ -147,6 +148,7 @@
         ${sectionTitle("科研与代表项目", "Research and Selected Engineering")}
         ${entry(pris, [0], { compact: true })}
         ${entry(lstm, [0, 1, 2], { compact: true })}
+        ${aic ? entry(aic, [1, 2, 3], { compact: true }) : ""}
         ${entry(blueberry, [1, 2, 3, 4], { compact: true })}
       </section>
       <div class="bottom-grid">${skills(true)}${highlights()}</div>
@@ -156,7 +158,7 @@
   function twoPages() {
     const profileSummary = lang === "zh"
       ? t(data.about)
-      : "BUPT undergraduate with a first-year weighted average of 90.85/100 (top 5%). Experience spans PRIS Lab embodied AI training, independent time-series forecasting, embedded robot control, and contributions to autonomous picking simulation and competition delivery.";
+      : "BUPT undergraduate with a first-year weighted average of 90.85/100 (top 5%). Experience spans PRIS Lab embodied AI training, independent time-series forecasting, leading a three-person AIC autonomous-vehicle team on ROS navigation, embedded robot control, and autonomous picking simulation.";
     const researchDetails = {
       "research-pris": lang === "en" ? [0, 2] : [0, 1, 2],
       "research-lstm": [0, 1, 2],
@@ -171,14 +173,18 @@
     `, 1);
 
     const projectDetails = {
-      "project-blueberry": [1, 2, 3, 4],
-      "project-navigoose": [1, 2],
+      "project-aic": lang === "en" ? [1, 2, 3] : [1, 2, 3, 4],
+      "project-blueberry": lang === "en" ? [1, 2, 3] : [1, 2, 3, 4],
+      "project-navigoose": lang === "en" ? [1] : [1, 2],
       "project-harmony": [0],
       "project-study-room": [0]
     };
+    // Page 2 has no room for every project; the web page keeps them all and the header links Study Room.
+    const printSkip = ["project-harmony", "project-study-room"];
+    const printedProjects = data.projects.filter((item) => !printSkip.includes(item.id));
     const second = page(`
       ${header(true)}
-      <section class="projects-section">${sectionTitle("工程项目", "Engineering Projects")}${data.projects.map((item) => entry(item, projectDetails[item.id] || 1, { compact: true })).join("")}</section>
+      <section class="projects-section">${sectionTitle("工程项目", "Engineering Projects")}${printedProjects.map((item) => entry(item, projectDetails[item.id] || 1, { compact: true })).join("")}</section>
       ${competitions()}
       <div class="support-grid">${learning(true)}${skills()}</div>
       ${awards()}
