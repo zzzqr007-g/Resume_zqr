@@ -4,7 +4,7 @@
 
   window.RESUME_DATA = {
     version: 4,
-    updated: "2026-10-10",
+    updated: "2026-10-20",
     profile: {
       name: { zh: "章权瑞", en: "Zhang Quanrui" },
       academicLine: {
@@ -44,8 +44,8 @@
       }
     ],
     about: {
-      zh: "北京邮电大学电信工程及管理专业 2025 级本科生。大一学年保研加权平均分 90.85/100，专业排名前 5%，大学英语四级 530 分。在 PRIS Lab 参与具身智能科研训练，独立完成 LSTM 共享单车短期需求预测实验；主要承担蓝莓采摘机器人嵌入式开发与视觉控制联调，并参与完成自主采摘仿真系统、评测与计算机应用大赛交付材料。",
-      en: "Undergraduate at BUPT, Class of 2029, majoring in Telecommunications Engineering with Management. My first-year weighted average is 90.85/100, ranking in the top 5% of the major, with a CET-4 score of 530. My experience includes PRIS Lab embodied AI training, an independent LSTM bike-demand forecasting study, embedded development and vision-control integration for a blueberry-picking robot, and contributions to its autonomous picking simulation, evaluation, and competition deliverables."
+      zh: "北京邮电大学电信工程及管理专业 2025 级本科生。大一学年保研加权平均分 90.85/100，专业排名前 5%，大学英语四级 530 分。在 PRIS Lab 参与具身智能科研训练，独立完成 LSTM 共享单车短期需求预测实验；作为队长带领 3 人团队参加 AIC 无人车视觉巡航赛，负责 ROS 自主导航架构与任务流程，实车完成全部 10 项任务；主要承担蓝莓采摘机器人嵌入式开发与视觉控制联调，并参与完成自主采摘仿真系统、评测与计算机应用大赛交付材料。",
+      en: "Undergraduate at BUPT, Class of 2029, majoring in Telecommunications Engineering with Management. My first-year weighted average is 90.85/100, ranking in the top 5% of the major, with a CET-4 score of 530. My experience includes PRIS Lab embodied AI training, an independent LSTM bike-demand forecasting study, leading a three-person AIC autonomous-vehicle team as owner of ROS navigation and mission logic (all 10 tasks completed on the real car), embedded development and vision-control integration for a blueberry-picking robot, and contributions to its autonomous picking simulation, evaluation, and competition deliverables."
     },
     education: [
       {
@@ -226,6 +226,69 @@
       }
     ],
     projects: [
+      {
+        id: "project-aic",
+        featured: true,
+        badge: { zh: "竞赛项目 / 队长", en: "Competition / Team Lead" },
+        title: {
+          zh: "AIC 无人车视觉巡航：自主导航与任务决策系统",
+          en: "AIC Autonomous Vehicle Visual Cruise: Navigation and Mission System"
+        },
+        role: {
+          zh: "队长 / 3 人团队 / 负责导航架构与总体任务流程",
+          en: "Team Lead (3-person team) / Navigation Architecture and Mission Logic"
+        },
+        meta: {
+          zh: "ROS Melodic / AMCL + move_base / 2D 激光雷达 / 视觉大模型 API / Python",
+          en: "ROS Melodic / AMCL + move_base / 2D LiDAR / VLM API / Python"
+        },
+        status: { zh: "实车迭代中", en: "On-car testing, ongoing" },
+        details: [
+          {
+            label: { zh: "赛题", en: "Task" },
+            text: {
+              zh: "全球校园人工智能算法精英大赛（AIC）无人车视觉巡航赛：语音唤醒后，小车须在 3 分钟内识别四面墙上的线索，按线索顺序驶入 4 个任务框并返回终点，每步语音播报，共 10 项；场地挡板随机摆放，窄道宽约 43 cm。",
+              en: "Global Campus AI Algorithm Elite Competition (AIC), Autonomous Vehicle Visual Cruise: after a voice wake-up, the car has 3 minutes to read clues on four walls, enter four task boxes in clue order, and return to the finish, announcing each of 10 steps; baffles are placed randomly, leaving corridors about 43 cm wide."
+            }
+          },
+          {
+            label: { zh: "系统设计", en: "System design" },
+            text: {
+              zh: "在厂商 AMCL/move_base 导航底座上自研任务编排 ROS 包：任务状态机、雷达构建的挡板栅格地图与格子路线规划、按距离和实测车速估算的时间保护、按雷达实测挡板线校正停车点与入框精对位；整合视觉大模型识别、语音合成与唤醒，提供一键启动、自检和看门狗。",
+              en: "Built a ROS mission package on the vendor AMCL/move_base stack: task state machine, LiDAR baffle grid map with cell-route planning, a time guard based on distance and measured speed, and parking correction against LiDAR-fitted baffle lines; integrated VLM recognition, speech, and wake-word start."
+            }
+          },
+          {
+            label: { zh: "实车调试", en: "On-car debugging" },
+            text: {
+              zh: "建立“实车日志 → 分段定位根因 → 修复 → 回归验证”的迭代流程：关闭大模型深度思考，识别耗时从 15–54 s 降至 2–3 s；从导航日志分析出窄道卡死源于全局膨胀参数把 43 cm 走廊的可规划宽度从 23 cm 压到 11 cm，撤回该参数并让路线避开窄道后，同一真题布局的规划失败从 525 次降到 80 次、用时从 222 s 降到 167 s。",
+              en: "Log-driven root-cause loop: disabling VLM deep thinking cut recognition from 15-54 s to 2-3 s; logs traced corridor stalls to a global inflation setting that shrank a 43 cm corridor's plannable width from 23 to 11 cm; reverting it and routing around corridors cut planning failures from 525 to 80 and run time from 222 to 167 s."
+            }
+          },
+          {
+            label: { zh: "实车结果", en: "On-car results" },
+            text: {
+              zh: "无挡板场地连续 3 场完成全部 10 项播报（144–147 s），调整终点策略后缩短到 125 s；挡板布局 L1 完成 10/10（147.5 s）；自建 13 块挡板场地完成 9/10，四面墙识别全对、全程 0 次卡住，时间保护按预期放弃了来不及完成的第 4 个目标。",
+              en: "Three straight 10/10 runs without baffles (144-147 s; 125 s after a finish-strategy change); 10/10 on baffle layout L1 (147.5 s); 9/10 on a self-built 13-baffle field with all walls read and zero stalls, the time guard skipping one unreachable target."
+            }
+          },
+          {
+            label: { zh: "工程与验证", en: "Engineering and testing" },
+            text: {
+              zh: "约 1.4 万行 Python（ROS Melodic 下兼容 Python 2.7/3.9），309 项单元测试，配合假 ROS 冒烟测试与模拟器批量回归；用 22 个分支 PR 管理迭代，以 git bundle 离线更新车载主机；采用 AI 辅助编程，每轮改动做多轮对抗性审查。",
+              en: "About 14k lines of Python (2.7/3.9 compatible under ROS Melodic), 309 unit tests, fake-ROS smoke tests, and batch simulator regression; managed iterations through 22 branch PRs and offline git-bundle updates to the onboard computer, using AI-assisted programming with several rounds of adversarial review per change."
+            }
+          },
+          {
+            label: { zh: "数据驱动取舍", en: "Data-driven trade-offs" },
+            text: {
+              zh: "归纳 10 张真题模板的挡板规律并实现模板识别，配对模拟显示仅提升 0.4±1.2 分，因此不作为主策略，把精力集中在窄道通行、入框和识别提速上。",
+              en: "Catalogued baffle patterns across 10 sample layouts and built a layout identifier; paired simulations showed a gain of only 0.4±1.2 points, so it stayed out of the main strategy and effort went to corridor passage, box entry, and faster recognition."
+            }
+          }
+        ],
+        links: []
+      },
       {
         id: "project-blueberry",
         featured: true,
@@ -443,10 +506,10 @@
       },
       {
         id: "skill-embedded",
-        label: { zh: "嵌入式", en: "Embedded Systems" },
+        label: { zh: "机器人与嵌入式", en: "Robotics and Embedded" },
         text: {
-          zh: "瑞萨 RA8P1、e2 studio、串口通信、机械臂遥操作、YOLO 推理接入与实机联调。",
-          en: "Renesas RA8P1, e2 studio, serial communication, robotic-arm teleoperation, YOLO inference integration, and hardware testing."
+          zh: "ROS Melodic、AMCL 与 move_base（DWA）导航调参、2D 激光雷达几何处理、Linux 车载部署；瑞萨 RA8P1、e2 studio、串口通信、机械臂遥操作、YOLO 推理接入与实机联调。",
+          en: "ROS Melodic, AMCL and move_base (DWA) tuning, 2D LiDAR geometry, Linux onboard deployment; Renesas RA8P1, e2 studio, serial communication, robotic-arm teleoperation, YOLO inference integration, and hardware testing."
         }
       },
       {
