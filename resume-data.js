@@ -44,8 +44,8 @@
       }
     ],
     about: {
-      zh: "北京邮电大学电信工程及管理专业 2025 级本科生。大一学年保研加权平均分 90.85/100，专业排名前 5%，大学英语四级 530 分。在 PRIS Lab 参与具身智能科研训练，独立完成 LSTM 共享单车短期需求预测实验；作为队长带领 3 人团队参加 AIC 无人车视觉巡航赛，负责 ROS 自主导航架构与任务流程，实车完成全部 10 项任务；主要承担蓝莓采摘机器人嵌入式开发与视觉控制联调，并参与完成自主采摘仿真系统、评测与计算机应用大赛交付材料。",
-      en: "Undergraduate at BUPT, Class of 2029, majoring in Telecommunications Engineering with Management. My first-year weighted average is 90.85/100, ranking in the top 5% of the major, with a CET-4 score of 530. My experience includes PRIS Lab embodied AI training, an independent LSTM bike-demand forecasting study, leading a three-person AIC autonomous-vehicle team as owner of ROS navigation and mission logic (all 10 tasks completed on the real car), embedded development and vision-control integration for a blueberry-picking robot, and contributions to its autonomous picking simulation, evaluation, and competition deliverables."
+      zh: "北京邮电大学电信工程及管理专业 2025 级本科生。大一学年保研加权平均分 90.85/100，专业排名前 5%，大学英语四级 530 分。在 PRIS Lab 参与具身智能科研训练，独立完成 LSTM 共享单车短期需求预测实验；作为队长带领 3 人团队参加 AIC 无人车视觉巡航赛，主导 ROS 自主导航与任务决策，单日实车迭代将队内评分均分由 64 提升至 87；主要承担蓝莓采摘机器人嵌入式开发与视觉控制联调，并参与完成自主采摘仿真系统、评测与计算机应用大赛交付材料。",
+      en: "Undergraduate at BUPT, Class of 2029, majoring in Telecommunications Engineering with Management. My first-year weighted average is 90.85/100, ranking in the top 5% of the major, with a CET-4 score of 530. My experience includes PRIS Lab embodied AI training, an independent LSTM bike-demand forecasting study, leading a three-person AIC autonomous-vehicle team as owner of ROS navigation and mission logic (raising the on-car average from 64 to 87 in one day of iteration), embedded development and vision-control integration for a blueberry-picking robot, and contributions to its autonomous picking simulation, evaluation, and competition deliverables."
     },
     education: [
       {
@@ -229,20 +229,20 @@
       {
         id: "project-aic",
         featured: true,
-        badge: { zh: "竞赛项目 / 队长", en: "Competition / Team Lead" },
+        badge: { zh: "核心竞赛 / 队长", en: "Key Competition / Team Lead" },
         title: {
           zh: "AIC 无人车视觉巡航：自主导航与任务决策系统",
           en: "AIC Autonomous Vehicle Visual Cruise: Navigation and Mission System"
         },
         role: {
-          zh: "队长 / 3 人团队 / 负责导航架构与总体任务流程",
-          en: "Team Lead (3-person team) / Navigation Architecture and Mission Logic"
+          zh: "队长 / 3 人团队 / 主导导航、任务决策与测试体系",
+          en: "Team Lead (3-person team) / Navigation, Mission Logic, and Testing"
         },
         meta: {
-          zh: "ROS Melodic / AMCL + move_base / 2D 激光雷达 / 视觉大模型 API / Python",
-          en: "ROS Melodic / AMCL + move_base / 2D LiDAR / VLM API / Python"
+          zh: "ROS Melodic / Python / AMCL + move_base / 2D 激光雷达 / 视觉大模型 / 离线仿真",
+          en: "ROS Melodic / Python / AMCL + move_base / 2D LiDAR / VLM / Offline simulation"
         },
-        status: { zh: "实车迭代中", en: "On-car testing, ongoing" },
+        status: { zh: "参赛中，成绩待公布", en: "Competing; results pending" },
         details: [
           {
             label: { zh: "赛题", en: "Task" },
@@ -252,38 +252,38 @@
             }
           },
           {
-            label: { zh: "系统设计", en: "System design" },
+            label: { zh: "架构与算法", en: "Architecture" },
             text: {
-              zh: "在厂商 AMCL/move_base 导航底座上自研任务编排 ROS 包：任务状态机、雷达构建的挡板栅格地图与格子路线规划、按距离和实测车速估算的时间保护、按雷达实测挡板线校正停车点与入框精对位；整合视觉大模型识别、语音合成与唤醒，提供一键启动、自检和看门狗。",
-              en: "Built a ROS mission package on the vendor AMCL/move_base stack: task state machine, LiDAR baffle grid map with cell-route planning, a time guard based on distance and measured speed, and parking correction against LiDAR-fitted baffle lines; integrated VLM recognition, speech, and wake-word start."
+              zh: "在厂商 AMCL/move_base 导航底座上独立设计任务决策 ROS 包：状态机串联唤醒、识别、导航、入框与播报；激光雷达在线构建挡板栅格地图并做格子级路线规划；入框按雷达实测最近挡板点留余量，迎面有板时分两段进框；按剩余路程与实测车速做时间保护。识别与语音合成初版由队友开发，我负责接入任务流程并持续优化。",
+              en: "Designed the mission ROS package on the vendor AMCL/move_base stack: a state machine chaining wake-up, recognition, navigation, box entry, and speech; an online LiDAR baffle grid map with cell-level routing; box entry with clearance from the nearest measured baffle point, in two stages when a baffle faces the box; and a time guard from remaining distance and measured speed. Teammates wrote the first recognition and TTS versions; I integrated and optimized them."
             }
           },
           {
-            label: { zh: "实车调试", en: "On-car debugging" },
+            label: { zh: "问题定位", en: "Root-cause debugging" },
             text: {
-              zh: "建立“实车日志 → 分段定位根因 → 修复 → 回归验证”的迭代流程：关闭大模型深度思考，识别耗时从 15–54 s 降至 2–3 s；从导航日志分析出窄道卡死源于全局膨胀参数把 43 cm 走廊的可规划宽度从 23 cm 压到 11 cm，撤回该参数并让路线避开窄道后，同一真题布局的规划失败从 525 次降到 80 次、用时从 222 s 降到 167 s。",
-              en: "Log-driven root-cause loop: disabling VLM deep thinking cut recognition from 15-54 s to 2-3 s; logs traced corridor stalls to a global inflation setting that shrank a 43 cm corridor's plannable width from 23 to 11 cm; reverting it and routing around corridors cut planning failures from 525 to 80 and run time from 222 to 167 s."
+              zh: "建立“实车日志 → 根因 → 修复 → 模拟回归 → 复测”闭环：定位到全局膨胀参数把 43 cm 窄道的可规划宽度从 23 cm 压到 11 cm，修正后同一布局规划失败 525→80 次、用时 222→167 s；复盘单日 18 场，把 8 次碰板归为停车点追歪板、测距偏乐观约 2 cm、车角点被滤除、贴板拐弯甩尾 4 类根因并逐类修复；关闭大模型深度思考，识别耗时 15–54 s 降至 2–3 s。",
+              en: "Ran a log-to-retest loop: traced corridor stalls to a global inflation setting that cut a 43 cm corridor's plannable width from 23 to 11 cm (fix: planning failures 525 to 80, run time 222 to 167 s); a one-day review of 18 runs traced 8 baffle contacts to 4 root causes, such as 2 cm optimistic ranging and tail swing in tight turns, each addressed; disabling VLM deep thinking cut recognition from 15-54 s to 2-3 s."
             }
           },
           {
             label: { zh: "实车结果", en: "On-car results" },
             text: {
-              zh: "无挡板场地连续 3 场完成全部 10 项播报（144–147 s），调整终点策略后缩短到 125 s；挡板布局 L1 完成 10/10（147.5 s）；自建 13 块挡板场地完成 9/10，四面墙识别全对、全程 0 次卡住，时间保护按预期放弃了来不及完成的第 4 个目标。",
-              en: "Three straight 10/10 runs without baffles (144-147 s; 125 s after a finish-strategy change); 10/10 on baffle layout L1 (147.5 s); 9/10 on a self-built 13-baffle field with all walls read and zero stalls, the time guard skipping one unreachable target."
+              zh: "在 18 块挡板的模板布局上，单日 18 场实车测试中连续迭代 5 个版本，队内按赛规严格评分的均分由 64 升至 87（满分 100），最好一场 4 个任务框全部到位且无碰撞；70 次线索识别仅错 1 次，斜向拍摄把最慢一面墙的线索耗时从 29–75 s 缩短到 17–18 s。",
+              en: "Over 18 on-car runs on 18-baffle layouts in one day, shipped five successive versions and raised the strictly team-graded average from 64 to 87 (out of 100), with a clean run reaching all four boxes; 69 of 70 clue reads were correct, and angled shots cut the slowest wall from 29-75 s to 17-18 s."
             }
           },
           {
             label: { zh: "工程与验证", en: "Engineering and testing" },
             text: {
-              zh: "约 1.4 万行 Python（ROS Melodic 下兼容 Python 2.7/3.9），309 项单元测试，配合假 ROS 冒烟测试与模拟器批量回归；用 22 个分支 PR 管理迭代，以 git bundle 离线更新车载主机；采用 AI 辅助编程，每轮改动做多轮对抗性审查。",
-              en: "About 14k lines of Python (2.7/3.9 compatible under ROS Melodic), 309 unit tests, fake-ROS smoke tests, and batch simulator regression; managed iterations through 22 branch PRs and offline git-bundle updates to the onboard computer, using AI-assisted programming with several rounds of adversarial review per change."
+              zh: "约 1.4 万行 Python 业务代码 + 8 千行测试（535 项单测，ROS Melodic 下兼容 2.7/3.9）；自建含雷达遮挡与导航误差的离线模拟器，在 10 套挡板模板上批量回归、改动前后对比预计得分；40 余个分支 PR 管理迭代，git bundle 离线更新车载机，新功能带配置开关便于现场回退；AI 辅助编程，每轮改动做多轮对抗性审查。",
+              en: "About 14k lines of Python plus 8k lines of tests (535 unit tests; 2.7/3.9 compatible under ROS Melodic); built an offline simulator with LiDAR occlusion and navigation error for batch regression on 10 baffle templates, comparing expected scores before and after each change; managed 40+ branch PRs and offline git-bundle updates with a switch per feature for on-site rollback; AI-assisted programming with several adversarial review rounds per change."
             }
           },
           {
             label: { zh: "数据驱动取舍", en: "Data-driven trade-offs" },
             text: {
-              zh: "归纳 10 张真题模板的挡板规律并实现模板识别，配对模拟显示仅提升 0.4±1.2 分，因此不作为主策略，把精力集中在窄道通行、入框和识别提速上。",
-              en: "Catalogued baffle patterns across 10 sample layouts and built a layout identifier; paired simulations showed a gain of only 0.4±1.2 points, so it stayed out of the main strategy and effort went to corridor passage, box entry, and faster recognition."
+              zh: "不把离线指标当结论：模板识别在配对模拟中仅 +0.4±1.2 分；斜向净空规划虽让路程缩短 5.8%，模拟均分却从 85.7 降到 83.4。两者都没有上车，实车时间集中给入框、窄道通行和识别提速。",
+              en: "Judged ideas by score, not offline proxies: a layout identifier gained only 0.4±1.2 points in paired simulations, and diagonal clearance planning shortened routes by 5.8% but lowered the simulated average from 85.7 to 83.4; neither went on the car, leaving test time for box entry, corridors, and recognition."
             }
           }
         ],
