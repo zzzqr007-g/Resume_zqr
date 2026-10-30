@@ -146,9 +146,9 @@
       ${education(true)}
       <section class="primary-experience">
         ${sectionTitle("科研与代表项目", "Research and Selected Engineering")}
+        ${aic ? entry(aic, [1, 2, 3], { compact: true }) : ""}
         ${entry(pris, [0], { compact: true })}
         ${entry(lstm, [0, 1, 2], { compact: true })}
-        ${aic ? entry(aic, [1, 2, 3], { compact: true }) : ""}
         ${entry(blueberry, [1, 2, 3, 4], { compact: true })}
       </section>
       <div class="bottom-grid">${skills(true)}${highlights()}</div>
@@ -158,7 +158,7 @@
   function twoPages() {
     const profileSummary = lang === "zh"
       ? t(data.about)
-      : "BUPT undergraduate with a first-year weighted average of 90.85/100 (top 5%). Experience spans PRIS Lab embodied AI training, independent time-series forecasting, leading a three-person AIC autonomous-vehicle team on ROS navigation, embedded robot control, and autonomous picking simulation.";
+      : "BUPT undergraduate with a first-year weighted average of 90.85/100 (top 5%). Experience spans leading a three-person AIC autonomous-vehicle team on ROS navigation and mission logic, PRIS Lab embodied AI training, independent time-series forecasting, embedded robot control, and autonomous picking simulation.";
     const researchDetails = {
       "research-pris": lang === "en" ? [0, 2] : [0, 1, 2],
       "research-lstm": [0, 1, 2],
