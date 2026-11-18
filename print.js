@@ -138,6 +138,7 @@
 
   function onePage() {
     const pris = data.research.find((item) => item.id === "research-pris") || data.research[0];
+    const simulation = data.research.find((item) => item.id === "research-simulation-data");
     const lstm = data.research.find((item) => ["research-lstm", "research-bilstm"].includes(item.id)) || data.research[1];
     const blueberry = data.projects.find((item) => item.id === "project-blueberry") || data.projects[0];
     const aic = data.projects.find((item) => item.id === "project-aic");
@@ -146,10 +147,11 @@
       ${education(true)}
       <section class="primary-experience">
         ${sectionTitle("科研与代表项目", "Research and Selected Engineering")}
-        ${aic ? entry(aic, [1, 2, 3], { compact: true }) : ""}
+        ${aic ? entry(aic, [1, 3], { compact: true }) : ""}
         ${entry(pris, [0], { compact: true })}
-        ${entry(lstm, [0, 1, 2], { compact: true })}
-        ${entry(blueberry, [1, 2, 3, 4], { compact: true })}
+        ${simulation ? entry(simulation, [2, 3], { compact: true }) : ""}
+        ${entry(lstm, [1, 2], { compact: true })}
+        ${entry(blueberry, [1, 3], { compact: true })}
       </section>
       <div class="bottom-grid">${skills(true)}${highlights()}</div>
     `, 1);
@@ -160,10 +162,11 @@
       ? t(data.about)
       : "BUPT undergraduate with a first-year weighted average of 90.85/100 (top 5%). Experience spans leading a three-person AIC autonomous-vehicle team on ROS navigation and mission logic, PRIS Lab embodied AI training, independent time-series forecasting, embedded robot control, and autonomous picking simulation.";
     const researchDetails = {
-      "research-pris": lang === "en" ? [0, 2] : [0, 1, 2],
-      "research-lstm": [0, 1, 2],
-      "research-bilstm": [0, 1, 2],
-      "research-knowledge-base": [0, 1]
+      "research-pris": [1],
+      "research-simulation-data": [2, 3],
+      "research-lstm": lang === "en" ? [1, 2] : [0, 1, 2],
+      "research-bilstm": lang === "en" ? [1, 2] : [0, 1, 2],
+      "research-knowledge-base": lang === "en" ? [1] : [0, 1]
     };
     const first = page(`
       ${header()}
@@ -202,3 +205,4 @@
   root.innerHTML = pages === 1 ? onePage() : twoPages();
   document.getElementById("print-button").addEventListener("click", () => window.print());
 }());
+

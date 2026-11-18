@@ -4,7 +4,7 @@
 
   window.RESUME_DATA = {
     version: 4,
-    updated: "2026-10-20",
+    updated: "2026-11-18",
     profile: {
       name: { zh: "章权瑞", en: "Zhang Quanrui" },
       academicLine: {
@@ -142,6 +142,73 @@
         links: [
           { label: { zh: "关联机器人项目", en: "Related robot project" }, url: "#projects" }
         ]
+      },
+      {
+        "id": "research-simulation-data",
+        "featured": true,
+        "badge": {
+          "zh": "科研训练",
+          "en": "Research Training"
+        },
+        "title": {
+          "zh": "具身智能仿真数据构建：多视角渲染与标注复核",
+          "en": "Embodied AI Simulation Data: Multi-view Rendering and Annotation Review"
+        },
+        "role": {
+          "zh": "科研协作 / 资产渲染与数据质量检查",
+          "en": "Research Contributor / Asset Rendering and Data Quality"
+        },
+        "meta": {
+          "zh": "RoboCasa / MuJoCo EGL / Objaverse + Lightwheel / Python",
+          "en": "RoboCasa / MuJoCo EGL / Objaverse + Lightwheel / Python"
+        },
+        "status": {
+          "zh": "所负责批次已交付",
+          "en": "Assigned batches delivered"
+        },
+        "details": [
+          {
+            "label": {
+              "zh": "目标",
+              "en": "Goal"
+            },
+            "text": {
+              "zh": "参与实验室具身智能项目的数据准备，为厨房物体外观描述与后续语义任务构建提供统一多视角图像和人工复核的属性记录。",
+              "en": "Prepared data for a lab embodied AI project, providing standardized multi-view images and manually reviewed appearance attributes of kitchen objects."
+            }
+          },
+          {
+            "label": {
+              "zh": "实现",
+              "en": "Implementation"
+            },
+            "text": {
+              "zh": "在 AI 辅助下开发与调试批量渲染脚本，完成云端环境配置、资产清单核对、MuJoCo EGL 无窗口渲染与续跑；排查碰撞几何体遮挡，统一尺度、灯光和四视角输出，并检查图像数量、可读性与异常。",
+              "en": "Developed and debugged rendering scripts with AI assistance, covering cloud setup, inventory checks, headless MuJoCo EGL rendering, and resumable runs; resolved collision-geometry occlusion and checked scale, lighting, view completeness, and image quality."
+            }
+          },
+          {
+            "label": {
+              "zh": "渲染交付",
+              "en": "Rendering delivery"
+            },
+            "text": {
+              "zh": "在 AI 辅助开发与调试下，完成 Objaverse 与 Lightwheel 资产中所负责的 27 类、305 条类别–模型渲染任务，交付 front、side、rear、top 四视角共 1,220 张 480×480 PNG，并按统一目录组织。",
+              "en": "With AI-assisted development and debugging, completed 305 rendering tasks across 27 Objaverse/Lightwheel categories; delivered 1,220 organized 480×480 PNGs in front, side, rear, and top views."
+            }
+          },
+          {
+            "label": {
+              "zh": "标注复核",
+              "en": "Annotation review"
+            },
+            "text": {
+              "zh": "另完成 85 件资产的异常外观预标注复核；逐件核对四视角图像中的颜色、形状、可见部件与材质观感，借助 AI 辅助开发的审核工作台保存修正记录并生成结构化汇总。",
+              "en": "Reviewed appearance pre-annotations for 85 assets against four-view images (color, shape, parts, apparent material); saved corrections and structured summaries in an AI-assisted review workbench."
+            }
+          }
+        ],
+        "links": []
       },
       {
         id: "research-lstm",
@@ -585,3 +652,4 @@
     }
   };
 })();
+
